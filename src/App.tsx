@@ -1,3 +1,21 @@
+import { Routes, Route } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import Projects from './pages/Projects'
+import Veille from './pages/Veille'
+import CV from './pages/CV'
+import Contact from './pages/Contact'
+
 export default function App() {
-  return <h1 style={{padding: 24}}>HELLO ELIOT — ROUTER EN COURS</h1>
+  return (
+    <Routes>
+      <Route element={<Layout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/projets" element={<Projects />} />
+        <Route path="/veille" element={<Veille />} />
+        <Route path="/cv" element={<CV />} />
+        <Route path="/contact" element={<Contact />} />
+      </Route>
+    </Routes>
+  )
 }
