@@ -1,0 +1,95 @@
+[
+  {
+    "id": "intra-gest",
+    "title": "IntraGest",
+    "summary": "Intranet de suivi des tickets et demandes internes pour PME.",
+    "context": "BTS",
+    "stack": ["React", "TypeScript", "Tailwind", "API REST"],
+    "features": [
+      "Gestion des tickets par statut",
+      "Tableaux de bord pour les équipes",
+      "Historique des interventions"
+    ],
+    "date": "2025",
+    "status": "Livré",
+    "githubUrl": "https://github.com/username/intragest",
+    "demoUrl": "https://demo.example.com/intragest"
+  },
+  {
+    "id": "mediflow",
+    "title": "MediFlow",
+    "summary": "Application de planification des rendez-vous pour un cabinet médical.",
+    "context": "BTS",
+    "stack": ["React", "Node.js", "MySQL", "UX"],
+    "features": [
+      "Calendrier synchronisé",
+      "Création de fiches patients",
+      "Exports PDF des plannings"
+    ],
+    "date": "2024",
+    "status": "En maintenance",
+    "githubUrl": "https://github.com/username/mediflow"
+  },
+  {
+    "id": "atelier-cloud",
+    "title": "Atelier Cloud",
+    "summary": "Plateforme de gestion de projets collaboratifs pour une association.",
+    "context": "perso",
+    "stack": ["React", "TypeScript", "Firebase", "Tailwind"],
+    "features": [
+      "Kanban collaboratif",
+      "Messagerie temps réel",
+      "Suivi des jalons"
+    ],
+    "date": "2025",
+    "status": "En cours",
+    "githubUrl": "https://github.com/username/atelier-cloud",
+    "demoUrl": "https://demo.example.com/atelier-cloud"
+  },
+  {
+    "id": "shoply",
+    "title": "Shoply",
+    "summary": "Prototype e-commerce avec filtrage avancé et panier local.",
+    "context": "BTS",
+    "stack": ["React", "TypeScript", "Stripe", "Vite"],
+    "features": [
+      "Recherche multi-critères",
+      "Panier persistant",
+      "Tunnel de paiement simplifié"
+    ],
+    "date": "2024",
+    "status": "Prototype",
+    "githubUrl": "https://github.com/username/shoply"
+  },
+  {
+    "id": "school-board",
+    "title": "School Board",
+    "summary": "Tableau de bord pour la vie scolaire avec alertes et notifications.",
+    "context": "pro",
+    "stack": ["React", "TypeScript", "Tailwind", "GraphQL"],
+    "features": [
+      "Alertes temps réel",
+      "Gestion des absences",
+      "Exports CSV"
+    ],
+    "date": "2026",
+    "status": "Livré",
+    "githubUrl": "https://github.com/username/school-board"
+  },
+  {
+    "id": "green-stock",
+    "title": "GreenStock",
+    "summary": "Dashboard de suivi des stocks écoresponsables.",
+    "context": "perso",
+    "stack": ["React", "TypeScript", "D3.js", "Tailwind"],
+    "features": [
+      "Graphiques interactifs",
+      "Alertes de seuil",
+      "Rapports mensuels"
+    ],
+    "date": "2025",
+    "status": "Livré",
+    "githubUrl": "https://github.com/username/green-stock",
+    "demoUrl": "https://demo.example.com/green-stock"
+  }
+]
