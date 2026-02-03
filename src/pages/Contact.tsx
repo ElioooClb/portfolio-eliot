@@ -74,7 +74,7 @@ const Contact = () => {
               GitHub : github.com/ElioooClb
             </a>
             <a
-              href="https://www.linkedin.com/in/eliot-collomb/"
+              href="https://www.linkedin.com/in/eliot-collomb-36850b342/"
               target="_blank"
               rel="noreferrer"
               className="block rounded-xl border border-white/10 px-4 py-3 transition hover:border-white"
