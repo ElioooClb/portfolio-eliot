@@ -66,26 +66,26 @@ const Contact = () => {
           <h2 className="text-lg font-semibold text-white">Liens directs</h2>
           <div className="space-y-3 text-sm text-slate-300">
             <a
-              href="https://github.com/username"
+              href="https://github.com/ElioooClb"
               target="_blank"
               rel="noreferrer"
               className="block rounded-xl border border-white/10 px-4 py-3 transition hover:border-white"
             >
-              GitHub : github.com/username
+              GitHub : github.com/ElioooClb
             </a>
             <a
-              href="https://www.linkedin.com/in/username/"
+              href="https://www.linkedin.com/in/eliot-collomb/"
               target="_blank"
               rel="noreferrer"
               className="block rounded-xl border border-white/10 px-4 py-3 transition hover:border-white"
             >
-              LinkedIn : linkedin.com/in/username
+              LinkedIn : linkedin.com/in/eliot-collomb
             </a>
             <a
-              href="mailto:contact@email.com"
+              href="mailto:collomb.eliot@gmail.com"
               className="block rounded-xl border border-white/10 px-4 py-3 transition hover:border-white"
             >
-              Email : contact@email.com
+              Email : collomb.eliot@gmail.com
             </a>
           </div>
         </aside>

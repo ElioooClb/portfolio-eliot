@@ -12,7 +12,7 @@
     ],
     "date": "2025",
     "status": "Livré",
-    "githubUrl": "https://github.com/username/intragest",
+    "githubUrl": "https://github.com/ElioooClb/intragest",
     "demoUrl": "https://demo.example.com/intragest"
   },
   {
@@ -28,7 +28,7 @@
     ],
     "date": "2024",
     "status": "En maintenance",
-    "githubUrl": "https://github.com/username/mediflow"
+    "githubUrl": "https://github.com/ElioooClb/mediflow"
   },
   {
     "id": "atelier-cloud",
@@ -43,7 +43,7 @@
     ],
     "date": "2025",
     "status": "En cours",
-    "githubUrl": "https://github.com/username/atelier-cloud",
+    "githubUrl": "https://github.com/ElioooClb/atelier-cloud",
     "demoUrl": "https://demo.example.com/atelier-cloud"
   },
   {
@@ -59,7 +59,7 @@
     ],
     "date": "2024",
     "status": "Prototype",
-    "githubUrl": "https://github.com/username/shoply"
+    "githubUrl": "https://github.com/ElioooClb/shoply"
   },
   {
     "id": "school-board",
@@ -74,7 +74,7 @@
     ],
     "date": "2026",
     "status": "Livré",
-    "githubUrl": "https://github.com/username/school-board"
+    "githubUrl": "https://github.com/ElioooClb/school-board"
   },
   {
     "id": "green-stock",
@@ -89,7 +89,7 @@
     ],
     "date": "2025",
     "status": "Livré",
-    "githubUrl": "https://github.com/username/green-stock",
+    "githubUrl": "https://github.com/ElioooClb/green-stock",
     "demoUrl": "https://demo.example.com/green-stock"
   }
 ]

@@ -18,7 +18,7 @@ const CV = () => {
             </p>
           </div>
           <a
-            href="/CV.pdf"
+            href="/CV%20Eliot%20COLLOMB%20Alternance%20informatique%202026.pdf"
             download
             className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-white"
           >
