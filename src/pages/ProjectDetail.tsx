@@ -11,8 +11,9 @@ const ProjectDetail = () => {
   const project = projects.find((item) => item.id === id);
   const [activeScreenshot, setActiveScreenshot] = useState<string | null>(null);
   const resolveAsset = (src: string) => {
-    const baseUrl = new URL(import.meta.env.BASE_URL, window.location.origin);
-    return new URL(src.replace(/^\/+/, ""), baseUrl).toString();
+    const base = import.meta.env.BASE_URL;
+    const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+    return `${normalizedBase}${src.replace(/^\/+/, "")}`;
   };
 
   if (!project) {
