@@ -1,4 +1,5 @@
 import { useState } from "react";
+import type { SyntheticEvent } from "react";
 import { Link, useParams } from "react-router-dom";
 import projectsData from "../data/projects.json";
 import Tag from "../components/Tag";
@@ -14,6 +15,18 @@ const ProjectDetail = () => {
     const base = import.meta.env.BASE_URL;
     const normalizedBase = base.endsWith("/") ? base : `${base}/`;
     return `${normalizedBase}${src.replace(/^\/+/, "")}`;
+  };
+  const resolveFallbackAsset = (src: string) => `/${src.replace(/^\/+/, "")}`;
+  const handleImageError = (
+    event: SyntheticEvent<HTMLImageElement>,
+    src: string
+  ) => {
+    const target = event.currentTarget;
+    if (target.dataset.fallbackApplied) {
+      return;
+    }
+    target.dataset.fallbackApplied = "true";
+    target.src = resolveFallbackAsset(src);
   };
 
   if (!project) {
@@ -99,7 +112,7 @@ const ProjectDetail = () => {
                   <button
                     key={src}
                     type="button"
-                    onClick={() => setActiveScreenshot(resolvedSrc)}
+                    onClick={() => setActiveScreenshot(src)}
                     className="group relative overflow-hidden rounded-xl border border-white/10 text-left"
                     aria-label={`Voir la capture du projet ${project.title}`}
                   >
@@ -107,6 +120,7 @@ const ProjectDetail = () => {
                       src={resolvedSrc}
                       alt={`Capture du projet ${project.title}`}
                       className="h-32 w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                      onError={(event) => handleImageError(event, src)}
                     />
                     <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-black/60 px-3 py-2 text-xs text-white opacity-0 transition group-hover:opacity-100">
                       Cliquer pour agrandir
@@ -182,9 +196,10 @@ const ProjectDetail = () => {
             Fermer
           </button>
           <img
-            src={activeScreenshot}
+            src={resolveAsset(activeScreenshot)}
             alt={`Agrandissement du projet ${project.title}`}
             className="max-h-[85vh] w-auto max-w-[90vw] rounded-2xl border border-white/20 object-contain shadow-2xl"
+            onError={(event) => handleImageError(event, activeScreenshot)}
           />
         </div>
       )}
