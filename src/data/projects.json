@@ -70,7 +70,12 @@
       "Tests fonctionnels et corrections"
     ],
     "badges": ["BTS SIO", "SLAM", "Scolaire"],
-    "screenshots": [],
+    "screenshots": [
+      "/assets/projects/application-crud-metier/crud-metier-1.png",
+      "/assets/projects/application-crud-metier/crud-metier-2.png",
+      "/assets/projects/application-crud-metier/crud-metier-3.png",
+      "/assets/projects/application-crud-metier/crud-metier-4.png"
+    ],
     "date": "2024",
     "status": "Non déployé",
     "statusNote": "Projet non déployé – démonstration sur demande"
@@ -118,7 +123,7 @@
     "title": "Dashboard de données",
     "summary": "Tableau de bord interactif avec indicateurs clés et visualisation de données.",
     "context": "pro",
-    "stack": ["React", "TypeScript", "Chart.js", "Tailwind"],
+    "stack": ["React", "TypeScript", "Recharts", "Tailwind"],
     "competences": [
       "Définition d'indicateurs pertinents",
       "Visualisation et lecture de données",
@@ -127,7 +132,10 @@
       "Présentation des résultats"
     ],
     "badges": ["Professionnel", "Alternance"],
-    "screenshots": [],
+    "screenshots": [
+      "/assets/projects/dashboard-donnees/dashboard-demo.png",
+      "/assets/projects/dashboard-donnees/image.png"
+    ],
     "date": "2026",
     "status": "Non déployé",
     "statusNote": "Projet non déployé – démonstration sur demande"

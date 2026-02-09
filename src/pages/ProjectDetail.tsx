@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import projectsData from "../data/projects.json";
 import Tag from "../components/Tag";
@@ -8,6 +9,7 @@ const projects = projectsData as Project[];
 const ProjectDetail = () => {
   const { id } = useParams();
   const project = projects.find((item) => item.id === id);
+  const [activeScreenshot, setActiveScreenshot] = useState<string | null>(null);
 
   if (!project) {
     return (
@@ -87,16 +89,26 @@ const ProjectDetail = () => {
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               {project.screenshots && project.screenshots.length > 0 ? (
                 project.screenshots.map((src) => (
-                  <img
+                  <button
                     key={src}
-                    src={src}
-                    alt={`Capture du projet ${project.title}`}
-                    className="h-32 w-full rounded-xl border border-white/10 object-cover"
-                  />
+                    type="button"
+                    onClick={() => setActiveScreenshot(src)}
+                    className="group relative overflow-hidden rounded-xl border border-white/10 text-left"
+                    aria-label={`Voir la capture du projet ${project.title}`}
+                  >
+                    <img
+                      src={src}
+                      alt={`Capture du projet ${project.title}`}
+                      className="h-32 w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
+                    />
+                    <span className="pointer-events-none absolute inset-x-0 bottom-0 bg-black/60 px-3 py-2 text-xs text-white opacity-0 transition group-hover:opacity-100">
+                      Cliquer pour agrandir
+                    </span>
+                  </button>
                 ))
               ) : (
                 <div className="flex h-32 items-center justify-center rounded-xl border border-dashed border-white/20 bg-slate-900/40 px-4 text-center text-xs text-slate-400">
-                  Ajoutez vos captures dans src/assets/projects/{project.id}/
+                  Ajoutez vos captures dans public/assets/projects/{project.id}/
                 </div>
               )}
             </div>
@@ -152,6 +164,22 @@ const ProjectDetail = () => {
           </div>
         </aside>
       </section>
+      {activeScreenshot && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6">
+          <button
+            type="button"
+            onClick={() => setActiveScreenshot(null)}
+            className="absolute right-6 top-6 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white hover:border-white"
+          >
+            Fermer
+          </button>
+          <img
+            src={activeScreenshot}
+            alt={`Agrandissement du projet ${project.title}`}
+            className="max-h-[85vh] w-auto max-w-[90vw] rounded-2xl border border-white/20 object-contain shadow-2xl"
+          />
+        </div>
+      )}
     </div>
   );
 };
