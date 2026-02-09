@@ -10,8 +10,10 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const project = projects.find((item) => item.id === id);
   const [activeScreenshot, setActiveScreenshot] = useState<string | null>(null);
-  const resolveAsset = (src: string) =>
-    `${import.meta.env.BASE_URL}${src.replace(/^\/+/, "")}`;
+  const resolveAsset = (src: string) => {
+    const baseUrl = new URL(import.meta.env.BASE_URL, window.location.origin);
+    return new URL(src.replace(/^\/+/, ""), baseUrl).toString();
+  };
 
   if (!project) {
     return (
