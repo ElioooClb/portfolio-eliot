@@ -71,10 +71,10 @@
     ],
     "badges": ["BTS SIO", "SLAM", "Scolaire"],
     "screenshots": [
-      "/assets/projects/application-crud-metier/crud-metier-1.png",
-      "/assets/projects/application-crud-metier/crud-metier-2.png",
-      "/assets/projects/application-crud-metier/crud-metier-3.png",
-      "/assets/projects/application-crud-metier/crud-metier-4.png"
+      "assets/projects/application-crud-metier/crud-metier-1.png",
+      "assets/projects/application-crud-metier/crud-metier-2.png",
+      "assets/projects/application-crud-metier/crud-metier-3.png",
+      "assets/projects/application-crud-metier/crud-metier-4.png"
     ],
     "date": "2024",
     "status": "Non déployé",
@@ -133,8 +133,8 @@
     ],
     "badges": ["Professionnel", "Alternance"],
     "screenshots": [
-      "/assets/projects/dashboard-donnees/dashboard-demo.png",
-      "/assets/projects/dashboard-donnees/image.png"
+      "assets/projects/dashboard-donnees/dashboard-demo.png",
+      "assets/projects/dashboard-donnees/image.png"
     ],
     "date": "2026",
     "status": "Non déployé",

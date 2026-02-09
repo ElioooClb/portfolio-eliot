@@ -10,6 +10,8 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const project = projects.find((item) => item.id === id);
   const [activeScreenshot, setActiveScreenshot] = useState<string | null>(null);
+  const resolveAsset = (src: string) =>
+    `${import.meta.env.BASE_URL}${src.replace(/^\/+/, "")}`;
 
   if (!project) {
     return (
@@ -88,16 +90,18 @@ const ProjectDetail = () => {
             </h2>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               {project.screenshots && project.screenshots.length > 0 ? (
-                project.screenshots.map((src) => (
+                project.screenshots.map((src) => {
+                  const resolvedSrc = resolveAsset(src);
+                  return (
                   <button
                     key={src}
                     type="button"
-                    onClick={() => setActiveScreenshot(src)}
+                    onClick={() => setActiveScreenshot(resolvedSrc)}
                     className="group relative overflow-hidden rounded-xl border border-white/10 text-left"
                     aria-label={`Voir la capture du projet ${project.title}`}
                   >
                     <img
-                      src={src}
+                      src={resolvedSrc}
                       alt={`Capture du projet ${project.title}`}
                       className="h-32 w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]"
                     />
@@ -105,7 +109,8 @@ const ProjectDetail = () => {
                       Cliquer pour agrandir
                     </span>
                   </button>
-                ))
+                  );
+                })
               ) : (
                 <div className="flex h-32 items-center justify-center rounded-xl border border-dashed border-white/20 bg-slate-900/40 px-4 text-center text-xs text-slate-400">
                   Ajoutez vos captures dans public/assets/projects/{project.id}/
