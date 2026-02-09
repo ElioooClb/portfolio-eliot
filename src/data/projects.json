@@ -1,95 +1,135 @@
 [
   {
-    "id": "intra-gest",
-    "title": "IntraGest",
-    "summary": "Intranet de suivi des tickets et demandes internes pour PME.",
+    "id": "dossier-e5",
+    "title": "Dossier E5",
+    "summary": "Synthèse des missions en alternance avec preuves, livrables et compétences BTS SIO.",
     "context": "BTS",
-    "stack": ["React", "TypeScript", "Tailwind", "API REST"],
-    "features": [
-      "Gestion des tickets par statut",
-      "Tableaux de bord pour les équipes",
-      "Historique des interventions"
+    "stack": ["Documentation", "Suite Office", "PDF", "Méthodo BTS"],
+    "competences": [
+      "Analyse des besoins et des missions",
+      "Rédaction de livrables professionnels",
+      "Structuration d'un dossier de preuves",
+      "Communication avec le tuteur et l'équipe",
+      "Veille technologique ciblée"
     ],
+    "badges": ["BTS SIO", "SLAM", "Alternance"],
+    "screenshots": [],
     "date": "2025",
-    "status": "Livré",
-    "githubUrl": "https://github.com/ElioooClb/intragest",
-    "demoUrl": "https://demo.example.com/intragest"
+    "status": "Non déployé",
+    "statusNote": "Projet non déployé – démonstration sur demande"
   },
   {
-    "id": "mediflow",
-    "title": "MediFlow",
-    "summary": "Application de planification des rendez-vous pour un cabinet médical.",
+    "id": "projet-e6",
+    "title": "Projet E6",
+    "summary": "Projet applicatif complet présenté à l'examen (analyse, conception, réalisation, tests).",
     "context": "BTS",
-    "stack": ["React", "Node.js", "MySQL", "UX"],
-    "features": [
-      "Calendrier synchronisé",
-      "Création de fiches patients",
-      "Exports PDF des plannings"
+    "stack": ["React", "TypeScript", "Vite", "API REST (mock)"],
+    "competences": [
+      "Recueil et formalisation des besoins",
+      "Modélisation UML et conception d'écrans",
+      "Développement d'interfaces et logique métier",
+      "Mise en place de tests et validation",
+      "Rédaction de documentation technique"
     ],
+    "badges": ["BTS SIO", "SLAM", "Scolaire"],
+    "screenshots": [],
     "date": "2024",
-    "status": "En maintenance",
-    "githubUrl": "https://github.com/ElioooClb/mediflow"
+    "status": "Non déployé",
+    "statusNote": "Projet non déployé – démonstration sur demande"
   },
   {
-    "id": "atelier-cloud",
-    "title": "Atelier Cloud",
-    "summary": "Plateforme de gestion de projets collaboratifs pour une association.",
+    "id": "site-vitrine-dynamique",
+    "title": "Site vitrine dynamique",
+    "summary": "Site web avec contenu dynamique, formulaires et interactions utilisateur.",
+    "context": "BTS",
+    "stack": ["React", "TypeScript", "Tailwind", "Formulaires"],
+    "competences": [
+      "Intégration responsive et accessibilité",
+      "Gestion de contenu et composants réutilisables",
+      "Validation de formulaires et UX",
+      "Optimisation des performances front",
+      "Gestion de versions et déploiement"
+    ],
+    "badges": ["BTS SIO", "SLAM", "Scolaire"],
+    "screenshots": [],
+    "date": "2025",
+    "status": "En ligne",
+    "statusNote": "Accès restreint – lien fourni sur demande"
+  },
+  {
+    "id": "application-crud-metier",
+    "title": "Application CRUD métier",
+    "summary": "Application simulant un besoin métier réel avec gestion complète des données (CRUD).",
+    "context": "BTS",
+    "stack": ["React", "TypeScript", "LocalStorage", "JSON"],
+    "competences": [
+      "Conception de modèles de données",
+      "Implémentation des opérations CRUD",
+      "Gestion d'état et validation",
+      "Sécurisation des accès et rôles",
+      "Tests fonctionnels et corrections"
+    ],
+    "badges": ["BTS SIO", "SLAM", "Scolaire"],
+    "screenshots": [],
+    "date": "2024",
+    "status": "Non déployé",
+    "statusNote": "Projet non déployé – démonstration sur demande"
+  },
+  {
+    "id": "script-automatisation",
+    "title": "Script d'automatisation",
+    "summary": "Script de traitement automatique pour nettoyer et normaliser des données.",
     "context": "perso",
-    "stack": ["React", "TypeScript", "Firebase", "Tailwind"],
-    "features": [
-      "Kanban collaboratif",
-      "Messagerie temps réel",
-      "Suivi des jalons"
+    "stack": ["Python", "CSV", "Automatisation", "CLI"],
+    "competences": [
+      "Analyse et nettoyage de données",
+      "Automatisation de tâches répétitives",
+      "Gestion des erreurs et logs",
+      "Documentation d'usage",
+      "Amélioration des performances"
     ],
+    "badges": ["Personnel"],
+    "screenshots": [],
     "date": "2025",
-    "status": "En cours",
-    "githubUrl": "https://github.com/ElioooClb/atelier-cloud",
-    "demoUrl": "https://demo.example.com/atelier-cloud"
+    "status": "Non déployé",
+    "statusNote": "Projet non déployé – démonstration sur demande"
   },
   {
-    "id": "shoply",
-    "title": "Shoply",
-    "summary": "Prototype e-commerce avec filtrage avancé et panier local.",
-    "context": "BTS",
-    "stack": ["React", "TypeScript", "Stripe", "Vite"],
-    "features": [
-      "Recherche multi-critères",
-      "Panier persistant",
-      "Tunnel de paiement simplifié"
+    "id": "application-mobile-todo",
+    "title": "Application mobile To-Do",
+    "summary": "Application mobile simple de gestion de tâches avec priorités et rappels.",
+    "context": "perso",
+    "stack": ["React Native", "Expo", "TypeScript", "AsyncStorage"],
+    "competences": [
+      "Conception d'interfaces mobiles",
+      "Gestion du stockage local",
+      "Optimisation des parcours utilisateur",
+      "Tests sur appareils",
+      "Packaging et diffusion interne"
     ],
-    "date": "2024",
-    "status": "Prototype",
-    "githubUrl": "https://github.com/ElioooClb/shoply"
-  },
-  {
-    "id": "school-board",
-    "title": "School Board",
-    "summary": "Tableau de bord pour la vie scolaire avec alertes et notifications.",
-    "context": "pro",
-    "stack": ["React", "TypeScript", "Tailwind", "GraphQL"],
-    "features": [
-      "Alertes temps réel",
-      "Gestion des absences",
-      "Exports CSV"
-    ],
+    "badges": ["Personnel"],
+    "screenshots": [],
     "date": "2026",
-    "status": "Livré",
-    "githubUrl": "https://github.com/ElioooClb/school-board"
+    "status": "Non déployé",
+    "statusNote": "Projet non déployé – démonstration sur demande"
   },
   {
-    "id": "green-stock",
-    "title": "GreenStock",
-    "summary": "Dashboard de suivi des stocks écoresponsables.",
-    "context": "perso",
-    "stack": ["React", "TypeScript", "D3.js", "Tailwind"],
-    "features": [
-      "Graphiques interactifs",
-      "Alertes de seuil",
-      "Rapports mensuels"
+    "id": "dashboard-donnees",
+    "title": "Dashboard de données",
+    "summary": "Tableau de bord interactif avec indicateurs clés et visualisation de données.",
+    "context": "pro",
+    "stack": ["React", "TypeScript", "Chart.js", "Tailwind"],
+    "competences": [
+      "Définition d'indicateurs pertinents",
+      "Visualisation et lecture de données",
+      "Filtrage et interactions avancées",
+      "Optimisation des performances UI",
+      "Présentation des résultats"
     ],
-    "date": "2025",
-    "status": "Livré",
-    "githubUrl": "https://github.com/ElioooClb/green-stock",
-    "demoUrl": "https://demo.example.com/green-stock"
+    "badges": ["Professionnel", "Alternance"],
+    "screenshots": [],
+    "date": "2026",
+    "status": "Non déployé",
+    "statusNote": "Projet non déployé – démonstration sur demande"
   }
 ]

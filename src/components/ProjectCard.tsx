@@ -21,6 +21,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <div>
           <h3 className="text-lg font-semibold text-white">{project.title}</h3>
           <p className="mt-2 text-sm text-slate-300">{project.summary}</p>
+          {project.statusNote && (
+            <p className="mt-2 text-xs text-slate-400">{project.statusNote}</p>
+          )}
         </div>
         <div className="flex flex-wrap gap-2">
           {project.stack.map((tag) => (

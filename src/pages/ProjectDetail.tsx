@@ -47,6 +47,9 @@ const ProjectDetail = () => {
             </span>
             <span className="text-xs text-slate-400">{project.date}</span>
           </div>
+          {project.statusNote && (
+            <p className="text-xs text-slate-400">{project.statusNote}</p>
+          )}
           <h1 className="text-3xl font-semibold text-white">
             {project.title}
           </h1>
@@ -65,21 +68,54 @@ const ProjectDetail = () => {
             </p>
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-white">Fonctionnalités</h2>
+            <h2 className="text-lg font-semibold text-white">
+              Compétences BTS SIO mobilisées
+            </h2>
             <ul className="mt-3 space-y-2 text-sm text-slate-300">
-              {project.features.map((feature) => (
-                <li key={feature} className="flex items-start gap-2">
+              {project.competences.map((competence) => (
+                <li key={competence} className="flex items-start gap-2">
                   <span className="mt-1 h-2 w-2 rounded-full bg-accent" />
-                  <span>{feature}</span>
+                  <span>{competence}</span>
                 </li>
               ))}
             </ul>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-white">
+              Zone images / screenshots
+            </h2>
+            <div className="mt-3 grid gap-3 sm:grid-cols-2">
+              {project.screenshots && project.screenshots.length > 0 ? (
+                project.screenshots.map((src) => (
+                  <img
+                    key={src}
+                    src={src}
+                    alt={`Capture du projet ${project.title}`}
+                    className="h-32 w-full rounded-xl border border-white/10 object-cover"
+                  />
+                ))
+              ) : (
+                <div className="flex h-32 items-center justify-center rounded-xl border border-dashed border-white/20 bg-slate-900/40 px-4 text-center text-xs text-slate-400">
+                  Ajoutez vos captures dans src/assets/projects/{project.id}/
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
         <aside className="space-y-6 rounded-2xl border border-white/10 bg-slateCard/60 p-6">
           <div>
-            <h2 className="text-lg font-semibold text-white">Stack</h2>
+            <h2 className="text-lg font-semibold text-white">Badges</h2>
+            <div className="mt-3 flex flex-wrap gap-2">
+              {project.badges.map((badge) => (
+                <Tag key={`${project.id}-${badge}`} label={badge} />
+              ))}
+            </div>
+          </div>
+          <div>
+            <h2 className="text-lg font-semibold text-white">
+              Technologies utilisées ou prévues
+            </h2>
             <div className="mt-3 flex flex-wrap gap-2">
               {project.stack.map((tag) => (
                 <Tag key={`${project.id}-${tag}`} label={tag} />
@@ -88,14 +124,16 @@ const ProjectDetail = () => {
           </div>
           <div className="space-y-3">
             <h2 className="text-lg font-semibold text-white">Liens</h2>
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="block rounded-full border border-white/20 px-4 py-2 text-center text-sm font-semibold text-white transition hover:border-white"
-            >
-              Code source GitHub
-            </a>
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="block rounded-full border border-white/20 px-4 py-2 text-center text-sm font-semibold text-white transition hover:border-white"
+              >
+                Code source GitHub
+              </a>
+            )}
             {project.demoUrl && (
               <a
                 href={project.demoUrl}
@@ -105,6 +143,11 @@ const ProjectDetail = () => {
               >
                 Voir la démo
               </a>
+            )}
+            {!project.githubUrl && !project.demoUrl && (
+              <p className="text-xs text-slate-400">
+                Liens non publics – démonstration sur demande.
+              </p>
             )}
           </div>
         </aside>

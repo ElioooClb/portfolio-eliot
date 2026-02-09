@@ -4,9 +4,12 @@ export type Project = {
   summary: string;
   context: "BTS" | "perso" | "pro";
   stack: string[];
-  features: string[];
+  competences: string[];
+  badges: string[];
+  screenshots?: string[];
   date: string;
   status: string;
-  githubUrl: string;
+  statusNote?: string;
+  githubUrl?: string;
   demoUrl?: string;
 };
