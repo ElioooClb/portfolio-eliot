@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import projectsData from "../data/projects.json";
 import ProjectCard from "../components/ProjectCard";
@@ -6,6 +7,42 @@ import type { Project } from "../types";
 const projects = projectsData as Project[];
 
 const Home = () => {
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [canScrollPrev, setCanScrollPrev] = useState(false);
+  const [canScrollNext, setCanScrollNext] = useState(false);
+
+  useEffect(() => {
+    const container = carouselRef.current;
+    if (!container) {
+      return;
+    }
+
+    const updateControls = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = container;
+      setCanScrollPrev(scrollLeft > 0);
+      setCanScrollNext(scrollLeft + clientWidth < scrollWidth - 1);
+    };
+
+    updateControls();
+    container.addEventListener("scroll", updateControls, { passive: true });
+    const observer = new ResizeObserver(updateControls);
+    observer.observe(container);
+
+    return () => {
+      container.removeEventListener("scroll", updateControls);
+      observer.disconnect();
+    };
+  }, []);
+
+  const scrollByPage = (direction: "prev" | "next") => {
+    const container = carouselRef.current;
+    if (!container) {
+      return;
+    }
+    const offset = direction === "next" ? container.clientWidth : -container.clientWidth;
+    container.scrollBy({ left: offset, behavior: "smooth" });
+  };
+
   return (
     <div className="flex flex-col gap-12">
       <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 p-8 shadow-xl shadow-black/30">
@@ -49,43 +86,50 @@ const Home = () => {
               Une sélection de projets réalisées pendant le BTS SIO.
             </p>
           </div>
-          <Link
-            to="/projects"
-            className="text-sm font-semibold text-accent hover:text-white"
-          >
-            Tout voir →
-          </Link>
+          <div className="flex items-center gap-3">
+            <div className="hidden items-center gap-2 sm:flex">
+              <button
+                type="button"
+                onClick={() => scrollByPage("prev")}
+                disabled={!canScrollPrev}
+                aria-disabled={!canScrollPrev}
+                aria-label="Voir les projets précédents"
+                className="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white transition hover:border-white disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Précédent
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByPage("next")}
+                disabled={!canScrollNext}
+                aria-disabled={!canScrollNext}
+                aria-label="Voir les projets suivants"
+                className="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white transition hover:border-white disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Suivant
+              </button>
+            </div>
+            <Link
+              to="/projects"
+              className="text-sm font-semibold text-accent hover:text-white"
+            >
+              Tout voir →
+            </Link>
+          </div>
         </div>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {projects.slice(0, 3).map((project) => (
-            <ProjectCard key={project.id} project={project} />
+        <div
+          ref={carouselRef}
+          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className="min-w-full snap-start sm:min-w-[50%] lg:min-w-[33.333%]"
+            >
+              <ProjectCard project={project} />
+            </div>
           ))}
         </div>
-      </section>
-
-      <section className="grid gap-6 md:grid-cols-3">
-        {[
-          {
-            title: "Design system",
-            text: "Des composants réutilisables et des interfaces cohérentes.",
-          },
-          {
-            title: "Performance",
-            text: "Optimisation des temps de chargement et des animations.",
-          },
-          {
-            title: "Accessibilité",
-            text: "Contrastes élevés, navigation clavier et labels clairs.",
-          },
-        ].map((item) => (
-          <div
-            key={item.title}
-            className="rounded-2xl border border-white/10 bg-slateCard/60 p-6"
-          >
-            <h3 className="text-lg font-semibold text-white">{item.title}</h3>
-            <p className="mt-2 text-sm text-slate-300">{item.text}</p>
-          </div>
-        ))}
       </section>
     </div>
   );
