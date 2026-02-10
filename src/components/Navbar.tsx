@@ -28,20 +28,12 @@ const Navbar = () => {
             Compétences
           </NavLink>
           <NavLink
-            to="/cv"
-            className={({ isActive }) =>
-              `${linkBase} ${isActive ? "text-white" : "text-slate-300"}`
-            }
-          >
-            CV
-          </NavLink>
-          <NavLink
             to="/contact"
             className={({ isActive }) =>
               `${linkBase} ${isActive ? "text-white" : "text-slate-300"}`
             }
           >
-            Contact
+            CV & Contact
           </NavLink>
         </nav>
       </div>
