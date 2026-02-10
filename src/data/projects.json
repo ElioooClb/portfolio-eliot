@@ -82,16 +82,33 @@
   },
   {
     "id": "script-automatisation",
-    "title": "Script d'automatisation",
-    "summary": "Script de traitement automatique pour nettoyer et normaliser des données.",
+    "title": "Outil d’administration système – PowerShell (CLI)",
+    "summary": "Outil CLI PowerShell pour diagnostiquer et assister l'administration système Windows.",
     "context": "perso",
-    "stack": ["Python", "CSV", "Automatisation", "CLI"],
+    "contextDetails": "Projet personnel réalisé dans le cadre du BTS SIO – option SLAM. L’objectif est de concevoir un outil d’administration système pour environnement Windows, utilisable exclusivement en ligne de commande.",
+    "description": [
+      "Cet outil PowerShell permet d’afficher et d’analyser des informations système essentielles directement dans le terminal, sans interface graphique ni génération de fichiers.",
+      "Il propose plusieurs commandes permettant d’assister un technicien ou administrateur système dans des tâches courantes de diagnostic et de maintenance.",
+      "Le projet est volontairement orienté démonstration afin de mettre en valeur les compétences en scripting et automatisation."
+    ],
+    "features": [
+      "Affichage des informations système (OS, uptime, CPU, mémoire)",
+      "Analyse de l’espace disque et alertes visuelles",
+      "Consultation de l’état des services Windows critiques",
+      "Visualisation des processus actifs (top CPU / mémoire)",
+      "Vérification de la connectivité réseau",
+      "Simulation et exécution contrôlée de nettoyage système",
+      "Commandes exécutables entièrement en ligne de commande",
+      "Rendu structuré et lisible directement dans le terminal"
+    ],
+    "stack": ["PowerShell", "Cmdlets Windows", "CLI", "Windows"],
     "competences": [
-      "Analyse et nettoyage de données",
-      "Automatisation de tâches répétitives",
-      "Gestion des erreurs et logs",
-      "Documentation d'usage",
-      "Amélioration des performances"
+      "Scripting et automatisation (PowerShell)",
+      "Administration système Windows",
+      "Analyse et exploitation des informations système",
+      "Utilisation avancée de la ligne de commande",
+      "Structuration et lisibilité du code",
+      "Mise en œuvre de solutions techniques adaptées à un besoin professionnel"
     ],
     "badges": ["Personnel"],
     "screenshots": [
@@ -102,8 +119,8 @@
       "assets/projects/script-automatisation/script-5.png"
     ],
     "date": "2025",
-    "status": "Non déployé",
-    "statusNote": "Projet non déployé – démonstration sur demande"
+    "status": "Démo locale",
+    "statusNote": "Projet de démonstration local – exécution sur demande"
   },
   {
     "id": "application-mobile-todo",

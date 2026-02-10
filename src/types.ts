@@ -3,6 +3,9 @@ export type Project = {
   title: string;
   summary: string;
   context: "BTS" | "perso" | "pro";
+  contextDetails?: string;
+  description?: string[];
+  features?: string[];
   stack: string[];
   competences: string[];
   badges: string[];

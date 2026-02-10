@@ -83,10 +83,37 @@ const ProjectDetail = () => {
         <div className="space-y-6 rounded-2xl border border-white/10 bg-slateCard/60 p-6">
           <div>
             <h2 className="text-lg font-semibold text-white">Contexte</h2>
-            <p className="mt-2 text-sm text-slate-300">
-              Projet réalisé dans un contexte {project.context}.
-            </p>
+            {project.contextDetails && (
+              <p className="mt-2 text-sm text-slate-300">
+                {project.contextDetails}
+              </p>
+            )}
           </div>
+          {project.description && project.description.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-white">Description</h2>
+              <div className="mt-2 space-y-2 text-sm text-slate-300">
+                {project.description.map((paragraph) => (
+                  <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          )}
+          {project.features && project.features.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-white">
+                Fonctionnalités
+              </h2>
+              <ul className="mt-3 space-y-2 text-sm text-slate-300">
+                {project.features.map((feature) => (
+                  <li key={feature} className="flex items-start gap-2">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-accent" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <div>
             <h2 className="text-lg font-semibold text-white">
               Compétences BTS SIO mobilisées
