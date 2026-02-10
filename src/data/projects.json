@@ -94,7 +94,13 @@
       "Amélioration des performances"
     ],
     "badges": ["Personnel"],
-    "screenshots": [],
+    "screenshots": [
+      "assets/projects/script-automatisation/script-1.png",
+      "assets/projects/script-automatisation/script-2.png",
+      "assets/projects/script-automatisation/script-3.png",
+      "assets/projects/script-automatisation/script-4.png",
+      "assets/projects/script-automatisation/script-5.png"
+    ],
     "date": "2025",
     "status": "Non déployé",
     "statusNote": "Projet non déployé – démonstration sur demande"
