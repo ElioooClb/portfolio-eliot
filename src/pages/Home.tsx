@@ -11,15 +11,16 @@ const Home = () => {
       <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 p-8 shadow-xl shadow-black/30">
         <div className="max-w-2xl space-y-6">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
-            Portfolio développeur front
+            Portfolio Eliot Collomb
           </p>
           <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-            Je conçois des interfaces rapides, accessibles et centrées utilisateur.
+            Étudiant en BTS SIO, je développe des interfaces et des applications
+            web dans le cadre de ma formation et de projets personnels.
           </h1>
           <p className="text-base text-slate-300">
-            Étudiant BTS SIO, je construis des applications web modernes avec
-            React, TypeScript et Tailwind. Découvrez mes projets, mes
-            compétences et mes disponibilités.
+            À travers ce portfolio, je présente mes projets, les technologies
+            utilisées et les compétences que je construis progressivement en
+            développement web et en informatique.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
@@ -45,7 +46,7 @@ const Home = () => {
               Projets récents
             </h2>
             <p className="text-sm text-slate-400">
-              Une sélection d'applications réalisées pendant le BTS SIO.
+              Une sélection de projets réalisées pendant le BTS SIO.
             </p>
           </div>
           <Link
