@@ -1,166 +1,269 @@
 [
   {
-    "id": "dossier-e5",
-    "title": "Dossier E5",
-    "summary": "Synthèse des missions en alternance avec preuves, livrables et compétences BTS SIO.",
+    "id": "ticketing-it-nextjs",
+    "title": "Application web de gestion de tickets IT",
+    "summary": "Application full-stack de gestion de tickets d'assistance, conçue pour simuler un flux métier support réaliste.",
     "context": "BTS",
-    "stack": ["Documentation", "Suite Office", "PDF", "Méthodo BTS"],
-    "competences": [
-      "Analyse des besoins et des missions",
-      "Rédaction de livrables professionnels",
-      "Structuration d'un dossier de preuves",
-      "Communication avec le tuteur et l'équipe",
-      "Veille technologique ciblée"
+    "category": "Full-stack",
+    "role": "Concepteur et développeur full-stack",
+    "shortOutcome": "Mise en ligne d'une application exploitable avec cycle complet de traitement des tickets.",
+    "problem": "Structurer et suivre les demandes d'assistance IT dans une interface unique avec priorisation et traçabilité.",
+    "solution": "Développement d'une application Next.js avec persistance SQLite via Prisma, gestion des statuts/priorités et vue détaillée des tickets.",
+    "mainFeatures": [
+      "Authentification de démonstration",
+      "Création de tickets",
+      "Consultation de la liste des tickets",
+      "Modification des tickets",
+      "Changement de statut",
+      "Gestion des priorités",
+      "Commentaires sur les tickets",
+      "Filtres de recherche",
+      "Interface de détail ticket"
     ],
-    "badges": ["BTS SIO", "SLAM", "Alternance"],
-    "screenshots": [],
-    "date": "2025",
-    "status": "Non déployé",
-    "statusNote": "Projet non déployé – démonstration sur demande"
-  },
-  {
-    "id": "projet-e6",
-    "title": "Projet E6",
-    "summary": "Projet applicatif complet présenté à l'examen (analyse, conception, réalisation, tests).",
-    "context": "BTS",
-    "stack": ["React", "TypeScript", "Vite", "API REST (mock)"],
-    "competences": [
-      "Recueil et formalisation des besoins",
-      "Modélisation UML et conception d'écrans",
-      "Développement d'interfaces et logique métier",
-      "Mise en place de tests et validation",
-      "Rédaction de documentation technique"
+    "technicalHighlights": [
+      "Modélisation préalable des données métiers",
+      "Architecture full-stack claire",
+      "Structuration des routes et composants",
+      "Logique métier réaliste orientée support",
+      "Déploiement sur serveur personnel"
     ],
-    "badges": ["BTS SIO", "SLAM", "Scolaire"],
-    "screenshots": [],
-    "date": "2024",
-    "status": "Non déployé",
-    "statusNote": "Projet non déployé – démonstration sur demande"
-  },
-  {
-    "id": "site-vitrine-dynamique",
-    "title": "Site vitrine dynamique",
-    "summary": "Site web avec contenu dynamique, formulaires et interactions utilisateur.",
-    "context": "BTS",
-    "stack": ["React", "TypeScript", "Tailwind", "Formulaires"],
-    "competences": [
-      "Intégration responsive et accessibilité",
-      "Gestion de contenu et composants réutilisables",
-      "Validation de formulaires et UX",
-      "Optimisation des performances front",
-      "Gestion de versions et déploiement"
+    "challenges": [
+      "Définir un modèle de données cohérent entre tickets, statuts et priorités",
+      "Maintenir une navigation simple entre liste et détail",
+      "Conserver une logique métier claire sans surcomplexifier l'application"
     ],
-    "badges": ["BTS SIO", "SLAM", "Scolaire"],
+    "learnings": [
+      "Conception orientée cas d'usage métier",
+      "Organisation d'un projet full-stack Next.js",
+      "Utilisation de Prisma ORM avec SQLite",
+      "Mise en production d'une application web sur infrastructure personnelle"
+    ],
+    "featured": true,
+    "order": 1,
+    "contextDetails": "Projet BTS SIO SLAM réalisé pour reproduire un contexte d'assistance informatique avec un flux de tickets complet.",
+    "description": [
+      "L'application permet de créer, suivre et faire évoluer des tickets d'assistance dans une interface web unique.",
+      "Le projet a été conçu autour d'un besoin concret de support IT, avec une attention portée à la lisibilité des données et au suivi des priorités."
+    ],
+    "features": [
+      "Création, consultation et modification de tickets",
+      "Gestion des statuts, priorités et commentaires",
+      "Filtrage des tickets pour faciliter le traitement",
+      "Vue de détail dédiée pour chaque ticket"
+    ],
+    "stack": ["Next.js", "TypeScript", "Prisma ORM", "SQLite", "Tailwind CSS"],
+    "competences": [
+      "Modélisation de données",
+      "Développement full-stack",
+      "Implémentation de logique métier",
+      "Conception d'interface orientée efficacité",
+      "Déploiement applicatif"
+    ],
+    "badges": ["BTS SIO", "SLAM", "Personnel", "Full-stack"],
     "screenshots": [],
     "date": "2025",
     "status": "En ligne",
-    "statusNote": "Accès restreint – lien fourni sur demande"
+    "statusNote": "Application déployée sur serveur personnel",
+    "githubUrl": "https://github.com/ElioooClb/ticketing.git",
+    "demoUrl": "http://eliot-ticketing.duckdns.org"
   },
   {
-    "id": "application-crud-metier",
-    "title": "Application CRUD métier",
-    "summary": "Application simulant un besoin métier réel avec gestion complète des données (CRUD).",
+    "id": "mycellius-auth-roles",
+    "title": "Authentification sécurisée et gestion des rôles - Mycellius",
+    "summary": "Implémentation d'un système d'authentification JWT et de gestion de rôles pour une application wiki interne.",
     "context": "BTS",
-    "stack": ["React", "TypeScript", "LocalStorage", "JSON"],
-    "competences": [
-      "Conception de modèles de données",
-      "Implémentation des opérations CRUD",
-      "Gestion d'état et validation",
-      "Sécurisation des accès et rôles",
-      "Tests fonctionnels et corrections"
+    "category": "Securite applicative",
+    "role": "Developpeur full-stack (axe securite)",
+    "shortOutcome": "Acces securise par JWT avec controle de permissions selon les profils utilisateurs.",
+    "problem": "Securiser l'acces a une application web d'entreprise en controlant les droits selon le role utilisateur.",
+    "solution": "Mise en place d'un backend Spring Security avec JWT et d'un frontend React/Vite avec gestion centralisee de l'authentification.",
+    "mainFeatures": [
+      "Formulaire de connexion",
+      "Verification des identifiants cote serveur",
+      "Generation d'un JWT",
+      "Securisation des routes API",
+      "Roles STAGIAIRE / DEV / ADMIN",
+      "Controle d'acces selon le role",
+      "Gestion centralisee de l'authentification cote frontend"
     ],
-    "badges": ["BTS SIO", "SLAM", "Scolaire"],
-    "screenshots": [
-      "assets/projects/application-crud-metier/crud-metier-1.png",
-      "assets/projects/application-crud-metier/crud-metier-2.png",
-      "assets/projects/application-crud-metier/crud-metier-3.png",
-      "assets/projects/application-crud-metier/crud-metier-4.png"
+    "technicalHighlights": [
+      "Separation frontend / backend claire",
+      "Filtre JWT sur les points d'entree API",
+      "Hashage des mots de passe",
+      "Migration de base via Flyway",
+      "Environnement outille avec Maven et Docker"
     ],
-    "date": "2024",
-    "status": "Non déployé",
-    "statusNote": "Projet non déployé – démonstration sur demande"
-  },
-  {
-    "id": "script-automatisation",
-    "title": "Outil d’administration système – PowerShell (CLI)",
-    "summary": "Outil CLI PowerShell pour diagnostiquer et assister l'administration système Windows.",
-    "context": "perso",
-    "contextDetails": "Projet personnel réalisé dans le cadre du BTS SIO – option SLAM. L’objectif est de concevoir un outil d’administration système pour environnement Windows, utilisable exclusivement en ligne de commande.",
+    "challenges": [
+      "Coordonner la logique de securite entre backend et frontend",
+      "Garantir un controle d'acces coherent selon les roles",
+      "Structurer un flux d'authentification robuste pour les appels API"
+    ],
+    "learnings": [
+      "Bonnes pratiques d'authentification avec Spring Security",
+      "Conception d'une gestion de roles exploitable",
+      "Integration d'un frontend React avec un backend securise",
+      "Approche realiste de la securite applicative en contexte BTS"
+    ],
+    "featured": true,
+    "order": 2,
+    "contextDetails": "Projet BTS SIO centre sur la securisation d'une application type wiki interne avec une logique de permissions metier.",
     "description": [
-      "Cet outil PowerShell permet d’afficher et d’analyser des informations système essentielles directement dans le terminal, sans interface graphique ni génération de fichiers.",
-      "Il propose plusieurs commandes permettant d’assister un technicien ou administrateur système dans des tâches courantes de diagnostic et de maintenance.",
-      "Le projet est volontairement orienté démonstration afin de mettre en valeur les compétences en scripting et automatisation."
+      "Mycellius a servi de support pour implementer un schema d'authentification robuste base sur JWT.",
+      "L'objectif principal etait de controler precisement l'acces aux ressources selon le role utilisateur."
     ],
     "features": [
-      "Affichage des informations système (OS, uptime, CPU, mémoire)",
-      "Analyse de l’espace disque et alertes visuelles",
-      "Consultation de l’état des services Windows critiques",
-      "Visualisation des processus actifs (top CPU / mémoire)",
-      "Vérification de la connectivité réseau",
-      "Simulation et exécution contrôlée de nettoyage système",
-      "Commandes exécutables entièrement en ligne de commande",
-      "Rendu structuré et lisible directement dans le terminal"
+      "Connexion utilisateur et emission de token JWT",
+      "Protection des endpoints backend",
+      "Gestion des droits par profil STAGIAIRE, DEV et ADMIN",
+      "Pilotage de l'etat d'authentification dans le frontend"
     ],
-    "stack": ["PowerShell", "Cmdlets Windows", "CLI", "Windows"],
+    "stack": [
+      "Java 21",
+      "Spring Boot",
+      "Spring Security",
+      "JWT",
+      "React",
+      "Vite",
+      "MySQL",
+      "Flyway",
+      "Maven",
+      "Docker"
+    ],
     "competences": [
-      "Scripting et automatisation (PowerShell)",
-      "Administration système Windows",
-      "Analyse et exploitation des informations système",
-      "Utilisation avancée de la ligne de commande",
-      "Structuration et lisibilité du code",
-      "Mise en œuvre de solutions techniques adaptées à un besoin professionnel"
+      "Securisation d'API REST",
+      "Gestion d'authentification JWT",
+      "Controle d'acces par roles",
+      "Conception d'architecture full-stack",
+      "Gestion de base de donnees relationnelle"
     ],
-    "badges": ["Personnel"],
-    "screenshots": [
-      "assets/projects/script-automatisation/script-1.png",
-      "assets/projects/script-automatisation/script-2.png",
-      "assets/projects/script-automatisation/script-3.png",
-      "assets/projects/script-automatisation/script-4.png",
-      "assets/projects/script-automatisation/script-5.png"
-    ],
-    "date": "2025",
-    "status": "Démo locale",
-    "statusNote": "Projet de démonstration local – exécution sur demande"
-  },
-  {
-    "id": "application-mobile-todo",
-    "title": "Application mobile To-Do",
-    "summary": "Application mobile simple de gestion de tâches avec priorités et rappels.",
-    "context": "perso",
-    "stack": ["React Native", "Expo", "TypeScript", "AsyncStorage"],
-    "competences": [
-      "Conception d'interfaces mobiles",
-      "Gestion du stockage local",
-      "Optimisation des parcours utilisateur",
-      "Tests sur appareils",
-      "Packaging et diffusion interne"
-    ],
-    "badges": ["Personnel"],
+    "badges": ["BTS SIO", "SLAM", "Securite", "Full-stack"],
     "screenshots": [],
-    "date": "2026",
-    "status": "Non déployé",
-    "statusNote": "Projet non déployé – démonstration sur demande"
+    "date": "2025",
+    "status": "En ligne",
+    "statusNote": "Demonstrateur deploye sur serveur personnel",
+    "githubUrl": "https://github.com/ElioooClb/mycellius-sio-eliot.git",
+    "demoUrl": "http://eliot-mycellius.duckdns.org"
   },
   {
-    "id": "dashboard-donnees",
-    "title": "Dashboard de données",
-    "summary": "Tableau de bord interactif avec indicateurs clés et visualisation de données.",
-    "context": "pro",
-    "stack": ["React", "TypeScript", "Recharts", "Tailwind"],
+    "id": "infra-dev-test-prod",
+    "title": "Architecture multi-environnements pour le developpement applicatif",
+    "summary": "Mise en place d'une infrastructure virtualisee DEV / TEST / PROD pour structurer les cycles de developpement et de deploiement.",
+    "context": "BTS",
+    "category": "Infrastructure / DevOps",
+    "role": "Mise en place et administration de l'environnement",
+    "shortOutcome": "Environnements isoles et reproductibles permettant de professionnaliser le passage DEV vers PROD.",
+    "problem": "Disposer d'un cadre technique fiable pour tester et deployer les applications sans melanger les contextes.",
+    "solution": "Conception d'une architecture virtualisee sur Proxmox avec separation logique des environnements, bridges reseau et snapshots.",
+    "mainFeatures": [
+      "Mise en place de la plateforme de virtualisation",
+      "Creation d'environnements DEV, TEST et PROD distincts",
+      "Configuration reseau avec bridges",
+      "Isolation logique entre environnements",
+      "Utilisation de snapshots pour fiabiliser les retours arriere",
+      "Structuration du cycle DEV -> TEST -> PROD",
+      "Support au deploiement des applications"
+    ],
+    "technicalHighlights": [
+      "Utilisation de Proxmox pour virtualiser les environnements",
+      "Gestion reseau dediee pour limiter les interferences",
+      "Versionning Git/GitHub au service du cycle de livraison",
+      "Premiere base CI/CD via fichiers YAML"
+    ],
+    "challenges": [
+      "Concevoir une topologie reseau simple mais suffisamment cloisonnee",
+      "Definir des procedures de passage entre environnements",
+      "Assurer la stabilite des environnements lors des tests"
+    ],
+    "learnings": [
+      "Vision globale d'une chaine de delivery",
+      "Bonnes pratiques de separation d'environnements",
+      "Administration d'infrastructure virtualisee",
+      "Preparation d'un contexte propice a l'automatisation CI/CD"
+    ],
+    "featured": true,
+    "order": 3,
+    "contextDetails": "Projet BTS orienté professionnalisation des pratiques de developpement et de deploiement via une infrastructure dediee.",
+    "description": [
+      "Ce projet met l'accent sur l'organisation technique autour de plusieurs environnements.",
+      "L'objectif est de reduire les risques de regression en structurant les etapes de validation avant production."
+    ],
+    "features": [
+      "Cloisonnement DEV / TEST / PROD",
+      "Snapshots pour restauration rapide",
+      "Base de procedure de deploiement progressive",
+      "Support d'hebergement pour applications BTS"
+    ],
+    "stack": ["Proxmox", "Virtualisation", "Bridges reseau", "Snapshots", "Git", "GitHub", "YAML CI/CD"],
     "competences": [
-      "Définition d'indicateurs pertinents",
-      "Visualisation et lecture de données",
-      "Filtrage et interactions avancées",
-      "Optimisation des performances UI",
-      "Présentation des résultats"
+      "Administration de plateforme de virtualisation",
+      "Conception d'architecture multi-environnements",
+      "Configuration reseau et isolation logique",
+      "Support aux deploiements applicatifs",
+      "Pratiques DevOps de base"
     ],
-    "badges": ["Professionnel", "Alternance"],
-    "screenshots": [
-      "assets/projects/dashboard-donnees/dashboard-demo.png",
-      "assets/projects/dashboard-donnees/image.png"
+    "badges": ["BTS SIO", "Infrastructure", "DevOps"],
+    "screenshots": [],
+    "date": "2025",
+    "status": "Operationnel",
+    "statusNote": "Environnement utilise comme socle de developpement et de tests"
+  },
+  {
+    "id": "mobile-task-manager",
+    "title": "Application mobile de gestion de taches",
+    "summary": "Application mobile BTS pour organiser des taches avec priorites, tri, filtrage et stockage local.",
+    "context": "BTS",
+    "category": "Mobile",
+    "role": "Developpeur mobile",
+    "shortOutcome": "Application mobile fonctionnelle avec cycle complet CRUD et persistance locale.",
+    "problem": "Proposer une gestion de taches simple et utilisable hors ligne dans un cadre d'apprentissage mobile.",
+    "solution": "Realisation d'une application React Native Expo avec gestion d'etat TypeScript, tri/filtrage et stockage local.",
+    "mainFeatures": [
+      "CRUD de taches",
+      "Gestion des statuts de taches",
+      "Gestion des priorites",
+      "Tri des taches",
+      "Filtrage des taches",
+      "Stockage local"
     ],
-    "date": "2026",
-    "status": "Non déployé",
-    "statusNote": "Projet non déployé – démonstration sur demande"
+    "technicalHighlights": [
+      "Architecture mobile legere sous React Native",
+      "Typage TypeScript pour fiabiliser les interactions UI/donnees",
+      "Persistance locale pour usage sans backend"
+    ],
+    "challenges": [
+      "Maintenir une experience fluide sur mobile",
+      "Structurer les donnees pour combiner tri, filtrage et statuts",
+      "Conserver une logique claire dans un projet d'apprentissage"
+    ],
+    "learnings": [
+      "Fondamentaux du developpement mobile cross-platform",
+      "Gestion d'etat et persistance locale en mobile",
+      "Conception d'ecrans mobiles orientee productivite"
+    ],
+    "featured": false,
+    "order": 4,
+    "contextDetails": "Projet d'apprentissage mobile realise dans le cadre du BTS SIO.",
+    "description": [
+      "L'application permet de creer et suivre des taches depuis un smartphone.",
+      "Le projet se concentre sur les fondamentaux UX mobile et la fiabilite du stockage local."
+    ],
+    "features": [
+      "Ajout, edition et suppression de taches",
+      "Organisation par statut et priorite",
+      "Tri et filtrage selon les besoins de consultation",
+      "Conservation locale des donnees"
+    ],
+    "stack": ["React Native", "Expo", "TypeScript"],
+    "competences": [
+      "Developpement mobile cross-platform",
+      "Conception d'interface mobile",
+      "Gestion d'etat et persistance locale",
+      "Structuration d'un projet TypeScript"
+    ],
+    "badges": ["BTS SIO", "Mobile"],
+    "screenshots": [],
+    "date": "2024",
+    "status": "Non deploye",
+    "statusNote": "Demonstration sur demande"
   }
 ]

@@ -40,7 +40,9 @@ const ContactLink = ({
 };
 
 const Contact = () => {
-  const cvHref = `${import.meta.env.BASE_URL}CV%20Eliot%20COLLOMB%20Alternance%20informatique%202026.pdf`;
+  const base = import.meta.env.BASE_URL;
+  const normalizedBase = base.endsWith("/") ? base : `${base}/`;
+  const cvHref = `${normalizedBase}cv-eliot-collomb.pdf`;
 
   return (
     <div className="flex flex-col gap-10">

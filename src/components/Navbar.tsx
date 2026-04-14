@@ -6,11 +6,11 @@ const linkBase =
 const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-slateBg/90 backdrop-blur">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
         <NavLink to="/" className="text-lg font-semibold text-white">
           Eliot Collomb
         </NavLink>
-        <nav aria-label="Navigation principale" className="flex gap-4">
+        <nav aria-label="Navigation principale" className="flex flex-wrap gap-4">
           <NavLink
             to="/projects"
             className={({ isActive }) =>
@@ -18,6 +18,22 @@ const Navbar = () => {
             }
           >
             Projets
+          </NavLink>
+          <NavLink
+            to="/dossier-e5"
+            className={({ isActive }) =>
+              `${linkBase} ${isActive ? "text-white" : "text-slate-300"}`
+            }
+          >
+            Dossier E5
+          </NavLink>
+          <NavLink
+            to="/dossier-e6"
+            className={({ isActive }) =>
+              `${linkBase} ${isActive ? "text-white" : "text-slate-300"}`
+            }
+          >
+            Dossier E6
           </NavLink>
           <NavLink
             to="/skills"
@@ -28,12 +44,20 @@ const Navbar = () => {
             Compétences
           </NavLink>
           <NavLink
+            to="/cv"
+            className={({ isActive }) =>
+              `${linkBase} ${isActive ? "text-white" : "text-slate-300"}`
+            }
+          >
+            CV
+          </NavLink>
+          <NavLink
             to="/contact"
             className={({ isActive }) =>
               `${linkBase} ${isActive ? "text-white" : "text-slate-300"}`
             }
           >
-            CV & Contact
+            Contact
           </NavLink>
         </nav>
       </div>

@@ -3,6 +3,17 @@ export type Project = {
   title: string;
   summary: string;
   context: "BTS" | "perso" | "pro";
+  category: string;
+  role: string;
+  shortOutcome: string;
+  problem: string;
+  solution: string;
+  mainFeatures: string[];
+  technicalHighlights: string[];
+  challenges: string[];
+  learnings: string[];
+  featured: boolean;
+  order: number;
   contextDetails?: string;
   description?: string[];
   features?: string[];

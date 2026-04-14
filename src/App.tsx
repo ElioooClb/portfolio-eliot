@@ -6,6 +6,9 @@ import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Skills from "./pages/Skills";
 import Contact from "./pages/Contact";
+import CV from "./pages/CV";
+import DossierE5 from "./pages/DossierE5";
+import DossierE6 from "./pages/DossierE6";
 import NotFound from "./pages/NotFound";
 
 const App = () => {
@@ -17,6 +20,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
+          <Route path="/cv" element={<CV />} />
+          <Route path="/dossier-e5" element={<DossierE5 />} />
+          <Route path="/dossier-e6" element={<DossierE6 />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
