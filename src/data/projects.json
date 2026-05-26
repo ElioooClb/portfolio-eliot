@@ -208,6 +208,74 @@
     "statusNote": "Environnement utilise comme socle de developpement et de tests"
   },
   {
+    "id": "novetia-diagnostic-ia",
+    "title": "NovetIA — Diagnostic IA TPE/PME",
+    "summary": "Application Streamlit de diagnostic guidé qui aide les dirigeants de TPE/PME à identifier et prioriser les usages de l'IA adaptés à leur structure.",
+    "context": "Personnel",
+    "category": "IA / Agentique",
+    "role": "Concepteur et développeur",
+    "shortOutcome": "Chaîne complète données → scoring → LLM → rapport déployée sur serveur OVH en 15 heures.",
+    "problem": "Les dirigeants de petites structures manquent d'un cadre clair pour identifier quels usages de l'IA sont réellement pertinents pour eux.",
+    "solution": "Parcours structuré en Streamlit : formulaire de contexte, scoring déterministe sur une base métier JSON, enrichissement LLM, export rapport Markdown et PDF.",
+    "mainFeatures": [
+      "Connexion démo (comptes CLIENT et ADMIN)",
+      "Assistant IA local via Ollama (chat orienté général)",
+      "Formulaire de diagnostic guidé (secteur, taille, irritants, objectifs)",
+      "Scoring déterministe — top 3 cas d'usage depuis une base JSON",
+      "Enrichissement LLM (OpenAI, Mistral ou Ollama)",
+      "Repli scoring si le LLM est indisponible ou renvoie un format inattendu",
+      "Export rapport Markdown et PDF (Unicode pour le français)",
+      "Historique des diagnostics de session"
+    ],
+    "technicalHighlights": [
+      "Chaîne complète données → règles métier → LLM → livrable",
+      "Moteur de scoring déterministe garantissant un résultat cohérent sans LLM",
+      "Support multi-provider LLM : OpenAI, Mistral, Ollama",
+      "Mode entièrement local via Ollama",
+      "Déploiement sur serveur Debian OVH avec service systemd",
+      "Architecture modulaire (config, auth, scoring, agent, report)"
+    ],
+    "challenges": [
+      "Garantir la cohérence des résultats quelle que soit la disponibilité du LLM",
+      "Concevoir un prompt structuré retournant du JSON parsable de façon fiable",
+      "Gérer les différences d'API entre providers (OpenAI, Mistral, Ollama)",
+      "Produire un PDF lisible avec support Unicode complet pour le français"
+    ],
+    "learnings": [
+      "Orchestration d'une chaîne IA complète (données → LLM → livrable)",
+      "Conception d'un moteur de scoring déterministe comme couche de robustesse",
+      "Intégration multi-provider LLM dans un même projet",
+      "Déploiement d'une application Python/ML sur serveur Linux avec systemd"
+    ],
+    "featured": true,
+    "order": 5,
+    "contextDetails": "Projet personnel agentique réalisé en 2026 (~15h) pour démontrer une chaîne IA complète orientée usage métier TPE/PME.",
+    "description": [
+      "NovetIA guide les dirigeants de TPE/PME à travers un diagnostic structuré pour identifier les usages de l'IA les plus pertinents à leur contexte.",
+      "L'application combine un moteur de scoring déterministe et un enrichissement LLM, avec un repli garanti si le modèle est indisponible — ce qui en fait une démo robuste et présentable en atelier."
+    ],
+    "features": [
+      "Diagnostic guidé avec scoring des cas d'usage IA",
+      "Enrichissement par LLM (OpenAI, Mistral ou Ollama en local)",
+      "Export rapport Markdown et PDF",
+      "Assistant IA local via Ollama en complément du diagnostic"
+    ],
+    "stack": ["Python", "Streamlit", "OpenAI API", "Mistral API", "Ollama", "FPDF2", "Debian / OVH"],
+    "competences": [
+      "Conception d'une chaîne IA bout en bout",
+      "Intégration multi-provider LLM",
+      "Développement d'interface avec Streamlit",
+      "Déploiement sur serveur Linux (systemd)",
+      "Architecture logicielle modulaire"
+    ],
+    "badges": ["Personnel", "Agentique", "IA"],
+    "screenshots": [],
+    "date": "2026",
+    "status": "Hors ligne",
+    "statusNote": "Application déployée sur serveur OVH à agent-demo.collomb.fr — démo disponible sur demande",
+    "githubUrl": "https://github.com/ElioooClb/novetia-agent-ia"
+  },
+  {
     "id": "mobile-task-manager",
     "title": "Application mobile de gestion de taches",
     "summary": "Application mobile BTS pour organiser des taches avec priorites, tri, filtrage et stockage local.",

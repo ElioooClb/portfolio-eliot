@@ -23,7 +23,7 @@ const Home = () => {
       setCanScrollNext(scrollLeft + clientWidth < scrollWidth - 1);
     };
 
-    updateControls();
+    requestAnimationFrame(updateControls);
     container.addEventListener("scroll", updateControls, { passive: true });
     const observer = new ResizeObserver(updateControls);
     observer.observe(container);
@@ -50,14 +50,14 @@ const Home = () => {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
             Portfolio Eliot Collomb
           </p>
-          <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
-            Étudiant en BTS SIO, je développe des interfaces et des applications
-            web dans le cadre de ma formation et de projets personnels.
+          <h1 className="text-2xl font-medium leading-tight text-white sm:text-3xl">
+            Étudiant en BTS SIO option SLAM, je développe des applications, des
+            interfaces et des solutions agentiques orientées IA.
           </h1>
           <p className="text-base text-slate-300">
             À travers ce portfolio, je présente mes projets, les technologies
             utilisées et les compétences que je construis progressivement en
-            développement web et en informatique.
+            développement web, IA et agentique.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
