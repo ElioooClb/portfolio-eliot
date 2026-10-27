@@ -16,6 +16,8 @@ type InfraSceneProps = {
   selectedId: string | null;
   onSelect: (id: string | null) => void;
   visibleCategories: Set<InfraEdgeCategory>;
+  showFlows: boolean;
+  showLabels: boolean;
   reducedMotion: boolean;
   resetKey: number;
 };
@@ -56,11 +58,12 @@ type NodeProps = {
   selected: boolean;
   hovered: boolean;
   dimmed: boolean;
+  showLabel: boolean;
   onSelect: (id: string) => void;
   onHover: (id: string | null) => void;
 };
 
-const NodeView = ({ node, colors, selected, hovered, dimmed, onSelect, onHover }: NodeProps) => {
+const NodeView = ({ node, colors, selected, hovered, dimmed, showLabel, onSelect, onHover }: NodeProps) => {
   const planned = node.observation.state === "planned";
   const height = modelHeight(node);
   const radius = modelRadius(node);
@@ -93,6 +96,7 @@ const NodeView = ({ node, colors, selected, hovered, dimmed, onSelect, onHover }
         </mesh>
       )}
 
+      {showLabel && (
       <Html position={[0, height + 0.32, 0]} center zIndexRange={[20, 0]} style={{ pointerEvents: "none" }}>
         <span
           className={`block whitespace-nowrap rounded-full border px-2.5 py-0.5 text-xs font-medium shadow-sm transition ${
@@ -103,6 +107,7 @@ const NodeView = ({ node, colors, selected, hovered, dimmed, onSelect, onHover }
           {planned && <span className="sr-only"> (prévu)</span>}
         </span>
       </Html>
+      )}
     </group>
   );
 };
@@ -275,8 +280,12 @@ const SceneContent = ({
   selectedId,
   onSelect,
   visibleCategories,
+  showFlows,
+  showLabels,
   colors,
-}: Pick<InfraSceneProps, "selectedId" | "onSelect" | "visibleCategories"> & { colors: ThemeColors }) => {
+}: Pick<InfraSceneProps, "selectedId" | "onSelect" | "visibleCategories" | "showFlows" | "showLabels"> & {
+  colors: ThemeColors;
+}) => {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [hoveredEdge, setHoveredEdge] = useState<string | null>(null);
   const invalidate = useThree((state) => state.invalidate);
@@ -294,14 +303,14 @@ const SceneContent = ({
     if (!family || !focusId) return null;
     const ids = new Set<string>(family);
     infraEdges.forEach((edge) => {
-      if (!visibleCategories.has(edge.category)) return;
+      if (!showFlows || !visibleCategories.has(edge.category)) return;
       if (family.has(edge.from)) ids.add(edge.to);
       if (family.has(edge.to)) ids.add(edge.from);
     });
     const host = nodesById.get(focusId)?.host;
     if (host) ids.add(host);
     return ids;
-  }, [family, focusId, visibleCategories]);
+  }, [family, focusId, visibleCategories, showFlows]);
 
   const handleHover = (id: string | null) => {
     setHoveredId(id);
@@ -312,7 +321,7 @@ const SceneContent = ({
     invalidate();
   };
 
-  const visibleEdges = infraEdges.filter((edge) => visibleCategories.has(edge.category));
+  const visibleEdges = showFlows ? infraEdges.filter((edge) => visibleCategories.has(edge.category)) : [];
   const highlightedKeys = visibleEdges
     .filter((edge) => (family !== null && (family.has(edge.from) || family.has(edge.to))) || edgeKey(edge) === hoveredEdge)
     .map(edgeKey);
@@ -329,7 +338,9 @@ const SceneContent = ({
       projected.set(x, y, z).project(camera);
       return { sx: ((projected.x + 1) / 2) * size.width, sy: ((1 - projected.y) / 2) * size.height };
     };
-    const placed: Rect[] = infraNodes.map((node) => {
+    const placed: Rect[] = infraNodes
+      .filter((node) => showLabels || node.id === selectedId || node.id === hoveredId)
+      .map((node) => {
       const { sx, sy } = toScreen(node.position[0], modelHeight(node) + 0.32, node.position[2]);
       const w = textWidth(node.shortLabel ?? node.label, 22);
       return { x: sx - w / 2, y: sy - LABEL_H / 2, w, h: LABEL_H };
@@ -364,7 +375,7 @@ const SceneContent = ({
     }
   });
   // Recalcul immédiat quand l'ensemble des libellés affichés change
-  useEffect(() => invalidate(), [highlightedSignature, invalidate]);
+  useEffect(() => invalidate(), [highlightedSignature, showLabels, invalidate]);
 
   return (
     <>
@@ -423,6 +434,7 @@ const SceneContent = ({
           selected={node.id === selectedId}
           hovered={node.id === hoveredId}
           dimmed={related !== null && !related.has(node.id)}
+          showLabel={showLabels || node.id === selectedId || node.id === hoveredId}
           onSelect={onSelect}
           onHover={handleHover}
         />
@@ -431,7 +443,7 @@ const SceneContent = ({
   );
 };
 
-const InfraScene = ({ selectedId, onSelect, visibleCategories, reducedMotion, resetKey }: InfraSceneProps) => {
+const InfraScene = ({ selectedId, onSelect, visibleCategories, showFlows, showLabels, reducedMotion, resetKey }: InfraSceneProps) => {
   const colors = useThemeColors();
 
   useEffect(
@@ -451,7 +463,14 @@ const InfraScene = ({ selectedId, onSelect, visibleCategories, reducedMotion, re
       aria-label={`Carte 3D de l'infrastructure : serveurs, services, lab local et flux (${Object.values(edgeCategoryLabel).join(", ").toLowerCase()}). Une vue en liste équivalente est disponible.`}
       role="img"
     >
-      <SceneContent selectedId={selectedId} onSelect={onSelect} visibleCategories={visibleCategories} colors={colors} />
+      <SceneContent
+        selectedId={selectedId}
+        onSelect={onSelect}
+        visibleCategories={visibleCategories}
+        showFlows={showFlows}
+        showLabels={showLabels}
+        colors={colors}
+      />
       <Controls reducedMotion={reducedMotion} resetKey={resetKey} />
     </Canvas>
   );

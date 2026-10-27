@@ -59,6 +59,11 @@ const Infrastructure = () => {
 
   const [visibleCategories, setVisibleCategories] = useState<Set<InfraEdgeCategory>>(() => new Set(ALL_CATEGORIES));
   const [resetKey, setResetKey] = useState(0);
+  // Flux et noms affichés par défaut ; masqués : ?flux=masques, ?noms=masques
+  const showFlows = params.get("flux") !== "masques";
+  const showLabels = params.get("noms") !== "masques";
+  const setShowFlows = (visible: boolean) => updateParams({ flux: visible ? null : "masques" });
+  const setShowLabels = (visible: boolean) => updateParams({ noms: visible ? null : "masques" });
 
   const toggleCategory = (category: InfraEdgeCategory) =>
     setVisibleCategories((current) => {
@@ -116,13 +121,33 @@ const Infrastructure = () => {
           </button>
         </div>
         {view === "3d" && (
-          <button
-            type="button"
-            onClick={() => setResetKey((k) => k + 1)}
-            className="rounded-full border border-line px-4 py-1.5 text-sm text-fg transition hover:border-fg/40"
-          >
-            Recentrer la vue
-          </button>
+          <div className="flex flex-wrap items-center gap-4 text-sm text-body">
+            <label className="flex cursor-pointer items-center gap-2">
+              <input
+                type="checkbox"
+                checked={showFlows}
+                onChange={(event) => setShowFlows(event.target.checked)}
+                className="h-4 w-4 accent-[rgb(var(--c-accent))]"
+              />
+              Afficher les flux
+            </label>
+            <label className="flex cursor-pointer items-center gap-2">
+              <input
+                type="checkbox"
+                checked={showLabels}
+                onChange={(event) => setShowLabels(event.target.checked)}
+                className="h-4 w-4 accent-[rgb(var(--c-accent))]"
+              />
+              Afficher les noms
+            </label>
+            <button
+              type="button"
+              onClick={() => setResetKey((k) => k + 1)}
+              className="rounded-full border border-line px-4 py-1.5 text-sm text-fg transition hover:border-fg/40"
+            >
+              Recentrer la vue
+            </button>
+          </div>
         )}
       </div>
 
@@ -139,6 +164,8 @@ const Infrastructure = () => {
                   selectedId={selectedId}
                   onSelect={setSelectedId}
                   visibleCategories={visibleCategories}
+                  showFlows={showFlows}
+                  showLabels={showLabels}
                   reducedMotion={reducedMotion}
                   resetKey={resetKey}
                 />
@@ -163,7 +190,7 @@ const Infrastructure = () => {
               </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-subtle">
+            <div className={`flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-subtle ${showFlows ? "" : "opacity-50"}`}>
               <span className="font-semibold text-body">Flux :</span>
               {ALL_CATEGORIES.map((category) => {
                 const active = visibleCategories.has(category);
@@ -172,6 +199,7 @@ const Infrastructure = () => {
                     key={category}
                     type="button"
                     aria-pressed={active}
+                    disabled={!showFlows}
                     onClick={() => toggleCategory(category)}
                     className={`flex items-center gap-2 rounded-full border px-3 py-1 transition ${
                       active ? "border-line bg-surface text-fg" : "border-transparent text-subtle line-through opacity-60"

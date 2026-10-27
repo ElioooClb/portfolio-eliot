@@ -60,7 +60,7 @@ Page Infrastructure : carte 3D (React Three Fiber, chargée à la demande) et vu
 
 Après chaque inventaire ou déploiement : mettre à jour les observations, passer les éléments déployés de `planned` à `observed`, ajuster les flux, puis `TOPOLOGY_OBSERVED_AT`. Jamais d'IP, de nom d'hôte, de port interne ni de chemin serveur dans ce fichier.
 
-Lien direct vers un élément : `#/infrastructure?element=<id>`, vue liste : `?vue=liste`.
+Paramètres d'adresse (combinables) : `?element=<id>` (élément sélectionné), `?vue=liste` ou `?vue=3d`, `?flux=masques`, `?noms=masques` (les noms masqués réapparaissent au survol ou à la sélection).
 
 ### Le site : `src/data/site.json`
 
