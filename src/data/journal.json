@@ -1,6 +1,20 @@
 [
   {
     "date": "2026-10-27",
+    "type": "incident",
+    "title": "Sauvegardes de Jarvis : copie hors serveur rétablie, restauration testée",
+    "text": "L'inventaire a montré que les sauvegardes quotidiennes ne quittaient plus le serveur depuis juillet. Copie rétablie et planifiée chaque semaine vers mon poste, avec contrôle d'intégrité, puis restauration réussie dans une base jetable à partir de cette copie : 414 notes et 4 493 morceaux indexés retrouvés.",
+    "projectId": "plateforme-jarvis"
+  },
+  {
+    "date": "2026-10-27",
+    "type": "realisation",
+    "title": "Inventaire et maintenance des deux serveurs",
+    "text": "Relevé en lecture seule des deux VPS (ressources, exposition, services, sauvegardes), puis maintenance : mises à jour, nouveau noyau, plafond des journaux, désactivation de LLMNR, environ 10 Go d'images et de journaux inutiles supprimés. Une vingtaine de secondes d'interruption par serveur.",
+    "projectId": "plateforme-jarvis"
+  },
+  {
+    "date": "2026-10-27",
     "type": "realisation",
     "title": "Refonte du portfolio, premier lot",
     "text": "Nouveau positionnement, statuts datés et honnêtes (planifié, en préparation, en cours, terminé), journal d'avancement. Les démos qui ne tournent plus ont été retirées."

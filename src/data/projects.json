@@ -174,9 +174,9 @@
     "period": "Depuis juin 2026",
     "status": "in_progress",
     "statusNote": "Base de connaissances utilisée au quotidien, agent d'audit opérationnel depuis octobre 2026.",
-    "updatedAt": "2026-10-15",
+    "updatedAt": "2026-10-27",
     "problem": "Retrouver rapidement une information parmi plus de 200 notes de cours et de projets, et outiller mes projets avec des agents, sans confier mes données à un service tiers.",
-    "solution": "Deux VPS Debian reliés par un réseau privé Tailscale, règles en refus par défaut, aucune API exposée sur Internet. Le premier héberge la base de connaissances : PostgreSQL avec pgvector, embeddings calculés en local par Ollama, API FastAPI en lecture seule, réindexation automatique à chaque push Git, sauvegardes quotidiennes avec rétention et script de récupération vers mon poste. Le second exécute des agents Claude Code sous un utilisateur cloisonné : un agent d'audit de sécurité statique analyse mes dépôts et publie ses rapports dans ma base de notes.",
+    "solution": "Deux VPS Debian reliés par un réseau privé Tailscale, règles en refus par défaut, aucune API exposée sur Internet. Le premier héberge la base de connaissances : PostgreSQL avec pgvector, embeddings calculés en local par Ollama, API FastAPI en lecture seule, réindexation automatique à chaque push Git, sauvegardes quotidiennes avec rétention, copiées chaque semaine sur mon poste et restauration testée. Le second exécute des agents Claude Code sous un utilisateur cloisonné : un agent d'audit de sécurité statique analyse mes dépôts et publie ses rapports dans ma base de notes.",
     "skills": [
       {
         "name": "Administration de serveurs Linux",
@@ -192,11 +192,15 @@
       },
       {
         "name": "Automatisation et sauvegarde",
-        "detail": "Réindexation déclenchée par un hook Git à chaque push. Sauvegardes quotidiennes de la base et du dépôt Git avec rétention, et script de récupération vers mon poste avec contrôle d'intégrité (SHA-256)."
+        "detail": "Réindexation déclenchée par un hook Git à chaque push. Sauvegardes quotidiennes de la base et du dépôt Git avec rétention, copiées chaque semaine sur mon poste avec contrôle d'intégrité (SHA-256), restauration testée dans une base jetable."
       },
       {
         "name": "Sécurité et cloisonnement",
         "detail": "Agents exécutés sous un utilisateur dédié, sans sudo ni accès à Docker. Audit des droits sur le serveur, avec correction de fichiers de secrets lisibles par tous."
+      },
+      {
+        "name": "Inventaire et maintenance",
+        "detail": "Relevé en lecture seule des deux serveurs, puis maintenance planifiée : mises à jour des dépôts tiers, redémarrage sur un nouveau noyau, plafond des journaux, désactivation de LLMNR, nettoyage des images inutilisées, avec vérification de bout en bout après coup."
       },
       {
         "name": "Diagnostic",
@@ -215,7 +219,7 @@
       { "label": "Base de connaissances RAG et indexation automatique", "state": "done" },
       { "label": "Réseau privé Tailscale", "state": "done" },
       { "label": "Sauvegardes quotidiennes sur le serveur", "state": "done" },
-      { "label": "Copie hors serveur planifiée et restauration testée", "state": "planned" },
+      { "label": "Copie hors serveur planifiée et restauration testée", "state": "done" },
       { "label": "Agent d'audit de sécurité", "state": "done" },
       { "label": "Autres agents (développement, workflows)", "state": "planned" }
     ],
