@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import projectsData from "../../data/projects.json";
 import { edgeStateLabel, infraEdges, infraGroups, infraNodes } from "../../data/topology";
+import { useThemeColors } from "../../hooks/useThemeColors";
 import { formatDate } from "../../lib/format";
-import type { InfraNode, Project } from "../../types";
+import type { InfraEdge, InfraNode, Project } from "../../types";
 
 const projects = projectsData as Project[];
 
@@ -19,7 +20,13 @@ type InfraDetailProps = {
   onSelect: (id: string) => void;
 };
 
+type FlowItem = { edge: InfraEdge; source: InfraNode; target: InfraNode };
+
+const nodeById = (id: string) => infraNodes.find((n) => n.id === id)!;
+
 const InfraDetail = ({ node, onSelect }: InfraDetailProps) => {
+  const colors = useThemeColors();
+
   if (!node) {
     return (
       <div className="rounded-2xl border border-line bg-surface p-5 text-sm text-body">
@@ -36,13 +43,39 @@ const InfraDetail = ({ node, onSelect }: InfraDetailProps) => {
   const project = projects.find((p) => p.id === node.projectId);
   const host = infraNodes.find((n) => n.id === node.host);
   const hosted = infraNodes.filter((n) => n.host === node.id);
-  const flows = infraEdges
-    .filter((edge) => edge.from === node.id || edge.to === node.id)
-    .map((edge) => ({
-      edge,
-      outgoing: edge.from === node.id,
-      other: infraNodes.find((n) => n.id === (edge.from === node.id ? edge.to : edge.from))!,
-    }));
+  const toItem = (edge: InfraEdge): FlowItem => ({ edge, source: nodeById(edge.from), target: nodeById(edge.to) });
+  const flows = infraEdges.filter((edge) => edge.from === node.id || edge.to === node.id).map(toItem);
+  const hostedIds = new Set(hosted.map((n) => n.id));
+  const hostedFlows = infraEdges.filter((edge) => hostedIds.has(edge.from) || hostedIds.has(edge.to)).map(toItem);
+
+  // « Libellé : source → destination », chaque extrémité cliquable sauf l'élément affiché
+  const FlowList = ({ items }: { items: FlowItem[] }) => (
+    <ul className="space-y-2">
+      {items.map(({ edge, source, target }) => (
+        <li key={`${edge.from}-${edge.to}`} className="flex gap-2 leading-snug">
+          <span aria-hidden="true" className="mt-1.5 h-2 w-2 shrink-0 rounded-full" style={{ background: colors.flow[edge.category] }} />
+          <span>
+            <span className="text-fg">{edge.label}</span>
+            <span className="block text-xs text-subtle">
+              {[source, target].map((n, k) => (
+                <span key={n.id}>
+                  {k === 1 && " → "}
+                  {n.id === node.id ? (
+                    <span>{n.shortLabel ?? n.label}</span>
+                  ) : (
+                    <button type="button" onClick={() => onSelect(n.id)} className="text-accent underline-offset-2 hover:underline">
+                      {n.shortLabel ?? n.label}
+                    </button>
+                  )}
+                </span>
+              ))}
+              {" "}({edgeStateLabel[edge.state].toLowerCase()})
+            </span>
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
 
   return (
     <div className="space-y-4 rounded-2xl border border-line bg-surface p-5 text-sm text-body">
@@ -100,25 +133,14 @@ const InfraDetail = ({ node, onSelect }: InfraDetailProps) => {
       {flows.length > 0 && (
         <div className="space-y-1.5">
           <p className="text-xs font-semibold uppercase tracking-wide text-subtle">Flux</p>
-          <ul className="space-y-2">
-            {flows.map(({ edge, outgoing, other }) => (
-              <li key={`${edge.from}-${edge.to}`} className="leading-snug">
-                <span className="text-fg">{edge.label}</span>
-                <span className="text-subtle">
-                  {" "}
-                  {outgoing ? "vers" : "depuis"}{" "}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => onSelect(other.id)}
-                  className="text-accent underline-offset-2 hover:underline"
-                >
-                  {other.label}
-                </button>
-                <span className="ml-2 text-xs text-subtle">({edgeStateLabel[edge.state].toLowerCase()})</span>
-              </li>
-            ))}
-          </ul>
+          <FlowList items={flows} />
+        </div>
+      )}
+
+      {hostedFlows.length > 0 && (
+        <div className="space-y-1.5">
+          <p className="text-xs font-semibold uppercase tracking-wide text-subtle">Flux de ses services</p>
+          <FlowList items={hostedFlows} />
         </div>
       )}
 

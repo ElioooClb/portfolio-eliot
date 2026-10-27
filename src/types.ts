@@ -69,6 +69,21 @@ export type InfraGroup = {
 
 export type InfraNodeType = "vps" | "workstation" | "vm" | "service" | "external";
 
+// Modèle 3D dessiné pour chaque élément (src/components/infra/models.tsx)
+export type InfraModel =
+  | "server"
+  | "laptop"
+  | "vm-windows-server"
+  | "vm-debian"
+  | "vm-windows-client"
+  | "database"
+  | "backup"
+  | "agent"
+  | "containers"
+  | "monitoring"
+  | "cloud"
+  | "browser";
+
 // État technique observé, toujours daté : la carte n'affiche jamais de temps réel
 export type InfraObservation =
   | { state: "observed"; date: string; source: string }
@@ -77,7 +92,12 @@ export type InfraObservation =
 export type InfraNode = {
   id: string;
   label: string;
+  // Étiquette courte affichée sur la carte 3D (le titre complet reste dans le panneau)
+  shortLabel?: string;
   type: InfraNodeType;
+  model: InfraModel;
+  // Serveurs : nombre d'unités de baie dessinées (1 à 3)
+  units?: number;
   group: InfraGroupId;
   role: string;
   details: string[];
@@ -88,12 +108,14 @@ export type InfraNode = {
   projectId?: string;
 };
 
-export type InfraEdgeCategory = "admin" | "data" | "api" | "deploy" | "backup" | "monitoring";
+export type InfraEdgeCategory = "admin" | "data" | "backup" | "deploy" | "monitoring";
 
 export type InfraEdge = {
   from: string;
   to: string;
   label: string;
+  // Libellé court affiché sur la carte 3D (le libellé complet reste dans le panneau)
+  short: string;
   category: InfraEdgeCategory;
   // verified : constaté lors d'un test daté ; documented : décrit dans la doc ; planned : prévu
   state: "verified" | "documented" | "planned";

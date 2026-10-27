@@ -2,10 +2,14 @@ import { Component, lazy, Suspense, useMemo, useState, type ReactNode } from "re
 import { useSearchParams } from "react-router-dom";
 import InfraDetail from "../components/infra/InfraDetail";
 import InfraList from "../components/infra/InfraList";
-import { TOPOLOGY_OBSERVED_AT, infraNodes } from "../data/topology";
+import { TOPOLOGY_OBSERVED_AT, edgeCategoryLabel, infraNodes } from "../data/topology";
+import { useThemeColors } from "../hooks/useThemeColors";
 import { formatDate } from "../lib/format";
+import type { InfraEdgeCategory } from "../types";
 
 const InfraScene = lazy(() => import("../components/infra/InfraScene"));
+
+const ALL_CATEGORIES = Object.keys(edgeCategoryLabel) as InfraEdgeCategory[];
 
 const webglAvailable = () => {
   try {
@@ -28,19 +32,19 @@ class SceneBoundary extends Component<{ fallback: ReactNode; children: ReactNode
   }
 }
 
-const legend = [
-  { label: "OVHcloud", className: "bg-accent" },
-  { label: "Lab local", className: "bg-blue-600 dark:bg-blue-400" },
-  { label: "Services externes", className: "bg-stone-500 dark:bg-stone-400" },
-];
-
 const Infrastructure = () => {
+  const colors = useThemeColors();
   const hasWebgl = useMemo(webglAvailable, []);
   const reducedMotion = useMemo(() => window.matchMedia("(prefers-reduced-motion: reduce)").matches, []);
+  // Sur petit écran, la liste est plus lisible : la 3D reste disponible
+  const narrow = useMemo(() => window.matchMedia("(max-width: 639px)").matches, []);
+  const defaultView: "3d" | "list" = hasWebgl && !narrow ? "3d" : "list";
+
   // Sélection et mode d'affichage dans l'adresse : lien partageable
   // (ex. #/infrastructure?element=hermes&vue=liste)
   const [params, setParams] = useSearchParams();
-  const view: "3d" | "list" = hasWebgl && params.get("vue") !== "liste" ? "3d" : "list";
+  const vueParam = params.get("vue");
+  const view: "3d" | "list" = !hasWebgl || vueParam === "liste" ? "list" : vueParam === "3d" ? "3d" : defaultView;
   const paramId = params.get("element");
   const selectedId = infraNodes.some((node) => node.id === paramId) ? paramId : null;
 
@@ -50,12 +54,28 @@ const Infrastructure = () => {
     setParams(next, { replace: true });
   };
   const setSelectedId = (id: string | null) => updateParams({ element: id });
-  const setView = (mode: "3d" | "list") => updateParams({ vue: mode === "list" ? "liste" : null });
-  const [showFlows, setShowFlows] = useState(true);
+  const setView = (mode: "3d" | "list") =>
+    updateParams({ vue: mode === defaultView ? null : mode === "list" ? "liste" : "3d" });
+
+  const [visibleCategories, setVisibleCategories] = useState<Set<InfraEdgeCategory>>(() => new Set(ALL_CATEGORIES));
   const [resetKey, setResetKey] = useState(0);
 
+  const toggleCategory = (category: InfraEdgeCategory) =>
+    setVisibleCategories((current) => {
+      const next = new Set(current);
+      if (next.has(category)) next.delete(category);
+      else next.add(category);
+      return next;
+    });
+
   const selected = infraNodes.find((node) => node.id === selectedId) ?? null;
-  const list = <InfraList selectedId={selectedId} onSelect={setSelectedId} />;
+  const detail = <InfraDetail node={selected} onSelect={setSelectedId} />;
+  const listLayout = (
+    <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr),minmax(0,1fr)]">
+      <InfraList selectedId={selectedId} onSelect={setSelectedId} />
+      <aside aria-live="polite">{detail}</aside>
+    </div>
+  );
 
   const toggleClass = (active: boolean) =>
     `rounded-full px-4 py-1.5 text-sm font-medium transition ${
@@ -96,77 +116,89 @@ const Infrastructure = () => {
           </button>
         </div>
         {view === "3d" && (
-          <div className="flex flex-wrap items-center gap-4 text-sm text-body">
-            <label className="flex cursor-pointer items-center gap-2">
-              <input
-                type="checkbox"
-                checked={showFlows}
-                onChange={(event) => setShowFlows(event.target.checked)}
-                className="h-4 w-4 accent-[rgb(var(--c-accent))]"
-              />
-              Afficher les flux
-            </label>
-            <button
-              type="button"
-              onClick={() => setResetKey((k) => k + 1)}
-              className="rounded-full border border-line px-4 py-1.5 text-sm text-fg transition hover:border-fg/40"
-            >
-              Recentrer la vue
-            </button>
-          </div>
+          <button
+            type="button"
+            onClick={() => setResetKey((k) => k + 1)}
+            className="rounded-full border border-line px-4 py-1.5 text-sm text-fg transition hover:border-fg/40"
+          >
+            Recentrer la vue
+          </button>
         )}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr),minmax(0,1fr)]">
-        <div>
-          {view === "3d" ? (
-            <SceneBoundary fallback={list}>
-              <div className="relative h-[420px] overflow-hidden rounded-2xl border border-line bg-surface2 sm:h-[540px]">
-                <Suspense
-                  fallback={
-                    <p className="flex h-full items-center justify-center text-sm text-subtle">
-                      Chargement de la carte 3D…
-                    </p>
-                  }
-                >
-                  <InfraScene
-                    selectedId={selectedId}
-                    onSelect={setSelectedId}
-                    showFlows={showFlows}
-                    reducedMotion={reducedMotion}
-                    resetKey={resetKey}
-                  />
-                </Suspense>
-                <p className="pointer-events-none absolute bottom-3 left-4 text-[11px] text-subtle">
-                  Survoler ou cliquer pour voir un élément · glisser pour tourner · molette ou pincement pour zoomer
-                </p>
-              </div>
-            </SceneBoundary>
-          ) : (
-            list
-          )}
+      {view === "3d" ? (
+        <SceneBoundary fallback={listLayout}>
+          <div className="space-y-3">
+            <div className="relative h-[460px] overflow-hidden rounded-2xl border border-line bg-surface2 sm:h-[600px]">
+              <Suspense
+                fallback={
+                  <p className="flex h-full items-center justify-center text-sm text-subtle">Chargement de la carte 3D…</p>
+                }
+              >
+                <InfraScene
+                  selectedId={selectedId}
+                  onSelect={setSelectedId}
+                  visibleCategories={visibleCategories}
+                  reducedMotion={reducedMotion}
+                  resetKey={resetKey}
+                />
+              </Suspense>
+              {/* Panneau de détail par-dessus la carte sur grand écran */}
+              {selected && (
+                // z-40 : au-dessus des étiquettes de la carte (z-index 30 au plus)
+                <aside aria-live="polite" className={`absolute top-3 z-40 hidden max-h-[calc(100%-24px)] w-80 overflow-y-auto rounded-2xl shadow-xl lg:block ${selected.position[0] > 1 ? "left-3" : "right-3"}`}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedId(null)}
+                    className="absolute right-3 top-3 rounded-full border border-line bg-surface px-2.5 py-0.5 text-xs text-body transition hover:border-fg/40 hover:text-fg"
+                    aria-label="Fermer le détail"
+                  >
+                    Fermer
+                  </button>
+                  {detail}
+                </aside>
+              )}
+              <p className="pointer-events-none absolute left-4 top-3 max-w-[60%] text-[11px] text-subtle">
+                Survoler ou cliquer pour voir un élément et ses flux · glisser pour tourner · molette ou pincement pour zoomer
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-subtle">
+              <span className="font-semibold text-body">Flux :</span>
+              {ALL_CATEGORIES.map((category) => {
+                const active = visibleCategories.has(category);
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    aria-pressed={active}
+                    onClick={() => toggleCategory(category)}
+                    className={`flex items-center gap-2 rounded-full border px-3 py-1 transition ${
+                      active ? "border-line bg-surface text-fg" : "border-transparent text-subtle line-through opacity-60"
+                    }`}
+                    title={active ? "Masquer ces flux" : "Afficher ces flux"}
+                  >
+                    <span aria-hidden="true" className="h-1 w-4 rounded-full" style={{ background: colors.flow[category] }} />
+                    {edgeCategoryLabel[category]}
+                  </button>
+                );
+              })}
+              <span>Flèche : sens du flux · pointillés et transparence : prévu</span>
+            </div>
+
+            <aside aria-live="polite" className="lg:hidden">
+              {detail}
+            </aside>
+          </div>
+        </SceneBoundary>
+      ) : (
+        <>
+          {listLayout}
           {!hasWebgl && (
-            <p className="mt-3 text-xs text-subtle">
-              WebGL n'est pas disponible dans ce navigateur : la carte est affichée en liste.
-            </p>
+            <p className="text-xs text-subtle">WebGL n'est pas disponible dans ce navigateur : la carte est affichée en liste.</p>
           )}
-          {view === "3d" && (
-            <ul className="mt-3 flex flex-wrap gap-x-5 gap-y-1 text-xs text-subtle" aria-label="Légende">
-              {legend.map((item) => (
-                <li key={item.label} className="flex items-center gap-2">
-                  <span aria-hidden="true" className={`h-2.5 w-2.5 rounded-sm ${item.className}`} />
-                  {item.label}
-                </li>
-              ))}
-              <li>Trait plein : flux vérifié ou documenté</li>
-              <li>Pointillés et transparence : prévu</li>
-            </ul>
-          )}
-        </div>
-        <aside aria-live="polite">
-          <InfraDetail node={selected} onSelect={setSelectedId} />
-        </aside>
-      </div>
+        </>
+      )}
     </div>
   );
 };

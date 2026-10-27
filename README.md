@@ -54,8 +54,8 @@ Une entrée par réalisation, décision, test ou incident résolu, la plus réce
 Page Infrastructure : carte 3D (React Three Fiber, chargée à la demande) et vue liste équivalente, alimentées par le même fichier.
 
 - `infraGroups` : plateformes (OVHcloud, lab local, services externes), position et taille.
-- `infraNodes` : machines, services et VM. `observation` est `{ state: "observed", date, source }` ou `{ state: "planned" }` : toujours datée, jamais présentée comme du temps réel. `host` rattache un service ou une VM à sa machine, `projectId` renvoie vers une fiche projet.
-- `infraEdges` : flux, chacun `verified` (constaté lors d'un test daté), `documented` ou `planned`.
+- `infraNodes` : machines, services et VM. `model` choisit le modèle 3D dessiné (`server`, `laptop`, `vm-windows-server`, `vm-debian`, `vm-windows-client`, `database`, `backup`, `agent`, `containers`, `monitoring`, `cloud`, `browser`, voir `src/components/infra/models.tsx`), `units` le nombre d'unités d'un serveur, `shortLabel` l'étiquette affichée sur la carte. `observation` est `{ state: "observed", date, source }` ou `{ state: "planned" }` : toujours datée, jamais présentée comme du temps réel ; un élément prévu est dessiné en transparence. `host` rattache un service ou une VM à sa machine, `projectId` renvoie vers une fiche projet.
+- `infraEdges` : flux, chacun avec un libellé complet (`label`, panneau de détail), un libellé court (`short`, carte), une catégorie (`admin`, `data`, `backup`, `deploy`, `monitoring`, une couleur chacune) et un état `verified` (constaté lors d'un test daté), `documented` ou `planned` (pointillés).
 - `TOPOLOGY_OBSERVED_AT` : date du dernier inventaire, affichée sur la page.
 
 Après chaque inventaire ou déploiement : mettre à jour les observations, passer les éléments déployés de `planned` à `observed`, ajuster les flux, puis `TOPOLOGY_OBSERVED_AT`. Jamais d'IP, de nom d'hôte, de port interne ni de chemin serveur dans ce fichier.
