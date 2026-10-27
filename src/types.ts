@@ -1,12 +1,6 @@
 // Avancement d'un projet. Distinct de l'état technique d'un composant
 // (sain, dégradé, indisponible), qui viendra avec l'explorateur d'infrastructure.
-export type ProjectStatus =
-  | "planned"
-  | "preparation"
-  | "in_progress"
-  | "completed"
-  | "paused"
-  | "abandoned";
+export type ProjectStatus = "planned" | "in_progress" | "completed" | "paused";
 
 export type ProjectGroup = "infraops" | "project" | "archive";
 

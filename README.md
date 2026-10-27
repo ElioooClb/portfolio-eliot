@@ -33,7 +33,7 @@ Tout le contenu évolutif vit dans `src/data/`, sans toucher au code.
 
 | Champ | Rôle |
 |---|---|
-| `status` | Avancement : `planned`, `preparation`, `in_progress`, `completed`, `paused`, `abandoned` |
+| `status` | Avancement : `planned`, `in_progress`, `completed`, `paused` |
 | `statusNote` | Une phrase factuelle sur l'état actuel |
 | `updatedAt` | Date de la dernière information vérifiée (`AAAA-MM-JJ`) |
 | `group` | Section de la page Projets : `infraops`, `project`, `archive` |

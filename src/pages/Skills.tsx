@@ -1,9 +1,10 @@
-type Level = "projet" | "formation" | "apprentissage";
+import { Link } from "react-router-dom";
+
+type Level = "projet" | "formation";
 
 const levelMeta: Record<Level, { label: string; className: string }> = {
   projet: { label: "Pratiqué en projet", className: "bg-emerald-500 dark:bg-emerald-300" },
   formation: { label: "Pratiqué en formation", className: "bg-blue-500 dark:bg-blue-300" },
-  apprentissage: { label: "En apprentissage", className: "bg-violet-500 dark:bg-violet-300" },
 };
 
 type Skill = { name: string; level: Level };
@@ -27,7 +28,6 @@ const domains: { title: string; skills: Skill[] }[] = [
       { name: "DNS, DHCP", level: "formation" },
       { name: "Pare-feu Linux", level: "formation" },
       { name: "VPN maillé (Tailscale), règles en refus par défaut", level: "projet" },
-      { name: "Segmentation, VLAN", level: "apprentissage" },
     ],
   },
   {
@@ -37,7 +37,6 @@ const domains: { title: string; skills: Skill[] }[] = [
       { name: "Reverse proxy (Traefik, Nginx)", level: "projet" },
       { name: "CI/CD GitHub Actions", level: "projet" },
       { name: "Environnements DEV, TEST, PROD", level: "projet" },
-      { name: "Ansible", level: "apprentissage" },
     ],
   },
   {
@@ -47,7 +46,6 @@ const domains: { title: string; skills: Skill[] }[] = [
       { name: "Cloisonnement des comptes et des accès", level: "projet" },
       { name: "Haute disponibilité applicative (plusieurs nœuds)", level: "projet" },
       { name: "Supervision Zabbix", level: "formation" },
-      { name: "Durcissement de serveurs", level: "apprentissage" },
     ],
   },
   {
@@ -86,8 +84,8 @@ const Skills = () => {
         <p className="max-w-2xl text-sm leading-relaxed text-body">
           Un socle de développement acquis en BTS, tourné aujourd'hui vers
           l'administration systèmes et réseaux, le déploiement et
-          l'exploitation. Chaque compétence indique où je l'ai pratiquée, pour
-          distinguer ce que j'ai mis en œuvre de ce que j'apprends.
+          l'exploitation. Chaque compétence indique où je l'ai pratiquée : en
+          projet ou en formation.
         </p>
         <ul className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-subtle" aria-label="Légende">
           {Object.values(levelMeta).map((meta) => (
@@ -123,6 +121,14 @@ const Skills = () => {
           </div>
         ))}
       </section>
+
+      <p className="max-w-2xl text-sm text-subtle">
+        Prochaines compétences travaillées dans{" "}
+        <Link to="/projects" className="text-accent hover:text-accent-strong">
+          InfraOps Lab
+        </Link>{" "}
+        : Ansible, segmentation et VLAN, durcissement de serveurs.
+      </p>
     </div>
   );
 };
