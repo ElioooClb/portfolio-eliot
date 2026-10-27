@@ -2,7 +2,7 @@ import { Component, lazy, Suspense, useMemo, useState, type ReactNode } from "re
 import { useSearchParams } from "react-router-dom";
 import InfraDetail from "../components/infra/InfraDetail";
 import InfraList from "../components/infra/InfraList";
-import { TOPOLOGY_OBSERVED_AT, edgeCategoryLabel, infraNodes } from "../data/topology";
+import { TOPOLOGY_OBSERVED_AT, edgeCategoryLabel, infraNodes, topologyProblems } from "../data/topology";
 import { useThemeColors } from "../hooks/useThemeColors";
 import { formatDate } from "../lib/format";
 import type { InfraEdgeCategory } from "../types";
@@ -103,6 +103,18 @@ const Infrastructure = () => {
           pointillés sont prévus, pas encore déployés.
         </p>
       </section>
+
+      {/* Incohérences des données : visibles en développement seulement */}
+      {import.meta.env.DEV && topologyProblems.length > 0 && (
+        <div role="alert" className="rounded-2xl border border-rose-400 bg-rose-50 p-4 text-sm text-rose-900 dark:bg-rose-950/40 dark:text-rose-200">
+          <p className="font-semibold">Données de la carte incohérentes (src/data/topology.ts)</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            {topologyProblems.map((problem) => (
+              <li key={problem}>{problem}</li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div role="group" aria-label="Mode d'affichage" className="flex rounded-full border border-line bg-surface p-1">

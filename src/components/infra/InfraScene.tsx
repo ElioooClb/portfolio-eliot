@@ -222,17 +222,52 @@ const CANDIDATE_OFFSETS = [0, -28, 28, -56, 56, -84, 84, -112, 112];
 
 // --- Caméra ------------------------------------------------------------------
 
-// Position de référence de la caméra, calée pour un cadre d'environ 16/9 ;
-// reculée proportionnellement quand le cadre est plus étroit
-const TARGET: [number, number, number] = [-0.5, 0.4, -1.5];
-const CAMERA_OFFSET: [number, number, number] = [0, 15.8, 10.7];
-const REFERENCE_ASPECT = 1.75;
-// Objet constant : un littéral recréé à chaque rendu serait réappliqué par
-// React Three Fiber à chaque redimensionnement et écraserait le recul calculé
-const CAMERA_PROPS = {
-  position: [TARGET[0] + CAMERA_OFFSET[0], TARGET[1] + CAMERA_OFFSET[1], TARGET[2] + CAMERA_OFFSET[2]] as [number, number, number],
-  fov: 45,
+// Cadrage calculé à partir de l'emprise des plateformes et des éléments :
+// ajouter ou déplacer un élément ne demande jamais de retoucher la caméra.
+const FOV = 45;
+// Angle de vue au-dessus de l'horizontale (~56°)
+const PITCH = Math.atan2(15.8, 10.7);
+
+const sceneBounds = (() => {
+  const xs: number[] = [];
+  const zs: number[] = [];
+  infraGroups.forEach(({ center: [cx, cz], size: [w, d] }) => {
+    xs.push(cx - w / 2, cx + w / 2);
+    zs.push(cz - d / 2, cz + d / 2);
+  });
+  infraNodes.forEach(({ position: [x, , z] }) => {
+    xs.push(x - 1, x + 1);
+    zs.push(z - 1, z + 1);
+  });
+  return { minX: Math.min(...xs), maxX: Math.max(...xs), minZ: Math.min(...zs), maxZ: Math.max(...zs) };
+})();
+
+const SCENE_WIDTH = sceneBounds.maxX - sceneBounds.minX;
+const SCENE_DEPTH = sceneBounds.maxZ - sceneBounds.minZ;
+// Visée légèrement en avant du centre : la perspective agrandit le premier plan
+const TARGET: [number, number, number] = [
+  (sceneBounds.minX + sceneBounds.maxX) / 2,
+  0.4,
+  (sceneBounds.minZ + sceneBounds.maxZ) / 2 + SCENE_DEPTH * 0.09,
+];
+
+// Distance qui fait tenir toute la scène, en largeur comme en profondeur,
+// avec une marge pour les étiquettes ; plus grande si le cadre est étroit
+const cameraDistance = (aspect: number) => {
+  const tanV = Math.tan((FOV / 2) * (Math.PI / 180));
+  const fitWidth = SCENE_WIDTH / 2 / (tanV * aspect);
+  const fitDepth = ((SCENE_DEPTH * Math.sin(PITCH)) / 2 + 1) / tanV;
+  return Math.max(fitWidth, fitDepth) * 1.2;
 };
+
+const cameraPosition = (aspect: number): [number, number, number] => {
+  const d = cameraDistance(aspect);
+  return [TARGET[0], TARGET[1] + d * Math.sin(PITCH), TARGET[2] + d * Math.cos(PITCH)];
+};
+
+// Objet constant : un littéral recréé à chaque rendu serait réappliqué par
+// React Three Fiber à chaque redimensionnement et écraserait le cadrage calculé
+const CAMERA_PROPS = { position: cameraPosition(16 / 9), fov: FOV };
 
 const Controls = ({ reducedMotion, resetKey }: { reducedMotion: boolean; resetKey: number }) => {
   const ref = useRef<OrbitControlsImpl>(null);
@@ -242,12 +277,7 @@ const Controls = ({ reducedMotion, resetKey }: { reducedMotion: boolean; resetKe
   const invalidate = useThree((state) => state.invalidate);
 
   useEffect(() => {
-    const factor = Math.min(Math.max(REFERENCE_ASPECT / (width / height), 1), 3);
-    camera.position.set(
-      TARGET[0] + CAMERA_OFFSET[0] * factor,
-      TARGET[1] + CAMERA_OFFSET[1] * factor,
-      TARGET[2] + CAMERA_OFFSET[2] * factor,
-    );
+    camera.position.set(...cameraPosition(width / height));
     ref.current?.target.set(...TARGET);
     ref.current?.update();
     ref.current?.saveState();
@@ -268,7 +298,7 @@ const Controls = ({ reducedMotion, resetKey }: { reducedMotion: boolean; resetKe
       target={TARGET}
       enableDamping={!reducedMotion}
       minDistance={7}
-      maxDistance={50}
+      maxDistance={cameraDistance(0.6) * 1.5}
       maxPolarAngle={Math.PI / 2.15}
     />
   );

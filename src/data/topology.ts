@@ -33,7 +33,7 @@ export const infraGroups: InfraGroup[] = [
   },
 ];
 
-export const infraNodes: InfraNode[] = [
+const declaredNodes: InfraNode[] = [
   {
     id: "knowledge",
     label: "Serveur de connaissances",
@@ -205,7 +205,7 @@ export const infraNodes: InfraNode[] = [
   },
 ];
 
-export const infraEdges: InfraEdge[] = [
+const declaredEdges: InfraEdge[] = [
   { from: "pc", to: "hermes", label: "Administration SSH", short: "SSH", category: "admin", state: "verified" },
   { from: "pc", to: "knowledge", label: "Administration SSH et push du vault", short: "SSH, push du vault", category: "admin", state: "verified" },
   { from: "pc", to: "rag", label: "Recherche dans mes notes (réseau privé)", short: "Recherche", category: "data", state: "verified" },
@@ -218,6 +218,47 @@ export const infraEdges: InfraEdge[] = [
   { from: "vm-client", to: "vm-winserver", label: "Authentification, DNS", short: "Auth, DNS", category: "data", state: "planned" },
   { from: "vm-debian", to: "vm-winserver", label: "Résolution DNS", short: "DNS", category: "data", state: "planned" },
 ];
+
+// --- Contrôle de cohérence ---------------------------------------------------
+// TypeScript vérifie les types, modèles, plateformes et catégories, mais pas
+// les identifiants qui se référencent entre eux. Une incohérence (id en
+// double, flux ou hôte vers un id inexistant) est signalée sur la page en
+// développement ; en production, l'élément fautif est ignoré pour que la
+// page ne casse jamais.
+
+export const topologyProblems: string[] = [];
+
+const knownIds = new Set<string>();
+const uniqueNodes = declaredNodes.filter((node) => {
+  if (knownIds.has(node.id)) {
+    topologyProblems.push(`Identifiant en double : « ${node.id} » (seule la première déclaration est gardée)`);
+    return false;
+  }
+  knownIds.add(node.id);
+  return true;
+});
+
+export const infraNodes: InfraNode[] = uniqueNodes.filter((node) => {
+  if (node.host && !knownIds.has(node.host)) {
+    topologyProblems.push(`« ${node.id} » : hôte inconnu « ${node.host} » (élément ignoré)`);
+    return false;
+  }
+  return true;
+});
+
+const displayedIds = new Set(infraNodes.map((node) => node.id));
+export const infraEdges: InfraEdge[] = declaredEdges.filter((edge) => {
+  const missing = [edge.from, edge.to].filter((id) => !displayedIds.has(id));
+  if (missing.length > 0) {
+    topologyProblems.push(`Flux « ${edge.from} → ${edge.to} » : élément inconnu « ${missing.join(", ")} » (flux ignoré)`);
+    return false;
+  }
+  return true;
+});
+
+if (topologyProblems.length > 0) {
+  console.warn(`Carte d'infrastructure : ${topologyProblems.length} incohérence(s)`, topologyProblems);
+}
 
 export const edgeCategoryLabel: Record<InfraEdgeCategory, string> = {
   admin: "Administration",
