@@ -28,13 +28,13 @@ const Projects = () => {
   return (
     <div className="flex flex-col gap-12">
       <section className="space-y-4">
-        <h1 className="text-3xl font-semibold text-white">Projets</h1>
-        <p className="max-w-2xl text-sm leading-relaxed text-slate-300">
+        <h1 className="text-3xl font-semibold text-fg">Projets</h1>
+        <p className="max-w-2xl text-sm leading-relaxed text-body">
           Chaque fiche indique son avancement réel et la date de sa dernière
           mise à jour. Aucune métrique ni disponibilité n'est inventée : ce qui
           est prévu est présenté comme prévu.
         </p>
-        <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-400" aria-label="Légende des statuts">
+        <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-subtle" aria-label="Légende des statuts">
           {Object.values(projectStatusMeta).map((meta) => (
             <li key={meta.label} className="flex items-center gap-2">
               <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${meta.dotClassName}`} />
@@ -52,10 +52,10 @@ const Projects = () => {
         return (
           <section key={group.id} className="space-y-6" aria-labelledby={`groupe-${group.id}`}>
             <div className="space-y-1">
-              <h2 id={`groupe-${group.id}`} className="text-2xl font-semibold text-white">
+              <h2 id={`groupe-${group.id}`} className="text-2xl font-semibold text-fg">
                 {group.title}
               </h2>
-              <p className="text-sm text-slate-400">{group.intro}</p>
+              <p className="text-sm text-subtle">{group.intro}</p>
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {items.map((project) => (

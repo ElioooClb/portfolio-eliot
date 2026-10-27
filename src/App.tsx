@@ -15,7 +15,7 @@ import NotFound from "./pages/NotFound";
 
 const App = () => {
   return (
-    <div className="flex min-h-screen flex-col bg-slateBg text-slate-100">
+    <div className="flex min-h-screen flex-col bg-page text-fg">
       <Navbar />
       <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-10 sm:px-6">
         <Routes>

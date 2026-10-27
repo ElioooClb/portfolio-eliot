@@ -8,6 +8,10 @@ En ligne : https://elioooclb.github.io/portfolio-eliot/
 
 React 18, TypeScript, Vite 5, Tailwind CSS 3, react-router-dom 6 (`HashRouter`, adapté à GitHub Pages), lucide-react.
 
+## Thème
+
+Modes clair et sombre. Palette dans `src/index.css` (variables CSS : `:root` pour le clair, `.dark` pour le sombre), exposée à Tailwind par des jetons dans `tailwind.config.cjs` (`page`, `surface`, `surface2`, `line`, `fg`, `body`, `subtle`, `accent`). Le thème initial suit le choix enregistré, sinon la préférence du système (script dans `index.html`). Changer une couleur se fait dans `src/index.css`, sans toucher aux composants.
+
 ## Développement
 
 ```bash

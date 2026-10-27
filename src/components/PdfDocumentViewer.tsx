@@ -21,9 +21,9 @@ const PdfDocumentViewer = ({
 
   return (
     <div className="flex flex-col gap-6">
-      <section className="rounded-2xl border border-white/10 bg-slateCard/60 p-6">
-        <h1 className="text-3xl font-semibold text-white">{title}</h1>
-        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-slate-300">
+      <section className="rounded-2xl border border-line bg-surface p-6">
+        <h1 className="text-3xl font-semibold text-fg">{title}</h1>
+        <p className="mt-3 max-w-3xl text-sm leading-relaxed text-body">
           {intro}
         </p>
 
@@ -31,7 +31,7 @@ const PdfDocumentViewer = ({
           <a
             href={resolvedPdfPath}
             download
-            className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-slate-900 transition hover:bg-white"
+            className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-accent-fg transition hover:bg-accent-strong"
           >
             {downloadLabel}
           </a>
@@ -39,23 +39,23 @@ const PdfDocumentViewer = ({
             href={resolvedPdfPath}
             target="_blank"
             rel="noreferrer"
-            className="rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-white transition hover:border-white"
+            className="rounded-full border border-line px-5 py-2 text-sm font-semibold text-fg transition hover:border-fg/40"
           >
             {openLabel}
           </a>
         </div>
       </section>
 
-      <section className="rounded-2xl border border-white/10 bg-slateCard/60 p-4 sm:p-6">
-        <h2 className="text-lg font-semibold text-white">Aperçu du document</h2>
-        <div className="mt-4 overflow-hidden rounded-xl border border-white/10 bg-slate-900/40">
+      <section className="rounded-2xl border border-line bg-surface p-4 sm:p-6">
+        <h2 className="text-lg font-semibold text-fg">Aperçu du document</h2>
+        <div className="mt-4 overflow-hidden rounded-xl border border-line bg-surface2">
           <iframe
             src={resolvedPdfPath}
             title={previewTitle}
             className="h-[65vh] w-full min-h-[420px]"
           />
         </div>
-        <p className="mt-3 text-xs text-slate-400">
+        <p className="mt-3 text-xs text-subtle">
           Si l&apos;aperçu PDF ne s&apos;affiche pas dans votre navigateur,
           utilisez les boutons ci-dessus pour ouvrir ou télécharger le fichier.
         </p>

@@ -15,9 +15,9 @@ type SectionProps = {
 };
 
 const Section = ({ title, children }: SectionProps) => (
-  <section className="rounded-2xl border border-white/10 bg-slateCard/60 p-6">
-    <h2 className="text-lg font-semibold text-white">{title}</h2>
-    <div className="mt-3 text-sm leading-relaxed text-slate-300">{children}</div>
+  <section className="rounded-2xl border border-line bg-surface p-6">
+    <h2 className="text-lg font-semibold text-fg">{title}</h2>
+    <div className="mt-3 text-sm leading-relaxed text-body">{children}</div>
   </section>
 );
 
@@ -39,8 +39,8 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <div className="space-y-4">
-        <h1 className="text-2xl font-semibold text-white">Projet introuvable</h1>
-        <Link to="/projects" className="text-sm font-semibold text-accent hover:text-white">
+        <h1 className="text-2xl font-semibold text-fg">Projet introuvable</h1>
+        <Link to="/projects" className="text-sm font-semibold text-accent hover:text-accent-strong">
           ← Retour aux projets
         </Link>
       </div>
@@ -57,7 +57,7 @@ const ProjectDetail = () => {
   return (
     <div className="flex flex-col gap-8">
       <section className="space-y-6">
-        <Link to="/projects" className="text-sm font-semibold text-accent hover:text-white">
+        <Link to="/projects" className="text-sm font-semibold text-accent hover:text-accent-strong">
           ← Retour aux projets
         </Link>
 
@@ -68,18 +68,18 @@ const ProjectDetail = () => {
             </span>
             <StatusBadge status={project.status} />
           </div>
-          <h1 className="text-3xl font-semibold text-white lg:text-4xl">{project.title}</h1>
-          <p className="max-w-3xl text-base leading-relaxed text-slate-300">{project.summary}</p>
+          <h1 className="text-3xl font-semibold text-fg lg:text-4xl">{project.title}</h1>
+          <p className="max-w-3xl text-base leading-relaxed text-body">{project.summary}</p>
           {project.statusNote && (
-            <p className="text-sm text-slate-400">{project.statusNote}</p>
+            <p className="text-sm text-subtle">{project.statusNote}</p>
           )}
         </div>
 
-        <dl className="grid gap-4 rounded-2xl border border-white/10 bg-slate-900/40 p-5 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="grid gap-4 rounded-2xl border border-line bg-surface2 p-5 sm:grid-cols-2 lg:grid-cols-4">
           {meta.map((item) => (
             <div key={item.label}>
-              <dt className="text-xs uppercase tracking-wide text-slate-500">{item.label}</dt>
-              <dd className="mt-1 text-sm text-slate-200">{item.value}</dd>
+              <dt className="text-xs uppercase tracking-wide text-subtle">{item.label}</dt>
+              <dd className="mt-1 text-sm text-fg">{item.value}</dd>
             </div>
           ))}
         </dl>
@@ -148,7 +148,7 @@ const ProjectDetail = () => {
                   href={project.githubUrl}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="rounded-full border border-white/20 px-5 py-2 text-sm font-semibold text-white transition hover:border-white"
+                  className="rounded-full border border-line px-5 py-2 text-sm font-semibold text-fg transition hover:border-fg/40"
                 >
                   Code sur GitHub
                 </a>
@@ -158,7 +158,7 @@ const ProjectDetail = () => {
                   href={project.demoUrl}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-slate-900 transition hover:bg-white"
+                  className="rounded-full bg-accent px-5 py-2 text-sm font-semibold text-accent-fg transition hover:bg-accent-strong"
                 >
                   Voir la démo
                 </a>

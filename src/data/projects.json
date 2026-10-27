@@ -171,27 +171,43 @@
   {
     "id": "novetia-diagnostic-ia",
     "title": "NovetIA, diagnostic IA pour TPE/PME",
-    "summary": "Application Streamlit de diagnostic guidé qui aide les dirigeants de TPE/PME à identifier les usages de l'IA adaptés à leur structure.",
-    "group": "archive",
+    "summary": "Application Streamlit qui aide les dirigeants de TPE/PME à prioriser les usages de l'IA adaptés à leur structure : diagnostic guidé, scoring déterministe, enrichissement par LLM et rapport PDF.",
+    "group": "project",
     "context": "Projet personnel",
     "category": "IA appliquée",
     "role": "Concepteur et développeur",
     "period": "2026",
-    "status": "abandoned",
-    "statusNote": "Projet abandonné en septembre 2026, démo retirée. Code consultable sur GitHub.",
+    "status": "completed",
+    "statusNote": "Démo réalisée et présentée. Projet clos en septembre 2026, démo en ligne retirée depuis, code consultable sur GitHub.",
     "updatedAt": "2026-09-25",
-    "problem": "Les dirigeants de petites structures manquent d'un cadre clair pour savoir quels usages de l'IA sont réellement pertinents pour eux.",
-    "solution": "Parcours structuré en Streamlit : formulaire de contexte, scoring déterministe sur une base métier JSON, enrichissement par LLM (OpenAI, Mistral ou Ollama en local) avec repli sur le scoring, export du rapport en Markdown et PDF. Déployé à l'époque sur un serveur Debian avec un service systemd.",
+    "problem": "Les dirigeants de petites structures manquent d'un cadre clair pour savoir quels usages de l'IA sont réellement pertinents pour eux, et les résultats doivent rester compréhensibles sans culture technique.",
+    "solution": "Une interface Streamlit unique avec deux espaces. Le diagnostic guidé : formulaire (secteur, taille, irritants, objectifs), classement des cas d'usage par un moteur de scoring déterministe sur une base métier JSON, enrichissement des trois premiers par un LLM au choix (OpenAI, Mistral ou Ollama en local), puis rapport exporté en Markdown et en PDF. À côté, un assistant conversationnel qui tourne toujours en local avec Ollama. Déployé sur un serveur Debian chez OVH comme service systemd, avec le modèle Ollama sur la même machine.",
     "highlights": [
-      "Moteur de scoring déterministe : un résultat cohérent même sans LLM",
-      "Support de trois fournisseurs de LLM, dont un mode entièrement local",
+      "Repli garanti : si le LLM est indisponible ou renvoie un format inattendu, les trois recommandations restent cohérentes grâce au scoring",
+      "Trois fournisseurs de LLM interchangeables par configuration, dont un mode entièrement local",
+      "Prompt structuré à sortie JSON, analysée avant affichage",
+      "Architecture modulaire : configuration, authentification, scoring, orchestration, rapport",
+      "Secrets et comptes de démonstration uniquement dans le fichier d'environnement, jamais dans le code",
       "Chaîne complète réalisée en une quinzaine d'heures"
+    ],
+    "steps": [
+      { "label": "Base métier des cas d'usage et scoring déterministe", "state": "done" },
+      { "label": "Enrichissement par LLM, trois fournisseurs", "state": "done" },
+      { "label": "Rapport Markdown et PDF (polices Unicode pour le français)", "state": "done" },
+      { "label": "Déploiement sur serveur Debian (systemd)", "state": "done" },
+      { "label": "Démonstration présentée", "state": "done" }
     ],
     "learnings": [
       "Le LLM enrichit, le code décide : la couche déterministe garantit la robustesse",
-      "Obtenir du JSON exploitable de façon fiable demande un prompt et une validation stricts"
+      "Obtenir du JSON exploitable de façon fiable demande un prompt et une validation stricts",
+      "Séparer les réglages du chat (réponses courtes) de ceux du diagnostic (prompt long et structuré)"
     ],
-    "stack": ["Python", "Streamlit", "OpenAI API", "Mistral API", "Ollama", "systemd"],
+    "limits": [
+      "Authentification de démonstration, non adaptée à la production",
+      "Scoring volontairement simple (mots-clés et règles)",
+      "Estimations de gain de temps indicatives, à valider avec des données réelles"
+    ],
+    "stack": ["Python", "Streamlit", "Ollama", "OpenAI API", "Mistral API", "FPDF2", "Debian", "systemd"],
     "featured": false,
     "order": 6,
     "githubUrl": "https://github.com/ElioooClb/novetia-agent-ia"

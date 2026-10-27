@@ -1,9 +1,9 @@
 type Level = "projet" | "formation" | "apprentissage";
 
 const levelMeta: Record<Level, { label: string; className: string }> = {
-  projet: { label: "Pratiqué en projet", className: "bg-emerald-300" },
-  formation: { label: "Pratiqué en formation", className: "bg-sky-300" },
-  apprentissage: { label: "En apprentissage", className: "bg-amber-300" },
+  projet: { label: "Pratiqué en projet", className: "bg-emerald-500 dark:bg-emerald-300" },
+  formation: { label: "Pratiqué en formation", className: "bg-blue-500 dark:bg-blue-300" },
+  apprentissage: { label: "En apprentissage", className: "bg-violet-500 dark:bg-violet-300" },
 };
 
 type Skill = { name: string; level: Level };
@@ -82,14 +82,14 @@ const Skills = () => {
   return (
     <div className="flex flex-col gap-8">
       <section className="space-y-4">
-        <h1 className="text-3xl font-semibold text-white">Compétences</h1>
-        <p className="max-w-2xl text-sm leading-relaxed text-slate-300">
+        <h1 className="text-3xl font-semibold text-fg">Compétences</h1>
+        <p className="max-w-2xl text-sm leading-relaxed text-body">
           Un socle de développement acquis en BTS, tourné aujourd'hui vers
           l'administration systèmes et réseaux, le déploiement et
           l'exploitation. Chaque compétence indique où je l'ai pratiquée, pour
           distinguer ce que j'ai mis en œuvre de ce que j'apprends.
         </p>
-        <ul className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-slate-400" aria-label="Légende">
+        <ul className="flex flex-wrap gap-x-5 gap-y-2 text-xs text-subtle" aria-label="Légende">
           {Object.values(levelMeta).map((meta) => (
             <li key={meta.label} className="flex items-center gap-2">
               <span aria-hidden="true" className={`h-2 w-2 rounded-full ${meta.className}`} />
@@ -101,9 +101,9 @@ const Skills = () => {
 
       <section className="grid gap-6 md:grid-cols-2">
         {domains.map((domain) => (
-          <div key={domain.title} className="rounded-2xl border border-white/10 bg-slateCard/60 p-6">
-            <h2 className="text-lg font-semibold text-white">{domain.title}</h2>
-            <ul className="mt-4 space-y-2 text-sm text-slate-300">
+          <div key={domain.title} className="rounded-2xl border border-line bg-surface p-6">
+            <h2 className="text-lg font-semibold text-fg">{domain.title}</h2>
+            <ul className="mt-4 space-y-2 text-sm text-body">
               {domain.skills.map((skill) => {
                 const meta = levelMeta[skill.level];
                 return (

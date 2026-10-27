@@ -22,14 +22,14 @@ const ContactLink = ({ href, label, value, icon, external, ariaLabel }: ContactL
       aria-label={ariaLabel}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer noopener" : undefined}
-      className="flex items-center gap-3 rounded-2xl border border-white/10 bg-slate-900/40 px-4 py-4 text-left text-sm text-slate-200 transition hover:border-white/40 hover:bg-slate-900/70"
+      className="flex items-center gap-3 rounded-2xl border border-line bg-surface2 px-4 py-4 text-left text-sm text-fg transition hover:border-fg/30 hover:bg-fg/5"
     >
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-accent">
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-fg/5 text-accent">
         {icon}
       </span>
       <span className="min-w-0">
-        <span className="block text-sm font-semibold text-white">{label}</span>
-        <span className="block truncate text-xs text-slate-400">{value}</span>
+        <span className="block text-sm font-semibold text-fg">{label}</span>
+        <span className="block truncate text-xs text-subtle">{value}</span>
       </span>
     </a>
   );
@@ -42,8 +42,8 @@ const Contact = () => {
   return (
     <div className="flex flex-col gap-10">
       <section className="space-y-4">
-        <h1 className="text-3xl font-semibold text-white">Contact</h1>
-        <p className="max-w-2xl text-sm leading-relaxed text-slate-300">
+        <h1 className="text-3xl font-semibold text-fg">Contact</h1>
+        <p className="max-w-2xl text-sm leading-relaxed text-body">
           Je recherche une alternance en administration systèmes et réseaux
           pour 2026-2027, dans le cadre de mon Bachelor à l'EPSI Bordeaux.
           N'hésitez pas à me contacter.
@@ -76,23 +76,23 @@ const Contact = () => {
         />
       </section>
 
-      <section className="rounded-2xl border border-white/10 bg-slateCard/60 p-6">
+      <section className="rounded-2xl border border-line bg-surface p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h2 className="text-lg font-semibold text-white">Curriculum vitae</h2>
-            <p className="text-sm text-slate-300">Mis à jour en {site.cvUpdated}, format PDF.</p>
+            <h2 className="text-lg font-semibold text-fg">Curriculum vitae</h2>
+            <p className="text-sm text-body">Mis à jour en {site.cvUpdated}, format PDF.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <a
               href={cvHref}
               download
-              className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-white"
+              className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-fg transition hover:bg-accent-strong"
             >
               Télécharger le CV
             </a>
             <Link
               to="/cv"
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-white"
+              className="rounded-full border border-line px-6 py-3 text-sm font-semibold text-fg transition hover:border-fg/40"
             >
               Aperçu
             </Link>

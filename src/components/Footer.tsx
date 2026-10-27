@@ -1,12 +1,12 @@
 const Footer = () => {
   return (
-    <footer className="border-t border-white/10 bg-slateBg">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-4 px-4 py-8 text-sm text-slate-400 sm:flex-row sm:items-center sm:px-6">
+    <footer className="border-t border-line bg-page">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-start justify-between gap-4 px-4 py-8 text-sm text-subtle sm:flex-row sm:items-center sm:px-6">
         <p>© 2026 Eliot Collomb. Tous droits réservés.</p>
         <div className="flex gap-4">
           <a
             href="https://github.com/ElioooClb"
-            className="transition-colors hover:text-white"
+            className="transition-colors hover:text-fg"
             target="_blank"
             rel="noreferrer"
           >
@@ -14,7 +14,7 @@ const Footer = () => {
           </a>
           <a
             href="https://www.linkedin.com/in/eliot-collomb-36850b342/"
-            className="transition-colors hover:text-white"
+            className="transition-colors hover:text-fg"
             target="_blank"
             rel="noreferrer"
           >
@@ -22,7 +22,7 @@ const Footer = () => {
           </a>
           <a
             href="mailto:collomb.eliot@gmail.com"
-            className="transition-colors hover:text-white"
+            className="transition-colors hover:text-fg"
           >
             Email
           </a>

@@ -9,8 +9,18 @@
       content="Portfolio d'Eliot Collomb, étudiant en Bachelor administration systèmes, réseaux et bases de données : projets, journal d'avancement, compétences et contact."
     />
     <title>Eliot Collomb · Systèmes, réseaux &amp; Cloud/DevOps</title>
+    <script>
+      // Thème avant le premier rendu : choix enregistré, sinon préférence système
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          var dark = t ? t === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
   </head>
-  <body class="bg-slateBg text-slate-100">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

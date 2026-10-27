@@ -20,16 +20,16 @@ const Home = () => {
 
   return (
     <div className="flex flex-col gap-16">
-      <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950/40 p-8 shadow-xl shadow-black/30 sm:p-10">
+      <section className="rounded-3xl border border-line bg-gradient-to-br from-surface via-surface to-accent/10 p-8 shadow-xl shadow-black/5 dark:shadow-black/30 sm:p-10">
         <div className="max-w-3xl space-y-6">
           <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:text-sm">
             Administration systèmes, réseaux &amp; Cloud/DevOps
           </p>
-          <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
+          <h1 className="text-3xl font-semibold leading-tight text-fg sm:text-4xl">
             Je conçois, déploie et documente des infrastructures, avec un goût
             prononcé pour l'automatisation et l'IA.
           </h1>
-          <p className="text-base leading-relaxed text-slate-300">
+          <p className="text-base leading-relaxed text-body">
             Étudiant en Bachelor Administrateur Systèmes, Réseaux et Bases de
             Données à l'EPSI Bordeaux, titulaire d'un BTS SIO, je recherche une
             alternance pour 2026-2027. Ce portfolio évolue avec mes projets :
@@ -38,20 +38,20 @@ const Home = () => {
           <div className="flex flex-wrap gap-4">
             <Link
               to="/projects"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-slate-900 transition hover:bg-white"
+              className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-accent-fg transition hover:bg-accent-strong"
             >
               Voir les projets
             </Link>
             <a
               href={cvHref}
               download
-              className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
+              className="rounded-full border border-line px-6 py-3 text-sm font-semibold text-fg transition hover:border-fg/40 hover:bg-fg/5"
             >
               Télécharger le CV
             </a>
             <Link
               to="/contact"
-              className="rounded-full px-6 py-3 text-sm font-semibold text-slate-300 transition hover:text-white"
+              className="rounded-full px-6 py-3 text-sm font-semibold text-body transition hover:text-fg"
             >
               Me contacter →
             </Link>
@@ -62,17 +62,17 @@ const Home = () => {
       <section className="space-y-6" aria-labelledby="infraops-titre">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl space-y-2">
-            <h2 id="infraops-titre" className="text-2xl font-semibold text-white">
+            <h2 id="infraops-titre" className="text-2xl font-semibold text-fg">
               InfraOps Lab, en construction
             </h2>
-            <p className="text-sm leading-relaxed text-slate-400">
+            <p className="text-sm leading-relaxed text-subtle">
               Mon projet principal : une petite infrastructure réaliste,
               administrée, automatisée, supervisée et sécurisée, sur deux VPS et
               un lab VMware, sans dépense supplémentaire. Trois volets menés
               par jalons.
             </p>
           </div>
-          <Link to="/projects" className="text-sm font-semibold text-accent hover:text-white">
+          <Link to="/projects" className="text-sm font-semibold text-accent hover:text-accent-strong">
             Tous les projets →
           </Link>
         </div>
@@ -85,12 +85,12 @@ const Home = () => {
           <p className="text-xs font-semibold uppercase tracking-wide text-accent">
             Prochain objectif
           </p>
-          <p className="mt-1 text-sm text-slate-200">{site.nextGoal}</p>
+          <p className="mt-1 text-sm text-fg">{site.nextGoal}</p>
         </div>
       </section>
 
       <section className="space-y-6" aria-labelledby="autres-titre">
-        <h2 id="autres-titre" className="text-2xl font-semibold text-white">
+        <h2 id="autres-titre" className="text-2xl font-semibold text-fg">
           Autres réalisations
         </h2>
         <div className="grid gap-6 md:grid-cols-2">
@@ -102,15 +102,15 @@ const Home = () => {
 
       <section className="space-y-6" aria-labelledby="journal-titre">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <h2 id="journal-titre" className="text-2xl font-semibold text-white">
+          <h2 id="journal-titre" className="text-2xl font-semibold text-fg">
             Dernières avancées
           </h2>
-          <Link to="/journal" className="text-sm font-semibold text-accent hover:text-white">
+          <Link to="/journal" className="text-sm font-semibold text-accent hover:text-accent-strong">
             Tout le journal →
           </Link>
         </div>
         <JournalList entries={journal.slice(0, 3)} />
-        <p className="text-xs text-slate-500">
+        <p className="text-xs text-subtle">
           Site mis à jour le {formatDate(site.updatedAt)}.
         </p>
       </section>
