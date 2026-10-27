@@ -54,6 +54,51 @@ export type JournalEntry = {
   projectId?: string;
 };
 
+// --- Carte d'infrastructure (données statiques, voir src/data/topology.ts) ---
+
+export type InfraGroupId = "ovh" | "local" | "external";
+
+export type InfraGroup = {
+  id: InfraGroupId;
+  label: string;
+  detail: string;
+  // Plateforme 3D : centre (x, z) et dimensions (largeur, profondeur)
+  center: [number, number];
+  size: [number, number];
+};
+
+export type InfraNodeType = "vps" | "workstation" | "vm" | "service" | "external";
+
+// État technique observé, toujours daté : la carte n'affiche jamais de temps réel
+export type InfraObservation =
+  | { state: "observed"; date: string; source: string }
+  | { state: "planned" };
+
+export type InfraNode = {
+  id: string;
+  label: string;
+  type: InfraNodeType;
+  group: InfraGroupId;
+  role: string;
+  details: string[];
+  observation: InfraObservation;
+  position: [number, number, number];
+  // Machine qui héberge ce service ou cette VM (trait de rattachement)
+  host?: string;
+  projectId?: string;
+};
+
+export type InfraEdgeCategory = "admin" | "data" | "api" | "deploy" | "backup" | "monitoring";
+
+export type InfraEdge = {
+  from: string;
+  to: string;
+  label: string;
+  category: InfraEdgeCategory;
+  // verified : constaté lors d'un test daté ; documented : décrit dans la doc ; planned : prévu
+  state: "verified" | "documented" | "planned";
+};
+
 export type SiteInfo = {
   updatedAt: string;
   cvUpdated: string;

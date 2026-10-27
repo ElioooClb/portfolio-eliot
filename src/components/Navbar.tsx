@@ -6,6 +6,7 @@ const linkBase =
 
 const links = [
   { to: "/projects", label: "Projets" },
+  { to: "/infrastructure", label: "Infrastructure" },
   { to: "/journal", label: "Journal" },
   { to: "/skills", label: "Compétences" },
   { to: "/parcours", label: "Parcours" },

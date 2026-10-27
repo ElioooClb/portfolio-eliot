@@ -72,9 +72,14 @@ const Home = () => {
               par jalons.
             </p>
           </div>
-          <Link to="/projects" className="text-sm font-semibold text-accent hover:text-accent-strong">
-            Tous les projets →
-          </Link>
+          <div className="flex flex-wrap gap-x-5 gap-y-1">
+            <Link to="/infrastructure" className="text-sm font-semibold text-accent hover:text-accent-strong">
+              Explorer l'infrastructure en 3D →
+            </Link>
+            <Link to="/projects" className="text-sm font-semibold text-accent hover:text-accent-strong">
+              Tous les projets →
+            </Link>
+          </div>
         </div>
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {infraops.map((project) => (

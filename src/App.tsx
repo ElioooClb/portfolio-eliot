@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import Journal from "./pages/Journal";
+import Infrastructure from "./pages/Infrastructure";
 import Skills from "./pages/Skills";
 import Parcours from "./pages/Parcours";
 import Contact from "./pages/Contact";
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/projects/:id" element={<ProjectDetail />} />
+          <Route path="/infrastructure" element={<Infrastructure />} />
           <Route path="/journal" element={<Journal />} />
           <Route path="/skills" element={<Skills />} />
           <Route path="/parcours" element={<Parcours />} />
