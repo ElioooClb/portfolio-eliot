@@ -60,6 +60,23 @@ Page Infrastructure : carte 3D (React Three Fiber, chargée à la demande) et vu
 
 Après chaque inventaire ou déploiement : mettre à jour les observations, passer les éléments déployés de `planned` à `observed`, ajuster les flux, puis `TOPOLOGY_OBSERVED_AT`. Jamais d'IP, de nom d'hôte, de port interne ni de chemin serveur dans ce fichier.
 
+#### Ajouter un élément ou un flux
+
+1. Dans `declaredNodes`, ajouter un objet avec un `id` unique, `label` (et `shortLabel` si le nom est long), `type`, `model`, `group`, `role`, `details`, `observation` et `position` (`[x, 0, z]`, au sol). Pour un service ou une VM, `host` = id de sa machine.
+2. Dans `declaredEdges`, ajouter les flux (`from`, `to`, `label`, `short`, `category`, `state`).
+3. Vérifier avec `npm run dev`.
+
+Ce qui est automatique : la caméra se recadre sur l'emprise des éléments, la vue liste, le panneau de détail et les filtres suivent, les libellés de flux s'écartent pour ne pas se chevaucher. TypeScript refuse au build un `type`, un `model`, un `group`, une `category` ou un `state` inconnus.
+
+Contrôle de cohérence : un id en double, un `host` ou une extrémité de flux qui n'existe pas affiche un bandeau rouge en développement ; en production, l'élément fautif est ignoré et la page reste fonctionnelle.
+
+Ce qui reste manuel :
+
+- **Positions** : environ 2 unités entre deux éléments voisins, sinon leurs noms se chevauchent (le placement automatique ne concerne que les libellés de flux).
+- **Plateformes** : un élément ajouté hors d'une plateforme reste visible, mais il faut agrandir le `size` de son groupe dans `infraGroups` pour qu'il paraisse posé dessus.
+- **Nouveau type d'objet** (pare-feu, switch, NAS…) : ajouter le modèle dans `src/components/infra/models.tsx` (composant, `modelHeight`, `modelRadius`) et son nom dans le type `InfraModel` de `src/types.ts`.
+- **Nouvelle plateforme** (autre hébergeur) : ajouter son id au type `InfraGroupId` et sa couleur dans `groupColor` (`InfraScene.tsx`).
+
 Paramètres d'adresse (combinables) : `?element=<id>` (élément sélectionné), `?vue=liste` ou `?vue=3d`, `?flux=masques`, `?noms=masques` (les noms masqués réapparaissent au survol ou à la sélection).
 
 ### Le site : `src/data/site.json`
