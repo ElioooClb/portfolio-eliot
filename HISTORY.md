@@ -2,6 +2,13 @@
 
 > Journal synthétique, le plus récent en haut.
 
+## 2026-10-27 : lot B, explorateur d'infrastructure 3D
+
+- Page Infrastructure : carte 3D statique (React Three Fiber 8, drei 9, three 0.172), chargée à la demande (~240 Ko compressés, l'accueil reste à ~74 Ko), vue liste équivalente au clavier, panneau de détail (rôle, observation datée, flux, projet), lien partageable, repli automatique sans WebGL. Couleurs du thème actif, caméra adaptée aux cadres étroits.
+- Données dans `src/data/topology.ts`, tirées des inventaires du 27/10 : 13 éléments, 11 flux (vérifiés, documentés ou prévus), aucune donnée sensible.
+- Vérifié par captures headless (Edge) en clair, en sombre, avec sélection et en vue liste. Défauts corrigés au passage : traits parasites des plateformes arrondies, étiquettes qui se chevauchaient, cadrage, configuration de caméra réappliquée à chaque redimensionnement.
+- React Router 6.30.3 → 6.30.6 (avis de sécurité). Deux avis modérés restent ouverts (correctif en React Router 7), à traiter au lot C.
+
 ## 2026-10-27 : refonte V1, lot A (branche `refonte-v1`)
 
 - `node_modules/`, `dist/` et `*.tsbuildinfo` retirés du suivi git (ajoutés avant le `.gitignore`).

@@ -1,6 +1,12 @@
 [
   {
     "date": "2026-10-27",
+    "type": "realisation",
+    "title": "Explorateur d'infrastructure en 3D",
+    "text": "Nouvelle page Infrastructure : une carte 3D de mes serveurs, services, lab local et flux, avec une vue en liste équivalente. Les états affichés sont des observations datées issues des inventaires, jamais du temps réel."
+  },
+  {
+    "date": "2026-10-27",
     "type": "incident",
     "title": "Sauvegardes de Jarvis : copie hors serveur rétablie, restauration testée",
     "text": "L'inventaire a montré que les sauvegardes quotidiennes ne quittaient plus le serveur depuis juillet. Copie rétablie et planifiée chaque semaine vers mon poste, avec contrôle d'intégrité, puis restauration réussie dans une base jetable à partir de cette copie : 414 notes et 4 493 morceaux indexés retrouvés.",

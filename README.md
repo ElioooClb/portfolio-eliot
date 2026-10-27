@@ -49,6 +49,19 @@ Tout le contenu évolutif vit dans `src/data/`, sans toucher au code.
 
 Une entrée par réalisation, décision, test ou incident résolu, la plus récente en haut. `type` : `decision`, `realisation`, `test`, `incident`. `projectId` facultatif, pour lier une fiche.
 
+### La carte d'infrastructure : `src/data/topology.ts`
+
+Page Infrastructure : carte 3D (React Three Fiber, chargée à la demande) et vue liste équivalente, alimentées par le même fichier.
+
+- `infraGroups` : plateformes (OVHcloud, lab local, services externes), position et taille.
+- `infraNodes` : machines, services et VM. `observation` est `{ state: "observed", date, source }` ou `{ state: "planned" }` : toujours datée, jamais présentée comme du temps réel. `host` rattache un service ou une VM à sa machine, `projectId` renvoie vers une fiche projet.
+- `infraEdges` : flux, chacun `verified` (constaté lors d'un test daté), `documented` ou `planned`.
+- `TOPOLOGY_OBSERVED_AT` : date du dernier inventaire, affichée sur la page.
+
+Après chaque inventaire ou déploiement : mettre à jour les observations, passer les éléments déployés de `planned` à `observed`, ajuster les flux, puis `TOPOLOGY_OBSERVED_AT`. Jamais d'IP, de nom d'hôte, de port interne ni de chemin serveur dans ce fichier.
+
+Lien direct vers un élément : `#/infrastructure?element=<id>`, vue liste : `?vue=liste`.
+
 ### Le site : `src/data/site.json`
 
 `updatedAt` (date affichée sur l'accueil), `cvUpdated` (date du CV, à changer en même temps que `public/cv-eliot-collomb.pdf`).
