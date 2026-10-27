@@ -27,8 +27,8 @@ export const projectStatusMeta: Record<
   paused: {
     label: "En pause",
     className:
-      "border-stone-300 bg-stone-100 text-stone-600 dark:border-stone-500/40 dark:bg-stone-400/10 dark:text-stone-300",
-    dotClassName: "bg-stone-400",
+      "border-orange-200 bg-orange-50 text-orange-800 dark:border-orange-400/30 dark:bg-orange-400/10 dark:text-orange-200",
+    dotClassName: "bg-orange-500 dark:bg-orange-300",
   },
 };
 
