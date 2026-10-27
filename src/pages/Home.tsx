@@ -81,12 +81,6 @@ const Home = () => {
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
-        <div className="rounded-2xl border border-accent/30 bg-accent/5 px-5 py-4">
-          <p className="text-xs font-semibold uppercase tracking-wide text-accent">
-            Prochain objectif
-          </p>
-          <p className="mt-1 text-sm text-fg">{site.nextGoal}</p>
-        </div>
       </section>
 
       <section className="space-y-6" aria-labelledby="autres-titre">

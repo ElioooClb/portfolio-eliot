@@ -49,6 +49,5 @@ export type JournalEntry = {
 
 export type SiteInfo = {
   updatedAt: string;
-  nextGoal: string;
   cvUpdated: string;
 };

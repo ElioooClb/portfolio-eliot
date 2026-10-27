@@ -50,7 +50,7 @@ Une entrée par réalisation, décision, test ou incident résolu, la plus réce
 
 ### Le site : `src/data/site.json`
 
-`updatedAt` (date affichée sur l'accueil), `nextGoal` (prochain objectif), `cvUpdated` (date du CV, à changer en même temps que `public/cv-eliot-collomb.pdf`).
+`updatedAt` (date affichée sur l'accueil), `cvUpdated` (date du CV, à changer en même temps que `public/cv-eliot-collomb.pdf`).
 
 ## Règles
 
