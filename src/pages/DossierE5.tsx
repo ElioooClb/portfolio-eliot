@@ -4,7 +4,7 @@ const DossierE5 = () => {
   return (
     <PdfDocumentViewer
       title="Dossier E5"
-      intro="Cette rubrique temporaire permet de consulter rapidement le dossier E5 directement depuis le portfolio, jusqu'à la soutenance BTS SIO."
+      intro="Dossier de l'épreuve E5 du BTS SIO SLAM (obtenu en 2026), qui présente les projets réalisés pendant la formation."
       pdfPath="/dossier-e5.pdf"
       previewTitle="Aperçu du dossier E5"
     />

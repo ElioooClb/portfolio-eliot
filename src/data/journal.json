@@ -1,0 +1,35 @@
+[
+  {
+    "date": "2026-10-27",
+    "type": "realisation",
+    "title": "Refonte du portfolio, premier lot",
+    "text": "Nouveau positionnement, statuts datés et honnêtes (planifié, en préparation, en cours, terminé), journal d'avancement. Les démos qui ne tournent plus ont été retirées."
+  },
+  {
+    "date": "2026-10-22",
+    "type": "decision",
+    "title": "Cadrage d'InfraOps Lab",
+    "text": "Objectif : administrer, automatiser, superviser et sécuriser une petite infrastructure réaliste sur deux VPS existants et un lab VMware, sans dépense supplémentaire. Inventaire des deux serveurs réalisé."
+  },
+  {
+    "date": "2026-10-15",
+    "type": "realisation",
+    "title": "Agent d'audit de sécurité opérationnel",
+    "text": "Un agent Claude Code cloisonné sur mon second VPS analyse un dépôt GitHub (analyse statique) et publie son rapport dans ma base de notes. Appelable depuis mon PC et depuis mon téléphone.",
+    "projectId": "plateforme-jarvis"
+  },
+  {
+    "date": "2026-09-25",
+    "type": "realisation",
+    "title": "MediBox terminé",
+    "text": "Fin du Workshop EPSI : trois nœuds derrière Traefik, PostgreSQL répliqué, perte d'un nœud, sauvegarde et restauration testées.",
+    "projectId": "medibox"
+  },
+  {
+    "date": "2026-09-21",
+    "type": "incident",
+    "title": "Bug d'indexation corrigé sur la base de connaissances",
+    "text": "22 notes n'étaient jamais indexées : l'API d'embeddings utilisée ignorait la taille de contexte demandée. Passage à l'API qui la respecte, 231 fichiers sur 231 indexés.",
+    "projectId": "plateforme-jarvis"
+  }
+]

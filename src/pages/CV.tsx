@@ -4,7 +4,7 @@ const CV = () => {
   return (
     <PdfDocumentViewer
       title="Curriculum Vitae"
-      intro="Version PDF de mon CV pour présenter mon parcours BTS SIO, mes projets et mes expériences."
+      intro="Version PDF de mon CV : formation, expériences et compétences."
       pdfPath="/cv-eliot-collomb.pdf"
       previewTitle="Aperçu du CV d'Eliot Collomb"
       downloadLabel="Télécharger le CV"

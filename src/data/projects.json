@@ -1,337 +1,199 @@
 [
   {
-    "id": "ticketing-it-nextjs",
-    "title": "Application web de gestion de tickets IT",
-    "summary": "Application full-stack de gestion de tickets d'assistance, conçue pour simuler un flux métier support réaliste.",
-    "context": "BTS",
-    "category": "Full-stack",
-    "role": "Concepteur et développeur full-stack",
-    "shortOutcome": "Mise en ligne d'une application exploitable avec cycle complet de traitement des tickets.",
-    "problem": "Structurer et suivre les demandes d'assistance IT dans une interface unique avec priorisation et traçabilité.",
-    "solution": "Développement d'une application Next.js avec persistance SQLite via Prisma, gestion des statuts/priorités et vue détaillée des tickets.",
-    "mainFeatures": [
-      "Authentification de démonstration",
-      "Création de tickets",
-      "Consultation de la liste des tickets",
-      "Modification des tickets",
-      "Changement de statut",
-      "Gestion des priorités",
-      "Commentaires sur les tickets",
-      "Filtres de recherche",
-      "Interface de détail ticket"
+    "id": "enterprise-network-lab",
+    "title": "Enterprise Network Lab",
+    "summary": "Le système d'information d'une PME fictive, monté sur VMware : serveurs Windows et Linux, postes clients, services réseau, segmentation et règles de flux testées.",
+    "group": "infraops",
+    "context": "InfraOps Lab · volet 1",
+    "category": "Réseau et systèmes",
+    "role": "Conception, administration et tests",
+    "period": "Depuis octobre 2026",
+    "status": "preparation",
+    "statusNote": "Machines virtuelles disponibles, labo en cours de constitution.",
+    "updatedAt": "2026-10-27",
+    "problem": "Pratiquer l'administration d'un système d'information complet, du plan d'adressage au dépannage, avec des preuves vérifiables plutôt que des exercices isolés.",
+    "solution": "Un lab local sous VMware Workstation : Windows Server 2025 (Active Directory, DNS, DHCP, GPO), serveur Debian, postes clients Windows, routage et segmentation entre réseaux, et une matrice des flux autorisés et interdits dont chaque règle est testée.",
+    "highlights": [
+      "Acquis de formation à consolider : Active Directory, DNS, OU, groupes, GPO, droits NTFS, partages, scripts PowerShell",
+      "Segmentation et filtrage prouvés par des tests de flux, pas seulement configurés",
+      "Documentation : schéma, plan d'adressage, matrice de flux, procédures de dépannage"
     ],
-    "technicalHighlights": [
-      "Modélisation préalable des données métiers",
-      "Architecture full-stack claire",
-      "Structuration des routes et composants",
-      "Logique métier réaliste orientée support",
-      "Déploiement sur serveur personnel"
+    "steps": [
+      { "label": "Choix des machines et des réseaux VMware", "state": "in_progress" },
+      { "label": "Plan d'adressage, DNS et DHCP", "state": "planned" },
+      { "label": "Routage et segmentation", "state": "planned" },
+      { "label": "Matrice de flux et tests", "state": "planned" },
+      { "label": "Dépannage documenté", "state": "planned" }
     ],
-    "challenges": [
-      "Définir un modèle de données cohérent entre tickets, statuts et priorités",
-      "Maintenir une navigation simple entre liste et détail",
-      "Conserver une logique métier claire sans surcomplexifier l'application"
+    "limits": [
+      "Lab local : il ne tourne que lorsque mon PC est allumé et n'héberge aucun service public."
     ],
-    "learnings": [
-      "Conception orientée cas d'usage métier",
-      "Organisation d'un projet full-stack Next.js",
-      "Utilisation de Prisma ORM avec SQLite",
-      "Mise en production d'une application web sur infrastructure personnelle"
-    ],
+    "stack": ["VMware Workstation", "Windows Server 2025", "Active Directory", "Debian", "PowerShell", "DNS / DHCP"],
     "featured": true,
-    "order": 1,
-    "contextDetails": "Projet BTS SIO SLAM réalisé pour reproduire un contexte d'assistance informatique avec un flux de tickets complet.",
-    "description": [
-      "L'application permet de créer, suivre et faire évoluer des tickets d'assistance dans une interface web unique.",
-      "Le projet a été conçu autour d'un besoin concret de support IT, avec une attention portée à la lisibilité des données et au suivi des priorités."
-    ],
-    "features": [
-      "Création, consultation et modification de tickets",
-      "Gestion des statuts, priorités et commentaires",
-      "Filtrage des tickets pour faciliter le traitement",
-      "Vue de détail dédiée pour chaque ticket"
-    ],
-    "stack": ["Next.js", "TypeScript", "Prisma ORM", "SQLite", "Tailwind CSS"],
-    "competences": [
-      "Modélisation de données",
-      "Développement full-stack",
-      "Implémentation de logique métier",
-      "Conception d'interface orientée efficacité",
-      "Déploiement applicatif"
-    ],
-    "badges": ["BTS SIO", "SLAM", "Personnel", "Full-stack"],
-    "screenshots": [],
-    "date": "2025",
-    "status": "En ligne",
-    "statusNote": "Application déployée sur serveur personnel",
-    "githubUrl": "https://github.com/ElioooClb/ticketing.git",
-    "demoUrl": "http://eliot-ticketing.duckdns.org"
+    "order": 1
   },
   {
-    "id": "mycellius-auth-roles",
-    "title": "Authentification sécurisée et gestion des rôles - Mycellius",
-    "summary": "Implémentation d'un système d'authentification JWT et de gestion de rôles pour une application wiki interne.",
-    "context": "BTS",
-    "category": "Securite applicative",
-    "role": "Developpeur full-stack (axe securite)",
-    "shortOutcome": "Acces securise par JWT avec controle de permissions selon les profils utilisateurs.",
-    "problem": "Securiser l'acces a une application web d'entreprise en controlant les droits selon le role utilisateur.",
-    "solution": "Mise en place d'un backend Spring Security avec JWT et d'un frontend React/Vite avec gestion centralisee de l'authentification.",
-    "mainFeatures": [
-      "Formulaire de connexion",
-      "Verification des identifiants cote serveur",
-      "Generation d'un JWT",
-      "Securisation des routes API",
-      "Roles STAGIAIRE / DEV / ADMIN",
-      "Controle d'acces selon le role",
-      "Gestion centralisee de l'authentification cote frontend"
+    "id": "cloudops-platform",
+    "title": "CloudOps Platform",
+    "summary": "Déploiement automatisé d'une application sur un VPS Linux : Docker Compose, Ansible, pipeline CI/CD GitHub Actions, contrôles de santé et retour arrière.",
+    "group": "infraops",
+    "context": "InfraOps Lab · volet 2",
+    "category": "Automatisation et déploiement",
+    "role": "Conception et exploitation",
+    "period": "Depuis octobre 2026",
+    "status": "preparation",
+    "statusNote": "Serveur prêt (Debian, Docker opérationnel), aucun déploiement à ce jour.",
+    "updatedAt": "2026-10-27",
+    "problem": "Passer d'un déploiement manuel à une chaîne reproductible : chaque commit testé, déployé, vérifié, et annulable.",
+    "solution": "Sur un VPS Debian existant : configuration par Ansible, application conteneurisée avec Docker Compose (staging et production séparés), pipeline GitHub Actions aux secrets limités, contrôles de santé après chaque déploiement et procédure de retour arrière. Application de démonstration : mon application de tickets IT réalisée pendant le BTS.",
+    "highlights": [
+      "Ansible : inventaire, rôles, seconde exécution idempotente vérifiée",
+      "Pipeline commit → tests → déploiement → contrôle de santé",
+      "Retour arrière documenté et testé"
     ],
-    "technicalHighlights": [
-      "Separation frontend / backend claire",
-      "Filtre JWT sur les points d'entree API",
-      "Hashage des mots de passe",
-      "Migration de base via Flyway",
-      "Environnement outille avec Maven et Docker"
+    "steps": [
+      { "label": "Serveur préparé (Debian, Docker opérationnel)", "state": "done" },
+      { "label": "Playbooks Ansible", "state": "planned" },
+      { "label": "Application conteneurisée en staging et en production", "state": "planned" },
+      { "label": "Pipeline GitHub Actions", "state": "planned" },
+      { "label": "Contrôles de santé et retour arrière", "state": "planned" }
     ],
-    "challenges": [
-      "Coordonner la logique de securite entre backend et frontend",
-      "Garantir un controle d'acces coherent selon les roles",
-      "Structurer un flux d'authentification robuste pour les appels API"
+    "limits": [
+      "Staging et production sur le même VPS : des déploiements distincts, pas une redondance matérielle."
     ],
-    "learnings": [
-      "Bonnes pratiques d'authentification avec Spring Security",
-      "Conception d'une gestion de roles exploitable",
-      "Integration d'un frontend React avec un backend securise",
-      "Approche realiste de la securite applicative en contexte BTS"
-    ],
+    "stack": ["Debian", "Docker Compose", "Ansible", "GitHub Actions", "Nginx"],
     "featured": true,
-    "order": 2,
-    "contextDetails": "Projet BTS SIO centre sur la securisation d'une application type wiki interne avec une logique de permissions metier.",
-    "description": [
-      "Mycellius a servi de support pour implementer un schema d'authentification robuste base sur JWT.",
-      "L'objectif principal etait de controler precisement l'acces aux ressources selon le role utilisateur."
-    ],
-    "features": [
-      "Connexion utilisateur et emission de token JWT",
-      "Protection des endpoints backend",
-      "Gestion des droits par profil STAGIAIRE, DEV et ADMIN",
-      "Pilotage de l'etat d'authentification dans le frontend"
-    ],
-    "stack": [
-      "Java 21",
-      "Spring Boot",
-      "Spring Security",
-      "JWT",
-      "React",
-      "Vite",
-      "MySQL",
-      "Flyway",
-      "Maven",
-      "Docker"
-    ],
-    "competences": [
-      "Securisation d'API REST",
-      "Gestion d'authentification JWT",
-      "Controle d'acces par roles",
-      "Conception d'architecture full-stack",
-      "Gestion de base de donnees relationnelle"
-    ],
-    "badges": ["BTS SIO", "SLAM", "Securite", "Full-stack"],
-    "screenshots": [],
-    "date": "2025",
-    "status": "En ligne",
-    "statusNote": "Demonstrateur deploye sur serveur personnel",
-    "githubUrl": "https://github.com/ElioooClb/mycellius-sio-eliot.git",
-    "demoUrl": "http://eliot-mycellius.duckdns.org"
+    "order": 2
   },
   {
-    "id": "infra-dev-test-prod",
-    "title": "Architecture multi-environnements pour le developpement applicatif",
-    "summary": "Mise en place d'une infrastructure virtualisee DEV / TEST / PROD pour structurer les cycles de developpement et de deploiement.",
-    "context": "BTS",
-    "category": "Infrastructure / DevOps",
-    "role": "Mise en place et administration de l'environnement",
-    "shortOutcome": "Environnements isoles et reproductibles permettant de professionnaliser le passage DEV vers PROD.",
-    "problem": "Disposer d'un cadre technique fiable pour tester et deployer les applications sans melanger les contextes.",
-    "solution": "Conception d'une architecture virtualisee sur Proxmox avec separation logique des environnements, bridges reseau et snapshots.",
-    "mainFeatures": [
-      "Mise en place de la plateforme de virtualisation",
-      "Creation d'environnements DEV, TEST et PROD distincts",
-      "Configuration reseau avec bridges",
-      "Isolation logique entre environnements",
-      "Utilisation de snapshots pour fiabiliser les retours arriere",
-      "Structuration du cycle DEV -> TEST -> PROD",
-      "Support au deploiement des applications"
+    "id": "secops-observability",
+    "title": "SecOps & Observability",
+    "summary": "Supervision, alertes, durcissement, sauvegardes et restauration prouvée, avec des incidents simulés traités de bout en bout.",
+    "group": "infraops",
+    "context": "InfraOps Lab · volet 3",
+    "category": "Supervision et sécurité",
+    "role": "Exploitation",
+    "period": "À venir",
+    "status": "planned",
+    "statusNote": "Démarrage prévu après CloudOps Platform. Zabbix déjà pratiqué en TP.",
+    "updatedAt": "2026-10-27",
+    "problem": "Savoir qu'un service tombe avant l'utilisateur, et pouvoir le remettre en état à partir d'une sauvegarde vérifiée.",
+    "solution": "Zabbix pour les métriques et les contrôles HTTP, alertes, journalisation, durcissement des machines, sauvegardes hors serveur et tests de restauration, scénarios d'incident documentés de la détection à la reprise.",
+    "highlights": [
+      "Expérience préalable : Zabbix 7.0 installé en TP, supervision de Windows Server, de Debian et d'un contrôle HTTP Nginx",
+      "Restauration testée, pas seulement sauvegarde planifiée",
+      "Études de cas : incident, diagnostic, reprise"
     ],
-    "technicalHighlights": [
-      "Utilisation de Proxmox pour virtualiser les environnements",
-      "Gestion reseau dediee pour limiter les interferences",
-      "Versionning Git/GitHub au service du cycle de livraison",
-      "Premiere base CI/CD via fichiers YAML"
+    "steps": [
+      { "label": "Zabbix et premières métriques", "state": "planned" },
+      { "label": "Alertes et procédures", "state": "planned" },
+      { "label": "Durcissement et journaux", "state": "planned" },
+      { "label": "Sauvegarde et restauration prouvée", "state": "planned" },
+      { "label": "Incident simulé et post-mortem", "state": "planned" }
     ],
-    "challenges": [
-      "Concevoir une topologie reseau simple mais suffisamment cloisonnee",
-      "Definir des procedures de passage entre environnements",
-      "Assurer la stabilite des environnements lors des tests"
+    "limits": [
+      "Scénarios offensifs uniquement dans un lab isolé, jamais sur une cible publique."
+    ],
+    "stack": ["Zabbix", "Linux", "Windows Server", "Sauvegarde et restauration"],
+    "featured": true,
+    "order": 3
+  },
+  {
+    "id": "plateforme-jarvis",
+    "title": "Plateforme IA Jarvis",
+    "summary": "Ma plateforme IA auto-hébergée sur deux VPS Debian : une base de connaissances RAG de mes notes, un réseau privé et un serveur d'agents qui audite mes dépôts.",
+    "group": "project",
+    "context": "Projet personnel",
+    "category": "Infrastructure et IA",
+    "role": "Conception, déploiement et exploitation",
+    "period": "Depuis juin 2026",
+    "status": "in_progress",
+    "statusNote": "Base de connaissances utilisée au quotidien, agent d'audit opérationnel depuis octobre 2026.",
+    "updatedAt": "2026-10-15",
+    "problem": "Retrouver rapidement une information parmi plus de 200 notes de cours et de projets, et outiller mes projets avec des agents, sans confier mes données à un service tiers.",
+    "solution": "Deux VPS Debian reliés par un réseau privé Tailscale, règles en refus par défaut, aucune API exposée sur Internet. Le premier héberge la base de connaissances : PostgreSQL avec pgvector, embeddings calculés en local par Ollama, API FastAPI en lecture seule, réindexation automatique à chaque push Git, sauvegardes quotidiennes récupérées et vérifiées sur mon poste. Le second exécute des agents Claude Code sous un utilisateur cloisonné : un agent d'audit de sécurité statique analyse mes dépôts et publie ses rapports dans ma base de notes.",
+    "highlights": [
+      "Réseau privé en refus par défaut, aucune interface d'administration publique",
+      "Indexation déclenchée par un hook Git, sauvegardes avec contrôle d'intégrité (SHA-256)",
+      "Agents exécutés sous un utilisateur dédié, sans sudo ni accès à Docker",
+      "Services inutilisés (interface de chat, passerelle multi-modèles) arrêtés plutôt que maintenus"
+    ],
+    "steps": [
+      { "label": "Base de connaissances RAG et indexation automatique", "state": "done" },
+      { "label": "Réseau privé Tailscale", "state": "done" },
+      { "label": "Sauvegardes quotidiennes vérifiées", "state": "done" },
+      { "label": "Agent d'audit de sécurité", "state": "done" },
+      { "label": "Autres agents (développement, workflows)", "state": "planned" }
     ],
     "learnings": [
-      "Vision globale d'une chaine de delivery",
-      "Bonnes pratiques de separation d'environnements",
-      "Administration d'infrastructure virtualisee",
-      "Preparation d'un contexte propice a l'automatisation CI/CD"
+      "Un service inutilisé est un coût et une surface d'attaque : savoir le décommissionner",
+      "Diagnostic d'un bug d'indexation : l'API d'embeddings utilisée ignorait la taille de contexte demandée, 22 notes n'étaient jamais indexées"
     ],
+    "limits": [
+      "Dépôt privé : configuration et détails réseau non publiés."
+    ],
+    "stack": ["Debian", "Docker", "PostgreSQL / pgvector", "FastAPI", "Ollama", "Tailscale", "systemd", "Claude Code"],
     "featured": true,
-    "order": 3,
-    "contextDetails": "Projet BTS orienté professionnalisation des pratiques de developpement et de deploiement via une infrastructure dediee.",
-    "description": [
-      "Ce projet met l'accent sur l'organisation technique autour de plusieurs environnements.",
-      "L'objectif est de reduire les risques de regression en structurant les etapes de validation avant production."
+    "order": 4
+  },
+  {
+    "id": "medibox",
+    "title": "MediBox",
+    "summary": "Assistant médical de bord hors ligne pour un vaisseau interstellaire, conçu pour survivre à la perte d'un nœud. Projet d'équipe du Workshop National EPSI « Horizon 2080 ».",
+    "group": "project",
+    "context": "Workshop EPSI, équipe de trois",
+    "category": "Infrastructure et résilience",
+    "role": "Responsable infrastructure et résilience",
+    "period": "Septembre 2026",
+    "status": "completed",
+    "statusNote": "Terminé le 25/09/2026. Prototype académique, données fictives.",
+    "updatedAt": "2026-09-25",
+    "problem": "Un système de triage médical qui doit fonctionner sans réseau, sans intervention extérieure et sans s'arrêter si une machine tombe.",
+    "solution": "L'application (Next.js) et l'intégration de l'IA locale ont été développées par mes deux coéquipiers. Ma part : l'infrastructure. Trois nœuds applicatifs identiques derrière un reverse proxy Traefik, PostgreSQL répliqué en flux vers un réplica, sauvegarde planifiée sur le réplica, modèle local conteneurisé avec accès au GPU, le tout lancé par Docker Compose.",
+    "highlights": [
+      "Perte d'un nœud testée par un vrai docker kill : une requête en échec sur une vingtaine, puis 100 % de succès sur les deux nœuds restants",
+      "Réplication PostgreSQL visible sur le réplica en 2 secondes environ",
+      "Restauration testée : table supprimée sur le primaire, restaurée depuis le dernier dump"
     ],
-    "features": [
-      "Cloisonnement DEV / TEST / PROD",
-      "Snapshots pour restauration rapide",
-      "Base de procedure de deploiement progressive",
-      "Support d'hebergement pour applications BTS"
+    "learnings": [
+      "Un réplica protège du disque perdu, pas de l'erreur : une suppression y est reproduite, d'où la sauvegarde en plus",
+      "Tester la résilience par une vraie panne plutôt que de se fier à la configuration"
     ],
-    "stack": ["Proxmox", "Virtualisation", "Bridges reseau", "Snapshots", "Git", "GitHub", "YAML CI/CD"],
-    "competences": [
-      "Administration de plateforme de virtualisation",
-      "Conception d'architecture multi-environnements",
-      "Configuration reseau et isolation logique",
-      "Support aux deploiements applicatifs",
-      "Pratiques DevOps de base"
+    "limits": [
+      "Bascule de base de données manuelle, sans élection automatique",
+      "Sauvegardes conservées sur la même machine que la base",
+      "Dépôt privé (projet d'équipe)"
     ],
-    "badges": ["BTS SIO", "Infrastructure", "DevOps"],
-    "screenshots": [],
-    "date": "2025",
-    "status": "Operationnel",
-    "statusNote": "Environnement utilise comme socle de developpement et de tests"
+    "stack": ["Docker Compose", "Traefik", "PostgreSQL (réplication)", "Ollama", "Next.js", "Prisma"],
+    "featured": true,
+    "order": 5
   },
   {
     "id": "novetia-diagnostic-ia",
-    "title": "NovetIA — Diagnostic IA TPE/PME",
-    "summary": "Application Streamlit de diagnostic guidé qui aide les dirigeants de TPE/PME à identifier et prioriser les usages de l'IA adaptés à leur structure.",
-    "context": "Personnel",
-    "category": "IA / Agentique",
+    "title": "NovetIA, diagnostic IA pour TPE/PME",
+    "summary": "Application Streamlit de diagnostic guidé qui aide les dirigeants de TPE/PME à identifier les usages de l'IA adaptés à leur structure.",
+    "group": "archive",
+    "context": "Projet personnel",
+    "category": "IA appliquée",
     "role": "Concepteur et développeur",
-    "shortOutcome": "Chaîne complète données → scoring → LLM → rapport déployée sur serveur OVH en 15 heures.",
-    "problem": "Les dirigeants de petites structures manquent d'un cadre clair pour identifier quels usages de l'IA sont réellement pertinents pour eux.",
-    "solution": "Parcours structuré en Streamlit : formulaire de contexte, scoring déterministe sur une base métier JSON, enrichissement LLM, export rapport Markdown et PDF.",
-    "mainFeatures": [
-      "Connexion démo (comptes CLIENT et ADMIN)",
-      "Assistant IA local via Ollama (chat orienté général)",
-      "Formulaire de diagnostic guidé (secteur, taille, irritants, objectifs)",
-      "Scoring déterministe — top 3 cas d'usage depuis une base JSON",
-      "Enrichissement LLM (OpenAI, Mistral ou Ollama)",
-      "Repli scoring si le LLM est indisponible ou renvoie un format inattendu",
-      "Export rapport Markdown et PDF (Unicode pour le français)",
-      "Historique des diagnostics de session"
-    ],
-    "technicalHighlights": [
-      "Chaîne complète données → règles métier → LLM → livrable",
-      "Moteur de scoring déterministe garantissant un résultat cohérent sans LLM",
-      "Support multi-provider LLM : OpenAI, Mistral, Ollama",
-      "Mode entièrement local via Ollama",
-      "Déploiement sur serveur Debian OVH avec service systemd",
-      "Architecture modulaire (config, auth, scoring, agent, report)"
-    ],
-    "challenges": [
-      "Garantir la cohérence des résultats quelle que soit la disponibilité du LLM",
-      "Concevoir un prompt structuré retournant du JSON parsable de façon fiable",
-      "Gérer les différences d'API entre providers (OpenAI, Mistral, Ollama)",
-      "Produire un PDF lisible avec support Unicode complet pour le français"
+    "period": "2026",
+    "status": "abandoned",
+    "statusNote": "Projet abandonné en septembre 2026, démo retirée. Code consultable sur GitHub.",
+    "updatedAt": "2026-09-25",
+    "problem": "Les dirigeants de petites structures manquent d'un cadre clair pour savoir quels usages de l'IA sont réellement pertinents pour eux.",
+    "solution": "Parcours structuré en Streamlit : formulaire de contexte, scoring déterministe sur une base métier JSON, enrichissement par LLM (OpenAI, Mistral ou Ollama en local) avec repli sur le scoring, export du rapport en Markdown et PDF. Déployé à l'époque sur un serveur Debian avec un service systemd.",
+    "highlights": [
+      "Moteur de scoring déterministe : un résultat cohérent même sans LLM",
+      "Support de trois fournisseurs de LLM, dont un mode entièrement local",
+      "Chaîne complète réalisée en une quinzaine d'heures"
     ],
     "learnings": [
-      "Orchestration d'une chaîne IA complète (données → LLM → livrable)",
-      "Conception d'un moteur de scoring déterministe comme couche de robustesse",
-      "Intégration multi-provider LLM dans un même projet",
-      "Déploiement d'une application Python/ML sur serveur Linux avec systemd"
+      "Le LLM enrichit, le code décide : la couche déterministe garantit la robustesse",
+      "Obtenir du JSON exploitable de façon fiable demande un prompt et une validation stricts"
     ],
-    "featured": true,
-    "order": 5,
-    "contextDetails": "Projet personnel agentique réalisé en 2026 (~15h) pour démontrer une chaîne IA complète orientée usage métier TPE/PME.",
-    "description": [
-      "NovetIA guide les dirigeants de TPE/PME à travers un diagnostic structuré pour identifier les usages de l'IA les plus pertinents à leur contexte.",
-      "L'application combine un moteur de scoring déterministe et un enrichissement LLM, avec un repli garanti si le modèle est indisponible — ce qui en fait une démo robuste et présentable en atelier."
-    ],
-    "features": [
-      "Diagnostic guidé avec scoring des cas d'usage IA",
-      "Enrichissement par LLM (OpenAI, Mistral ou Ollama en local)",
-      "Export rapport Markdown et PDF",
-      "Assistant IA local via Ollama en complément du diagnostic"
-    ],
-    "stack": ["Python", "Streamlit", "OpenAI API", "Mistral API", "Ollama", "FPDF2", "Debian / OVH"],
-    "competences": [
-      "Conception d'une chaîne IA bout en bout",
-      "Intégration multi-provider LLM",
-      "Développement d'interface avec Streamlit",
-      "Déploiement sur serveur Linux (systemd)",
-      "Architecture logicielle modulaire"
-    ],
-    "badges": ["Personnel", "Agentique", "IA"],
-    "screenshots": [],
-    "date": "2026",
-    "status": "Hors ligne",
-    "statusNote": "Application déployée sur serveur OVH à agent-demo.collomb.fr — démo disponible sur demande",
-    "githubUrl": "https://github.com/ElioooClb/novetia-agent-ia"
-  },
-  {
-    "id": "mobile-task-manager",
-    "title": "Application mobile de gestion de taches",
-    "summary": "Application mobile BTS pour organiser des taches avec priorites, tri, filtrage et stockage local.",
-    "context": "BTS",
-    "category": "Mobile",
-    "role": "Developpeur mobile",
-    "shortOutcome": "Application mobile fonctionnelle avec cycle complet CRUD et persistance locale.",
-    "problem": "Proposer une gestion de taches simple et utilisable hors ligne dans un cadre d'apprentissage mobile.",
-    "solution": "Realisation d'une application React Native Expo avec gestion d'etat TypeScript, tri/filtrage et stockage local.",
-    "mainFeatures": [
-      "CRUD de taches",
-      "Gestion des statuts de taches",
-      "Gestion des priorites",
-      "Tri des taches",
-      "Filtrage des taches",
-      "Stockage local"
-    ],
-    "technicalHighlights": [
-      "Architecture mobile legere sous React Native",
-      "Typage TypeScript pour fiabiliser les interactions UI/donnees",
-      "Persistance locale pour usage sans backend"
-    ],
-    "challenges": [
-      "Maintenir une experience fluide sur mobile",
-      "Structurer les donnees pour combiner tri, filtrage et statuts",
-      "Conserver une logique claire dans un projet d'apprentissage"
-    ],
-    "learnings": [
-      "Fondamentaux du developpement mobile cross-platform",
-      "Gestion d'etat et persistance locale en mobile",
-      "Conception d'ecrans mobiles orientee productivite"
-    ],
+    "stack": ["Python", "Streamlit", "OpenAI API", "Mistral API", "Ollama", "systemd"],
     "featured": false,
-    "order": 4,
-    "contextDetails": "Projet d'apprentissage mobile realise dans le cadre du BTS SIO.",
-    "description": [
-      "L'application permet de creer et suivre des taches depuis un smartphone.",
-      "Le projet se concentre sur les fondamentaux UX mobile et la fiabilite du stockage local."
-    ],
-    "features": [
-      "Ajout, edition et suppression de taches",
-      "Organisation par statut et priorite",
-      "Tri et filtrage selon les besoins de consultation",
-      "Conservation locale des donnees"
-    ],
-    "stack": ["React Native", "Expo", "TypeScript"],
-    "competences": [
-      "Developpement mobile cross-platform",
-      "Conception d'interface mobile",
-      "Gestion d'etat et persistance locale",
-      "Structuration d'un projet TypeScript"
-    ],
-    "badges": ["BTS SIO", "Mobile"],
-    "screenshots": [],
-    "date": "2024",
-    "status": "Non deploye",
-    "statusNote": "Demonstration sur demande"
+    "order": 6,
+    "githubUrl": "https://github.com/ElioooClb/novetia-agent-ia"
   }
 ]

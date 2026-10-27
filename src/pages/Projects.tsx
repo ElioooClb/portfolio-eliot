@@ -1,116 +1,70 @@
-import { useMemo, useState } from "react";
 import ProjectCard from "../components/ProjectCard";
-import Tag from "../components/Tag";
 import projectsData from "../data/projects.json";
-import type { Project } from "../types";
+import { projectStatusMeta } from "../lib/status";
+import type { Project, ProjectGroup } from "../types";
 
-const projects = projectsData as Project[];
+const projects = ([...projectsData] as Project[]).sort((a, b) => a.order - b.order);
+
+const groups: { id: ProjectGroup; title: string; intro: string }[] = [
+  {
+    id: "infraops",
+    title: "InfraOps Lab",
+    intro:
+      "Mon projet principal, en trois volets : réseau et systèmes, automatisation et déploiement, supervision et sécurité.",
+  },
+  {
+    id: "project",
+    title: "Autres réalisations",
+    intro: "Projets personnels et projets d'équipe, avec la part qui me revient.",
+  },
+  {
+    id: "archive",
+    title: "Archives",
+    intro: "Projets arrêtés, conservés pour ce qu'ils m'ont appris.",
+  },
+];
 
 const Projects = () => {
-  const [search, setSearch] = useState("");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  const tags = useMemo(() => {
-    const all = projects.flatMap((project) => project.stack);
-    return Array.from(new Set(all)).sort((a, b) => a.localeCompare(b));
-  }, []);
-
-  const filtered = useMemo(() => {
-    return projects.filter((project) => {
-      const matchesSearch =
-        project.title.toLowerCase().includes(search.toLowerCase()) ||
-        project.summary.toLowerCase().includes(search.toLowerCase());
-
-      const matchesTags =
-        selectedTags.length === 0 ||
-        selectedTags.some((tag) => project.stack.includes(tag));
-
-      return matchesSearch && matchesTags;
-    });
-  }, [search, selectedTags]);
-
-  const toggleTag = (tag: string) => {
-    setSelectedTags((prev) =>
-      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
-    );
-  };
-
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-12">
       <section className="space-y-4">
         <h1 className="text-3xl font-semibold text-white">Projets</h1>
-        <p className="max-w-2xl text-sm text-slate-300">
-          Chaque projet reflète un contexte réel (BTS, perso ou pro) avec un
-          focus sur l'UX, la performance et la qualité du code.
+        <p className="max-w-2xl text-sm leading-relaxed text-slate-300">
+          Chaque fiche indique son avancement réel et la date de sa dernière
+          mise à jour. Aucune métrique ni disponibilité n'est inventée : ce qui
+          est prévu est présenté comme prévu.
         </p>
+        <ul className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-400" aria-label="Légende des statuts">
+          {Object.values(projectStatusMeta).map((meta) => (
+            <li key={meta.label} className="flex items-center gap-2">
+              <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${meta.dotClassName}`} />
+              {meta.label}
+            </li>
+          ))}
+        </ul>
       </section>
 
-      <section className="flex flex-col gap-6 rounded-2xl border border-white/10 bg-slateCard/60 p-6">
-        <div className="flex flex-col gap-3">
-          <label className="text-sm font-semibold text-slate-200" htmlFor="search">
-            Recherche
-          </label>
-          <input
-            id="search"
-            type="text"
-            placeholder="Titre ou description..."
-            value={search}
-            onChange={(event) => setSearch(event.target.value)}
-            className="rounded-xl border border-white/10 bg-slate-900/70 px-4 py-3 text-sm text-white placeholder:text-slate-500 focus:border-accent focus:outline-none"
-            aria-label="Rechercher un projet"
-          />
-        </div>
-
-        <div className="flex flex-wrap gap-2">
-          {tags.map((tag) => {
-            const isActive = selectedTags.includes(tag);
-            return (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => toggleTag(tag)}
-                aria-pressed={isActive}
-                className={`rounded-full px-3 py-1 text-xs font-medium transition ${
-                  isActive
-                    ? "bg-accent text-slate-900"
-                    : "bg-white/10 text-slate-200 hover:bg-white/20"
-                }`}
-              >
-                {tag}
-              </button>
-            );
-          })}
-          {selectedTags.length > 0 && (
-            <button
-              type="button"
-              onClick={() => setSelectedTags([])}
-              className="rounded-full border border-white/20 px-3 py-1 text-xs font-medium text-white hover:border-white"
-            >
-              Réinitialiser
-            </button>
-          )}
-        </div>
-
-        {selectedTags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
-            {selectedTags.map((tag) => (
-              <Tag key={tag} label={tag} />
-            ))}
-          </div>
-        )}
-      </section>
-
-      <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {filtered.length === 0 ? (
-          <div className="rounded-2xl border border-white/10 bg-slateCard/60 p-6 text-sm text-slate-300">
-            Aucun projet ne correspond à votre recherche.
-          </div>
-        ) : (
-          filtered.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))
-        )}
-      </section>
+      {groups.map((group) => {
+        const items = projects.filter((p) => p.group === group.id);
+        if (items.length === 0) {
+          return null;
+        }
+        return (
+          <section key={group.id} className="space-y-6" aria-labelledby={`groupe-${group.id}`}>
+            <div className="space-y-1">
+              <h2 id={`groupe-${group.id}`} className="text-2xl font-semibold text-white">
+                {group.title}
+              </h2>
+              <p className="text-sm text-slate-400">{group.intro}</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {items.map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
+            </div>
+          </section>
+        );
+      })}
     </div>
   );
 };

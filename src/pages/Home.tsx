@@ -1,63 +1,39 @@
-import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import projectsData from "../data/projects.json";
+import journalData from "../data/journal.json";
+import siteData from "../data/site.json";
 import ProjectCard from "../components/ProjectCard";
-import type { Project } from "../types";
+import JournalList from "../components/JournalList";
+import { formatDate } from "../lib/format";
+import type { JournalEntry, Project, SiteInfo } from "../types";
 
-const projects = projectsData as Project[];
+const projects = ([...projectsData] as Project[]).sort((a, b) => a.order - b.order);
+const journal = journalData as JournalEntry[];
+const site = siteData as SiteInfo;
+
+const infraops = projects.filter((p) => p.group === "infraops");
+const others = projects.filter((p) => p.group === "project" && p.featured);
 
 const Home = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
-
-  useEffect(() => {
-    const container = carouselRef.current;
-    if (!container) {
-      return;
-    }
-
-    const updateControls = () => {
-      const { scrollLeft, scrollWidth, clientWidth } = container;
-      setCanScrollPrev(scrollLeft > 0);
-      setCanScrollNext(scrollLeft + clientWidth < scrollWidth - 1);
-    };
-
-    requestAnimationFrame(updateControls);
-    container.addEventListener("scroll", updateControls, { passive: true });
-    const observer = new ResizeObserver(updateControls);
-    observer.observe(container);
-
-    return () => {
-      container.removeEventListener("scroll", updateControls);
-      observer.disconnect();
-    };
-  }, []);
-
-  const scrollByPage = (direction: "prev" | "next") => {
-    const container = carouselRef.current;
-    if (!container) {
-      return;
-    }
-    const offset = direction === "next" ? container.clientWidth : -container.clientWidth;
-    container.scrollBy({ left: offset, behavior: "smooth" });
-  };
+  const base = import.meta.env.BASE_URL;
+  const cvHref = `${base.endsWith("/") ? base : `${base}/`}cv-eliot-collomb.pdf`;
 
   return (
-    <div className="flex flex-col gap-12">
-      <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-900 to-slate-800 p-8 shadow-xl shadow-black/30">
-        <div className="max-w-2xl space-y-6">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-accent">
-            Portfolio Eliot Collomb
+    <div className="flex flex-col gap-16">
+      <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950/40 p-8 shadow-xl shadow-black/30 sm:p-10">
+        <div className="max-w-3xl space-y-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-accent sm:text-sm">
+            Administration systèmes, réseaux &amp; Cloud/DevOps
           </p>
-          <h1 className="text-2xl font-medium leading-tight text-white sm:text-3xl">
-            Étudiant en BTS SIO option SLAM, je développe des applications, des
-            interfaces et des solutions agentiques orientées IA.
+          <h1 className="text-3xl font-semibold leading-tight text-white sm:text-4xl">
+            Je conçois, déploie et documente des infrastructures, avec un goût
+            prononcé pour l'automatisation et l'IA.
           </h1>
-          <p className="text-base text-slate-300">
-            À travers ce portfolio, je présente mes projets, les technologies
-            utilisées et les compétences que je construis progressivement en
-            développement web, IA et agentique.
+          <p className="text-base leading-relaxed text-slate-300">
+            Étudiant en Bachelor Administrateur Systèmes, Réseaux et Bases de
+            Données à l'EPSI Bordeaux, titulaire d'un BTS SIO, je recherche une
+            alternance pour 2026-2027. Ce portfolio évolue avec mes projets :
+            chaque statut reflète l'état réel, daté.
           </p>
           <div className="flex flex-wrap gap-4">
             <Link
@@ -66,70 +42,77 @@ const Home = () => {
             >
               Voir les projets
             </Link>
-            <Link
-              to="/contact"
+            <a
+              href={cvHref}
+              download
               className="rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:border-white hover:bg-white/10"
             >
-              Me contacter
+              Télécharger le CV
+            </a>
+            <Link
+              to="/contact"
+              className="rounded-full px-6 py-3 text-sm font-semibold text-slate-300 transition hover:text-white"
+            >
+              Me contacter →
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="space-y-6">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-semibold text-white">
-              Projets récents
+      <section className="space-y-6" aria-labelledby="infraops-titre">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div className="max-w-2xl space-y-2">
+            <h2 id="infraops-titre" className="text-2xl font-semibold text-white">
+              InfraOps Lab, en construction
             </h2>
-            <p className="text-sm text-slate-400">
-              Une sélection de projets réalisées pendant le BTS SIO.
+            <p className="text-sm leading-relaxed text-slate-400">
+              Mon projet principal : une petite infrastructure réaliste,
+              administrée, automatisée, supervisée et sécurisée, sur deux VPS et
+              un lab VMware, sans dépense supplémentaire. Trois volets menés
+              par jalons.
             </p>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="hidden items-center gap-2 sm:flex">
-              <button
-                type="button"
-                onClick={() => scrollByPage("prev")}
-                disabled={!canScrollPrev}
-                aria-disabled={!canScrollPrev}
-                aria-label="Voir les projets précédents"
-                className="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white transition hover:border-white disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Précédent
-              </button>
-              <button
-                type="button"
-                onClick={() => scrollByPage("next")}
-                disabled={!canScrollNext}
-                aria-disabled={!canScrollNext}
-                aria-label="Voir les projets suivants"
-                className="rounded-full border border-white/20 px-4 py-2 text-xs font-semibold text-white transition hover:border-white disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Suivant
-              </button>
-            </div>
-            <Link
-              to="/projects"
-              className="text-sm font-semibold text-accent hover:text-white"
-            >
-              Tout voir →
-            </Link>
-          </div>
+          <Link to="/projects" className="text-sm font-semibold text-accent hover:text-white">
+            Tous les projets →
+          </Link>
         </div>
-        <div
-          ref={carouselRef}
-          className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-        >
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="min-w-full snap-start sm:min-w-[50%] lg:min-w-[33.333%]"
-            >
-              <ProjectCard project={project} />
-            </div>
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {infraops.map((project) => (
+            <ProjectCard key={project.id} project={project} />
           ))}
         </div>
+        <div className="rounded-2xl border border-accent/30 bg-accent/5 px-5 py-4">
+          <p className="text-xs font-semibold uppercase tracking-wide text-accent">
+            Prochain objectif
+          </p>
+          <p className="mt-1 text-sm text-slate-200">{site.nextGoal}</p>
+        </div>
+      </section>
+
+      <section className="space-y-6" aria-labelledby="autres-titre">
+        <h2 id="autres-titre" className="text-2xl font-semibold text-white">
+          Autres réalisations
+        </h2>
+        <div className="grid gap-6 md:grid-cols-2">
+          {others.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </section>
+
+      <section className="space-y-6" aria-labelledby="journal-titre">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <h2 id="journal-titre" className="text-2xl font-semibold text-white">
+            Dernières avancées
+          </h2>
+          <Link to="/journal" className="text-sm font-semibold text-accent hover:text-white">
+            Tout le journal →
+          </Link>
+        </div>
+        <JournalList entries={journal.slice(0, 3)} />
+        <p className="text-xs text-slate-500">
+          Site mis à jour le {formatDate(site.updatedAt)}.
+        </p>
       </section>
     </div>
   );

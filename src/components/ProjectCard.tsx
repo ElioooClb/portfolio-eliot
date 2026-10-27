@@ -1,41 +1,48 @@
 import { Link } from "react-router-dom";
 import Tag from "./Tag";
+import StatusBadge from "./StatusBadge";
+import { formatDate } from "../lib/format";
 import type { Project } from "../types";
 
 type ProjectCardProps = {
   project: Project;
 };
 
+const MAX_TAGS = 5;
+
 const ProjectCard = ({ project }: ProjectCardProps) => {
+  const tags = project.stack.slice(0, MAX_TAGS);
+  const hiddenTags = project.stack.length - tags.length;
+
   return (
-    <article className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-slateCard/70 p-6 shadow-lg shadow-black/20 transition-transform hover:-translate-y-1">
+    <article className="flex h-full flex-col justify-between rounded-2xl border border-white/10 bg-slateCard/70 p-6 shadow-lg shadow-black/20 transition motion-safe:hover:-translate-y-1 hover:border-white/20">
       <div className="space-y-4">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="text-xs font-semibold uppercase tracking-wide text-accent">
             {project.context}
           </span>
-          <span className="rounded-full bg-white/10 px-3 py-1 text-xs text-slate-200">
-            {project.status}
-          </span>
+          <StatusBadge status={project.status} />
         </div>
         <div>
           <h3 className="text-lg font-semibold text-white">{project.title}</h3>
-          <p className="mt-2 text-sm text-slate-300">{project.summary}</p>
+          <p className="mt-2 text-sm leading-relaxed text-slate-300">{project.summary}</p>
           {project.statusNote && (
-            <p className="mt-2 text-xs text-slate-400">{project.statusNote}</p>
+            <p className="mt-3 text-xs text-slate-400">{project.statusNote}</p>
           )}
         </div>
         <div className="flex flex-wrap gap-2">
-          {project.stack.map((tag) => (
+          {tags.map((tag) => (
             <Tag key={`${project.id}-${tag}`} label={tag} />
           ))}
+          {hiddenTags > 0 && <Tag label={`+${hiddenTags}`} />}
         </div>
       </div>
-      <div className="mt-6 flex items-center justify-between text-sm text-slate-400">
-        <span>{project.date}</span>
+      <div className="mt-6 flex items-center justify-between gap-4 text-xs text-slate-400">
+        <span>Mis à jour le {formatDate(project.updatedAt)}</span>
         <Link
           to={`/projects/${project.id}`}
-          className="font-semibold text-accent hover:text-white"
+          className="text-sm font-semibold text-accent hover:text-white"
+          aria-label={`Voir le détail du projet ${project.title}`}
         >
           Voir le détail →
         </Link>
