@@ -93,14 +93,29 @@ const ProjectDetail = () => {
           <Section title="Solution">
             <p>{project.solution}</p>
           </Section>
-          {project.highlights.length > 0 && (
-            <Section title="Points clés">
-              <BulletList items={project.highlights} />
-            </Section>
-          )}
-          {project.learnings && project.learnings.length > 0 && (
-            <Section title="Ce que j'en retiens">
-              <BulletList items={project.learnings} />
+          {project.skills.length > 0 && (
+            <Section
+              title={
+                project.skills.every((skill) => skill.upcoming)
+                  ? "Compétences visées"
+                  : "Compétences travaillées"
+              }
+            >
+              <ul className="grid gap-4 sm:grid-cols-2">
+                {project.skills.map((skill) => (
+                  <li key={skill.name} className="rounded-xl border border-line bg-surface2 p-4">
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-sm font-semibold text-fg">{skill.name}</h3>
+                      {skill.upcoming && (
+                        <span className="rounded-full border border-line px-2 py-0.5 text-[11px] text-subtle">
+                          À venir
+                        </span>
+                      )}
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-body">{skill.detail}</p>
+                  </li>
+                ))}
+              </ul>
             </Section>
           )}
         </div>

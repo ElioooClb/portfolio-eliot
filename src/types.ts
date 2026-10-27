@@ -11,6 +11,14 @@ export type ProjectStep = {
   state: StepState;
 };
 
+// Compétence travaillée dans le projet, illustrée par ce qui a été fait.
+// upcoming : pas encore pratiquée dans ce projet (affichée « À venir »).
+export type ProjectSkill = {
+  name: string;
+  detail: string;
+  upcoming?: boolean;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -26,9 +34,8 @@ export type Project = {
   updatedAt: string;
   problem: string;
   solution: string;
-  highlights: string[];
+  skills: ProjectSkill[];
   steps?: ProjectStep[];
-  learnings?: string[];
   limits?: string[];
   stack: string[];
   featured: boolean;

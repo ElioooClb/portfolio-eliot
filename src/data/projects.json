@@ -13,10 +13,36 @@
     "updatedAt": "2026-10-27",
     "problem": "Pratiquer l'administration d'un système d'information complet, du plan d'adressage au dépannage, avec des preuves vérifiables plutôt que des exercices isolés.",
     "solution": "Un lab local sous VMware Workstation : Windows Server 2025 (Active Directory, DNS, DHCP, GPO), serveur Debian, postes clients Windows, routage et segmentation entre réseaux, et une matrice des flux autorisés et interdits dont chaque règle est testée.",
-    "highlights": [
-      "Acquis de formation à consolider : Active Directory, DNS, OU, groupes, GPO, droits NTFS, partages, scripts PowerShell",
-      "Segmentation et filtrage prouvés par des tests de flux, pas seulement configurés",
-      "Documentation : schéma, plan d'adressage, matrice de flux, procédures de dépannage"
+    "skills": [
+      {
+        "name": "Virtualisation (VMware Workstation)",
+        "detail": "Choix et préparation des machines (serveur Debian, Windows Server 2025, client Windows) et de réseaux virtuels isolés, avec la contrainte des 16 Go de RAM du poste hôte."
+      },
+      {
+        "name": "Windows Server, Active Directory, GPO",
+        "detail": "Domaine avec OU, groupes, stratégies de groupe, droits NTFS et partages. Acquis en TP pendant la formation, à consolider ici dans un système d'information cohérent.",
+        "upcoming": true
+      },
+      {
+        "name": "Adressage, DNS et DHCP",
+        "detail": "Plan d'adressage par réseau, services DNS et DHCP centralisés, résolution vérifiée depuis chaque poste.",
+        "upcoming": true
+      },
+      {
+        "name": "Routage, segmentation et filtrage",
+        "detail": "Serveurs et postes clients sur des réseaux distincts, routage entre eux et règles de filtrage, chaque flux autorisé ou interdit étant prouvé par un test.",
+        "upcoming": true
+      },
+      {
+        "name": "PowerShell",
+        "detail": "Automatisation des tâches d'administration Windows récurrentes : création de comptes, affectation aux groupes, contrôles.",
+        "upcoming": true
+      },
+      {
+        "name": "Diagnostic et documentation",
+        "detail": "Pannes reproduites puis résolues méthodiquement, couche par couche. Schéma réseau, matrice de flux et procédures écrites.",
+        "upcoming": true
+      }
     ],
     "steps": [
       { "label": "Choix des machines et des réseaux VMware", "state": "in_progress" },
@@ -46,10 +72,32 @@
     "updatedAt": "2026-10-27",
     "problem": "Passer d'un déploiement manuel à une chaîne reproductible : chaque commit testé, déployé, vérifié, et annulable.",
     "solution": "Sur un VPS Debian existant : configuration par Ansible, application conteneurisée avec Docker Compose (staging et production séparés), pipeline GitHub Actions aux secrets limités, contrôles de santé après chaque déploiement et procédure de retour arrière. Application de démonstration : mon application de tickets IT réalisée pendant le BTS.",
-    "highlights": [
-      "Ansible : inventaire, rôles, seconde exécution idempotente vérifiée",
-      "Pipeline commit → tests → déploiement → contrôle de santé",
-      "Retour arrière documenté et testé"
+    "skills": [
+      {
+        "name": "Automatisation avec Ansible",
+        "detail": "Inventaire, rôles et playbooks pour configurer le serveur de façon reproductible, avec une seconde exécution qui ne change rien (idempotence vérifiée).",
+        "upcoming": true
+      },
+      {
+        "name": "Conteneurisation (Docker Compose)",
+        "detail": "Application découpée en services, environnements de staging et de production séparés, images épinglées par version.",
+        "upcoming": true
+      },
+      {
+        "name": "CI/CD GitHub Actions",
+        "detail": "Pipeline qui teste, construit et déploie à chaque commit, avec des secrets limités au strict nécessaire.",
+        "upcoming": true
+      },
+      {
+        "name": "Exploitation applicative",
+        "detail": "Reverse proxy Nginx, contrôles de santé après chaque déploiement, procédure de retour arrière testée.",
+        "upcoming": true
+      },
+      {
+        "name": "Administration Linux",
+        "detail": "Travail sur un serveur Debian déjà en service, dans un espace dédié, sans toucher à la configuration système partagée avec d'autres services.",
+        "upcoming": true
+      }
     ],
     "steps": [
       { "label": "Serveur préparé (Debian, Docker opérationnel)", "state": "done" },
@@ -79,10 +127,27 @@
     "updatedAt": "2026-10-27",
     "problem": "Savoir qu'un service tombe avant l'utilisateur, et pouvoir le remettre en état à partir d'une sauvegarde vérifiée.",
     "solution": "Zabbix pour les métriques et les contrôles HTTP, alertes, journalisation, durcissement des machines, sauvegardes hors serveur et tests de restauration, scénarios d'incident documentés de la détection à la reprise.",
-    "highlights": [
-      "Expérience préalable : Zabbix 7.0 installé en TP, supervision de Windows Server, de Debian et d'un contrôle HTTP Nginx",
-      "Restauration testée, pas seulement sauvegarde planifiée",
-      "Études de cas : incident, diagnostic, reprise"
+    "skills": [
+      {
+        "name": "Supervision (Zabbix)",
+        "detail": "Métriques système, contrôles HTTP et seuils d'alerte sur les machines du lab et le serveur de démonstration. Point de départ : un Zabbix 7.0 monté en TP, qui supervisait Windows Server, Debian et un service Nginx.",
+        "upcoming": true
+      },
+      {
+        "name": "Gestion des incidents",
+        "detail": "Pannes simulées traitées de la détection à la reprise, avec un post-mortem écrit pour chacune.",
+        "upcoming": true
+      },
+      {
+        "name": "Sauvegarde et restauration",
+        "detail": "Sauvegardes copiées hors du serveur et restauration réellement testée, pas seulement planifiée.",
+        "upcoming": true
+      },
+      {
+        "name": "Durcissement et journalisation",
+        "detail": "Réduction de la surface d'attaque (comptes, services exposés, accès SSH), centralisation et lecture des journaux.",
+        "upcoming": true
+      }
     ],
     "steps": [
       { "label": "Zabbix et premières métriques", "state": "planned" },
@@ -112,11 +177,39 @@
     "updatedAt": "2026-10-15",
     "problem": "Retrouver rapidement une information parmi plus de 200 notes de cours et de projets, et outiller mes projets avec des agents, sans confier mes données à un service tiers.",
     "solution": "Deux VPS Debian reliés par un réseau privé Tailscale, règles en refus par défaut, aucune API exposée sur Internet. Le premier héberge la base de connaissances : PostgreSQL avec pgvector, embeddings calculés en local par Ollama, API FastAPI en lecture seule, réindexation automatique à chaque push Git, sauvegardes quotidiennes récupérées et vérifiées sur mon poste. Le second exécute des agents Claude Code sous un utilisateur cloisonné : un agent d'audit de sécurité statique analyse mes dépôts et publie ses rapports dans ma base de notes.",
-    "highlights": [
-      "Réseau privé en refus par défaut, aucune interface d'administration publique",
-      "Indexation déclenchée par un hook Git, sauvegardes avec contrôle d'intégrité (SHA-256)",
-      "Agents exécutés sous un utilisateur dédié, sans sudo ni accès à Docker",
-      "Services inutilisés (interface de chat, passerelle multi-modèles) arrêtés plutôt que maintenus"
+    "skills": [
+      {
+        "name": "Administration de serveurs Linux",
+        "detail": "Deux VPS Debian exploités au quotidien : comptes et droits, services systemd et timers, mises à jour de sécurité automatiques, fichier d'échange, suivi de l'espace disque et de la mémoire."
+      },
+      {
+        "name": "Réseau privé et contrôle des flux",
+        "detail": "Réseau Tailscale avec une politique en refus par défaut : chaque flux entre machines est autorisé explicitement, les API ne sont publiées que dans ce réseau, jamais sur Internet."
+      },
+      {
+        "name": "Bases de données et recherche sémantique",
+        "detail": "PostgreSQL avec pgvector, embeddings calculés en local par Ollama, API FastAPI en lecture seule protégée par une clé."
+      },
+      {
+        "name": "Automatisation et sauvegarde",
+        "detail": "Réindexation déclenchée par un hook Git à chaque push, sauvegardes quotidiennes récupérées sur mon poste avec contrôle d'intégrité (SHA-256)."
+      },
+      {
+        "name": "Sécurité et cloisonnement",
+        "detail": "Agents exécutés sous un utilisateur dédié, sans sudo ni accès à Docker. Audit des droits sur le serveur, avec correction de fichiers de secrets lisibles par tous."
+      },
+      {
+        "name": "Diagnostic",
+        "detail": "22 notes n'étaient jamais indexées : cause trouvée dans une API d'embeddings qui ignorait la taille de contexte demandée, correction vérifiée sur 231 fichiers sur 231."
+      },
+      {
+        "name": "IA et agentique",
+        "detail": "Agent Claude Code d'audit de sécurité statique, appelable depuis mon PC et mon téléphone, qui publie ses rapports dans ma base de notes."
+      },
+      {
+        "name": "Cycle de vie des services",
+        "detail": "Interface de chat et passerelle multi-modèles arrêtées faute d'usage réel : un service inutilisé est un coût et une surface d'attaque."
+      }
     ],
     "steps": [
       { "label": "Base de connaissances RAG et indexation automatique", "state": "done" },
@@ -124,10 +217,6 @@
       { "label": "Sauvegardes quotidiennes vérifiées", "state": "done" },
       { "label": "Agent d'audit de sécurité", "state": "done" },
       { "label": "Autres agents (développement, workflows)", "state": "planned" }
-    ],
-    "learnings": [
-      "Un service inutilisé est un coût et une surface d'attaque : savoir le décommissionner",
-      "Diagnostic d'un bug d'indexation : l'API d'embeddings utilisée ignorait la taille de contexte demandée, 22 notes n'étaient jamais indexées"
     ],
     "limits": [
       "Dépôt privé : configuration et détails réseau non publiés."
@@ -150,14 +239,31 @@
     "updatedAt": "2026-09-25",
     "problem": "Un système de triage médical qui doit fonctionner sans réseau, sans intervention extérieure et sans s'arrêter si une machine tombe.",
     "solution": "L'application (Next.js) et l'intégration de l'IA locale ont été développées par mes deux coéquipiers. Ma part : l'infrastructure. Trois nœuds applicatifs identiques derrière un reverse proxy Traefik, PostgreSQL répliqué en flux vers un réplica, sauvegarde planifiée sur le réplica, modèle local conteneurisé avec accès au GPU, le tout lancé par Docker Compose.",
-    "highlights": [
-      "Perte d'un nœud testée par un vrai docker kill : une requête en échec sur une vingtaine, puis 100 % de succès sur les deux nœuds restants",
-      "Réplication PostgreSQL visible sur le réplica en 2 secondes environ",
-      "Restauration testée : table supprimée sur le primaire, restaurée depuis le dernier dump"
-    ],
-    "learnings": [
-      "Un réplica protège du disque perdu, pas de l'erreur : une suppression y est reproduite, d'où la sauvegarde en plus",
-      "Tester la résilience par une vraie panne plutôt que de se fier à la configuration"
+    "skills": [
+      {
+        "name": "Conteneurisation (Docker Compose)",
+        "detail": "Pile complète lancée d'une commande : trois nœuds applicatifs, base primaire et réplica, sauvegarde, modèle local. Surcharges Compose séparées pour la réplication et le GPU."
+      },
+      {
+        "name": "Haute disponibilité applicative",
+        "detail": "Trois nœuds identiques et sans état derrière Traefik, avec sondes de santé. Perte d'un nœud testée par un vrai docker kill : une requête en échec sur une vingtaine, puis 100 % de succès sur les deux nœuds restants."
+      },
+      {
+        "name": "Réplication PostgreSQL",
+        "detail": "Réplication en flux vers un réplica en lecture seule, prêt à être promu si le primaire est perdu. Écritures visibles sur le réplica en 2 secondes environ."
+      },
+      {
+        "name": "Sauvegarde et restauration",
+        "detail": "pg_dump planifié par cron sur le réplica pour ne pas charger le primaire, 24 dumps conservés. Restauration testée après la suppression d'une table : un réplica protège du disque perdu, pas de l'erreur."
+      },
+      {
+        "name": "IA locale conteneurisée",
+        "detail": "Ollama dans la composition Docker avec accès au GPU NVIDIA, une seule instance du modèle partagée par les trois nœuds."
+      },
+      {
+        "name": "Travail en équipe",
+        "detail": "Branches et pull requests relues par un autre membre, intégration quotidienne, suivi des tâches dans Jira."
+      }
     ],
     "limits": [
       "Bascule de base de données manuelle, sans élection automatique",
@@ -182,13 +288,31 @@
     "updatedAt": "2026-09-25",
     "problem": "Les dirigeants de petites structures manquent d'un cadre clair pour savoir quels usages de l'IA sont réellement pertinents pour eux, et les résultats doivent rester compréhensibles sans culture technique.",
     "solution": "Une interface Streamlit unique avec deux espaces. Le diagnostic guidé : formulaire (secteur, taille, irritants, objectifs), classement des cas d'usage par un moteur de scoring déterministe sur une base métier JSON, enrichissement des trois premiers par un LLM au choix (OpenAI, Mistral ou Ollama en local), puis rapport exporté en Markdown et en PDF. À côté, un assistant conversationnel qui tourne toujours en local avec Ollama. Déployé sur un serveur Debian chez OVH comme service systemd, avec le modèle Ollama sur la même machine.",
-    "highlights": [
-      "Repli garanti : si le LLM est indisponible ou renvoie un format inattendu, les trois recommandations restent cohérentes grâce au scoring",
-      "Trois fournisseurs de LLM interchangeables par configuration, dont un mode entièrement local",
-      "Prompt structuré à sortie JSON, analysée avant affichage",
-      "Architecture modulaire : configuration, authentification, scoring, orchestration, rapport",
-      "Secrets et comptes de démonstration uniquement dans le fichier d'environnement, jamais dans le code",
-      "Chaîne complète réalisée en une quinzaine d'heures"
+    "skills": [
+      {
+        "name": "Conception d'une chaîne IA de bout en bout",
+        "detail": "Données métier, règles de scoring, enrichissement par LLM puis livrable PDF, chaque étape isolée dans son module : configuration, authentification, scoring, orchestration, rapport."
+      },
+      {
+        "name": "Robustesse face au LLM",
+        "detail": "Le scoring déterministe garantit trois recommandations cohérentes même si le LLM est indisponible ou renvoie un format inattendu : le LLM enrichit, le code décide."
+      },
+      {
+        "name": "Intégration de LLM",
+        "detail": "Trois fournisseurs interchangeables par configuration (OpenAI, Mistral, Ollama en local), prompt structuré à sortie JSON analysée avant affichage, réglages distincts pour le chat et le diagnostic."
+      },
+      {
+        "name": "Déploiement sur serveur Linux",
+        "detail": "Application et modèle Ollama sur un serveur Debian chez OVH, exécutée comme service systemd : redémarrage automatique et persistance après un redémarrage du serveur."
+      },
+      {
+        "name": "Développement Python",
+        "detail": "Interface Streamlit, génération de rapports Markdown et PDF avec polices Unicode pour le français. Prototype complet réalisé en une quinzaine d'heures."
+      },
+      {
+        "name": "Gestion des secrets",
+        "detail": "Clés d'API et comptes de démonstration uniquement dans le fichier d'environnement, jamais dans le code ni dans le dépôt."
+      }
     ],
     "steps": [
       { "label": "Base métier des cas d'usage et scoring déterministe", "state": "done" },
@@ -196,11 +320,6 @@
       { "label": "Rapport Markdown et PDF (polices Unicode pour le français)", "state": "done" },
       { "label": "Déploiement sur serveur Debian (systemd)", "state": "done" },
       { "label": "Démonstration présentée", "state": "done" }
-    ],
-    "learnings": [
-      "Le LLM enrichit, le code décide : la couche déterministe garantit la robustesse",
-      "Obtenir du JSON exploitable de façon fiable demande un prompt et une validation stricts",
-      "Séparer les réglages du chat (réponses courtes) de ceux du diagnostic (prompt long et structuré)"
     ],
     "limits": [
       "Authentification de démonstration, non adaptée à la production",

@@ -38,11 +38,12 @@ Tout le contenu évolutif vit dans `src/data/`, sans toucher au code.
 | `updatedAt` | Date de la dernière information vérifiée (`AAAA-MM-JJ`) |
 | `group` | Section de la page Projets : `infraops`, `project`, `archive` |
 | `steps` | Étapes, chacune `done`, `in_progress` ou `planned` |
-| `highlights`, `learnings`, `limits` | Points clés, enseignements, limites connues |
+| `skills` | Compétences travaillées : `name`, `detail` (ce qui a été fait concrètement), `upcoming` (pas encore pratiquée, affichée « À venir ») |
+| `limits` | Limites connues |
 | `featured` | Affiché sur l'accueil (groupe `project`) |
 | `order` | Ordre d'affichage |
 
-À chaque jalon : mettre à jour `status`, `steps`, `statusNote` et `updatedAt`.
+À chaque jalon : mettre à jour `status`, `steps`, `statusNote`, `updatedAt`, et retirer `upcoming` des compétences désormais pratiquées (en complétant leur `detail`).
 
 ### Le journal : `src/data/journal.json`
 
