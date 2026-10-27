@@ -76,6 +76,8 @@ export type InfraModel =
   | "vm-windows-server"
   | "vm-debian"
   | "vm-windows-client"
+  | "vm-router"
+  | "vm-linux"
   | "database"
   | "backup"
   | "agent"

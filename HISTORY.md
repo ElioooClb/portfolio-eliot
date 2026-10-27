@@ -2,6 +2,12 @@
 
 > Journal synthétique, le plus récent en haut.
 
+## 2026-10-27 : lab local, étapes 1 et 2 (branche `lab-local-etapes-1-2`)
+
+- Carte : routeur VyOS ajouté et serveur Debian passé en « observé » (construction du lab du 27/10), serveur Rocky Linux ajouté en « prévu », trois flux vérifiés (SSH vers le routeur, SSH par rebond vers Debian, NAT et relais DNS). Deux modèles 3D : `vm-router` (flèches opposées) et `vm-linux` (invite de commande). 15 éléments, 14 flux.
+- Fiche Enterprise Network Lab : statut, compétences (virtualisation, administration Linux et SSH, routage), étapes et stack mis à jour. Contrôleur de domaine en « Planifié ». Entrée de journal.
+- Aucune adresse, aucun nom d'hôte ni nom de domaine interne (vérifié par recherche dans `src/`).
+
 ## 2026-10-27 : lot B, explorateur d'infrastructure 3D
 
 - Page Infrastructure : carte 3D statique (React Three Fiber 8, drei 9, three 0.172), chargée à la demande (~240 Ko compressés, l'accueil reste à ~74 Ko), vue liste équivalente au clavier, panneau de détail (rôle, observation datée, flux, projet), lien partageable, repli automatique sans WebGL. Couleurs du thème actif, caméra adaptée aux cadres étroits.

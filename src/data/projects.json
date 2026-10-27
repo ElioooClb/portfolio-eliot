@@ -9,14 +9,18 @@
     "role": "Conception, administration et tests",
     "period": "Depuis octobre 2026",
     "status": "in_progress",
-    "statusNote": "Machines virtuelles disponibles, labo en cours de constitution.",
+    "statusNote": "Lab reconstruit de zéro : routeur et serveur Debian opérationnels, contrôleur de domaine en prochaine étape.",
     "updatedAt": "2026-10-27",
     "problem": "Pratiquer l'administration d'un système d'information complet, du plan d'adressage au dépannage, avec des preuves vérifiables plutôt que des exercices isolés.",
-    "solution": "Un lab local sous VMware Workstation : Windows Server 2025 (Active Directory, DNS, DHCP, GPO), serveur Debian, postes clients Windows, routage et segmentation entre réseaux, et une matrice des flux autorisés et interdits dont chaque règle est testée.",
+    "solution": "Un lab local sous VMware Workstation : un routeur VyOS qui relie un réseau de serveurs et un réseau de postes clients, Windows Server 2025 (Active Directory, DNS, DHCP, GPO), serveurs Debian et Rocky Linux, poste client Windows, et une matrice des flux autorisés et interdits dont chaque règle est testée.",
     "skills": [
       {
         "name": "Virtualisation (VMware Workstation)",
-        "detail": "Choix et préparation des machines (serveur Debian, Windows Server 2025, client Windows) et de réseaux virtuels isolés, avec la contrainte des 16 Go de RAM du poste hôte."
+        "detail": "Ancien parc de TP inventorié puis remplacé par un socle neuf de cinq machines, allumées par scénario pour tenir dans les 16 Go de RAM du poste hôte. Deux réseaux virtuels isolés, sans accès direct depuis l'hôte, correspondance des cartes réseau vérifiée par adresse MAC."
+      },
+      {
+        "name": "Administration Linux et SSH",
+        "detail": "Serveur Debian installé sans interface graphique, adresse fixe, compte root désactivé au profit de sudo. Connexion SSH par clé dédiée au lab, via le routeur qui sert de point de rebond, puis connexion par mot de passe désactivée et refus vérifié."
       },
       {
         "name": "Windows Server, Active Directory, GPO",
@@ -30,8 +34,7 @@
       },
       {
         "name": "Routage, segmentation et filtrage",
-        "detail": "Serveurs et postes clients sur des réseaux distincts, routage entre eux et règles de filtrage, chaque flux autorisé ou interdit étant prouvé par un test.",
-        "upcoming": true
+        "detail": "Routeur VyOS entre le réseau des serveurs et celui des postes clients, NAT vers Internet et relais DNS, vérifiés depuis un serveur du lab. Règles de filtrage par zones et tests de chaque flux autorisé ou interdit à venir."
       },
       {
         "name": "PowerShell",
@@ -45,16 +48,18 @@
       }
     ],
     "steps": [
-      { "label": "Choix des machines et des réseaux VMware", "state": "in_progress" },
-      { "label": "Plan d'adressage, DNS et DHCP", "state": "planned" },
-      { "label": "Routage et segmentation", "state": "planned" },
-      { "label": "Matrice de flux et tests", "state": "planned" },
+      { "label": "Choix des machines, des réseaux VMware et du plan d'adressage", "state": "done" },
+      { "label": "Routeur VyOS : routage, NAT, relais DNS", "state": "done" },
+      { "label": "Serveur Debian et accès SSH par clé", "state": "done" },
+      { "label": "Contrôleur de domaine : Active Directory, DNS et DHCP", "state": "planned" },
+      { "label": "Poste client et serveur Rocky Linux", "state": "planned" },
+      { "label": "Pare-feu entre réseaux, matrice de flux testée", "state": "planned" },
       { "label": "Dépannage documenté", "state": "planned" }
     ],
     "limits": [
       "Lab local : il ne tourne que lorsque mon PC est allumé et n'héberge aucun service public."
     ],
-    "stack": ["VMware Workstation", "Windows Server 2025", "Active Directory", "Debian", "PowerShell", "DNS / DHCP"],
+    "stack": ["VMware Workstation", "VyOS", "Windows Server 2025", "Active Directory", "Debian", "Rocky Linux", "PowerShell", "DNS / DHCP"],
     "featured": true,
     "order": 1
   },

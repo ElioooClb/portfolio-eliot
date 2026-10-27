@@ -219,6 +219,41 @@ const VmDebian = () => {
   );
 };
 
+// Routeur : deux flèches opposées, le symbole du routage entre réseaux
+const VmRouter = () => {
+  const { colors } = useModel();
+  const c = colors.flow.data;
+  const arrow = (y: number, dir: 1 | -1) => (
+    <group key={y} position={[0, y, 0]}>
+      <Box size={[0.42, 0.035, 0.01]} position={[-dir * 0.04, 0, 0]} color={c} glow={0.3} />
+      <mesh position={[dir * 0.2, 0, 0]} rotation={[0, 0, -dir * (Math.PI / 2)]}>
+        <coneGeometry args={[0.065, 0.12, 12]} />
+        <Mat color={c} glow={0.3} />
+      </mesh>
+    </group>
+  );
+  return (
+    <Screen width={1.15} height={0.78}>
+      {arrow(0.08, 1)}
+      {arrow(-0.12, -1)}
+    </Screen>
+  );
+};
+
+// Linux générique (Rocky) : invite de commande
+const VmLinux = () => {
+  const { colors } = useModel();
+  return (
+    <Screen width={1.15} height={0.78}>
+      <group position={[-0.12, 0, 0]}>
+        <Box size={[0.13, 0.035, 0.01]} position={[0, 0.045, 0]} rotation={[0, 0, -0.6]} color={colors.model.debian} glow={0.2} />
+        <Box size={[0.13, 0.035, 0.01]} position={[0, -0.045, 0]} rotation={[0, 0, 0.6]} color={colors.model.debian} glow={0.2} />
+      </group>
+      <Box size={[0.18, 0.035, 0.01]} position={[0.1, -0.09, 0]} color={colors.model.debian} glow={0.2} />
+    </Screen>
+  );
+};
+
 const Monitoring = () => {
   const { colors, ghost } = useModel();
   const points: Vec3[] = [
@@ -431,6 +466,10 @@ export const InfraModelView = ({ node }: { node: InfraNode }) => {
       return <VmWindowsClient />;
     case "vm-debian":
       return <VmDebian />;
+    case "vm-router":
+      return <VmRouter />;
+    case "vm-linux":
+      return <VmLinux />;
     case "database":
       return <Database />;
     case "backup":

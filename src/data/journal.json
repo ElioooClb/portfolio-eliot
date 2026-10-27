@@ -2,6 +2,13 @@
   {
     "date": "2026-10-27",
     "type": "realisation",
+    "title": "Lab réseau reconstruit : routeur et premier serveur",
+    "text": "Les machines de mes anciens TP ont été remplacées par un socle neuf, documenté étape par étape. Un routeur VyOS relie désormais un réseau de serveurs et un réseau de postes clients, avec NAT et relais DNS. Premier serveur Debian en place : sortie vers Internet vérifiée à travers le routeur, administration par clé SSH uniquement. Leçon retenue : un mot de passe saisi sous un clavier QWERTY ne passe plus en AZERTY, une réinstallation l'a rappelé.",
+    "projectId": "enterprise-network-lab"
+  },
+  {
+    "date": "2026-10-27",
+    "type": "realisation",
     "title": "Explorateur d'infrastructure en 3D",
     "text": "Nouvelle page Infrastructure : une carte 3D de mes serveurs, services, lab local et flux, avec une vue en liste équivalente. Les états affichés sont des observations datées issues des inventaires, jamais du temps réel."
   },
